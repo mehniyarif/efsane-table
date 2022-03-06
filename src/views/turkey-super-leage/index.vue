@@ -25,7 +25,8 @@ export default {
           size:"1fr",
           type:"data"
         }
-      ]
+      ],
+      filters:{}
     }
   },
   created () {
@@ -33,8 +34,9 @@ export default {
   },
   methods:{
     fetchData(){
-      this.$store.dispatch('leage/fetchLeages').then((response)=>{
-        this.leages = response.data.competitions
+
+      this.$store.dispatch('leage/fetchLeage', '2021/standings').then((response)=>{
+        this.leages = response.data.standings[0].table
       })
     }
   }

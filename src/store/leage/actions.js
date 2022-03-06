@@ -18,4 +18,17 @@ export default {
         });
     });
   },
+  fetchLeage(ignore, id) {
+
+    return new Promise((resolve, reject) => {
+      axios
+        .get("/competitions/" + id)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
 };
