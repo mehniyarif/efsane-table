@@ -176,6 +176,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "css/reboot";
   .efsane-table-wrapper{
       position: relative;
       min-height: var(--efsane-table-wrapper-height);

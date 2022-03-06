@@ -16,8 +16,9 @@
 
 <script>
 import Data from "../localApi"
+import Directives from '../directives'
 export default {
-  mixins:[Data],
+  mixins:[Data, Directives],
   name: "svg-picker",
   props:{
     value:{

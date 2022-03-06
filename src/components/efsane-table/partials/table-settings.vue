@@ -119,12 +119,16 @@
 import ColorPicker from "./color-picker"
 import ActionsPopup from "./actions-popup";
 import Directives from "../directives"
+import EfsaneSelect from "./efsane-select"
+import EfsaneSwitch from "./efsane-switch"
 export default {
   name: "table-setting",
   mixins:[Directives],
   components: {
     ActionsPopup,
-    ColorPicker
+    ColorPicker,
+    EfsaneSelect,
+    EfsaneSwitch
   },
   props:{
     changeColumnsLocal:{

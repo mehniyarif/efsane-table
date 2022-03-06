@@ -50,12 +50,16 @@
 import ColorPicker from "./color-picker"
 import SvgPicker from "./svg-picker"
 import Data from "../localApi"
+import EfsaneInput from "./efsane-input"
+import EfsaneSelect from "./efsane-select"
 export default {
   name: "actions-popup",
   mixins:[Data],
   components:{
     ColorPicker,
-    SvgPicker
+    SvgPicker,
+    EfsaneInput,
+    EfsaneSelect
   },
   props:{
     show:Boolean,

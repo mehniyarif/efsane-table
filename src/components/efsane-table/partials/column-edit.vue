@@ -27,10 +27,18 @@
 
 <script>
 import TableButton from "./table-button"
+import EfsaneSelect from "./efsane-select"
+import EfsaneSwitch from "./efsane-switch"
+import EfsaneInput from "./efsane-input"
+import Directives from '../directives'
 export default {
   name: "column-edit",
+  mixins:[Directives],
   components:{
-    TableButton
+    TableButton,
+    EfsaneSelect,
+    EfsaneSwitch,
+    EfsaneInput
   },
   props:{
     columns:{

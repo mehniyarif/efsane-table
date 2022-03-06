@@ -188,7 +188,7 @@ export default {
       this.selectedColumnName = null
     },
     showValue(name){
-      return this.toTitleCase(name.replace(/__/g, '').replace(/\./g,' / ').replace(/_/g, ' '));
+      return this.toTitleCase(name.replace(/([A-Z])/g, " $1").replace(/__/g, '').replace(/\./g,' / ').replace(/_/g, ' '));
     },
     showLabel(column){
         let showValue = column.name.startsWith("__") ? `${this.showValue(column.name)}` : this.showValue(column.name)

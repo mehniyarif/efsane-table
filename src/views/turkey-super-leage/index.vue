@@ -3,6 +3,8 @@
   <efsane-table
     :data="leages"
     dynamic
+    save
+    table-name="leages"
     :default-columns="columns"
   >
 

@@ -30,9 +30,10 @@
 
 <script>
 import Data from "../localApi"
+import Directives from '../directives'
 export default {
   name: "color-picker",
-  mixins:[Data],
+  mixins:[Data, Directives],
   data(){
       return{
         selectedColor:"Red",
