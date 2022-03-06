@@ -1,7 +1,10 @@
 <template>
   <span class="data-column">
-      {{readProperty(data, column)}}
-      <slot></slot>
+      <img v-if="usage === 'image-src'" :src="readValue" :alt="readValue" class="data-column-image">
+      <span v-else>
+        {{readValue}}
+        <slot></slot>
+      </span>
   </span>
 </template>
 
@@ -13,6 +16,15 @@ export default {
   props:{
     data:Object,
     column:Object
+  },
+  computed:{
+    readValue(){
+      return this.readProperty(this.data, this.column)
+    },
+    usage(){
+      console.log(this.column.usage)
+      return this.column && this.column.usage ? this.column.usage : null
+    }
   }
 }
 </script>
@@ -20,5 +32,9 @@ export default {
 <style lang="scss" scoped>
   .data-column{
     position: relative;
+  }
+  .data-column-image{
+    height: calc(var(--efsane-table-row-height) * .8 );
+    width: calc(var(--efsane-table-row-height) * .8 );
   }
 </style>
