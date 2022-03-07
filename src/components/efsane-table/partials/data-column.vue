@@ -22,7 +22,6 @@ export default {
       return this.readProperty(this.data, this.column)
     },
     usage(){
-      console.log(this.column.usage)
       return this.column && this.column.usage ? this.column.usage : null
     }
   }

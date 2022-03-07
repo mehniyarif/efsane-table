@@ -1,24 +1,20 @@
-# efsane-table
+# Efsane Table
 
-## Project setup
+## Efsane Table setup
 ```
-npm install
+npm install efsane-table
 ```
-
-### Compiles and hot-reloads for development
+main.js (globally component)
 ```
-npm run serve
+import EfsaneTable from 'efsane-table'
+Vue.component('EfsaneTable',EfsaneTable);
 ```
-
-### Compiles and minifies for production
+usage
 ```
-npm run build
+<efsane-table
+    :data="tableData"
+    :default-columns="columns"
+    table-name="orders"
+>
+</efsane-table>
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
