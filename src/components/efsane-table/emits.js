@@ -1,3 +1,4 @@
+global.Buffer = global.Buffer || require("buffer").Buffer;
 export default {
   methods:{
     sendColumns(value){

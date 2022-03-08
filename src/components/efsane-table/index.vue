@@ -54,20 +54,20 @@
 
 <script>
 //components
-import TableHeader from './partials/table-header'
-import TableTopbar from './partials/table-topbar'
-import DataColumn from './partials/data-column'
-import DynamicColumnSetting from "./partials/dynamic-column-setting";
-import ResizeModeButton from "./partials/resize-mode-button"
-import ReloadButton from "./partials/reload-button"
-import Checkbox from "./partials/checkbox"
-import RowNumber from "./partials/row-number"
-import CopyArea from "./partials/copy-area"
-import DownloadArea from "./partials/download-area"
-import TableSettings from "./partials/table-settings"
-import Pagination from "./partials/pagination"
-import TableCountDraw from "./partials/table-count-draw"
-import TableAllSelectAlert from "./partials/table-all-select-alert";
+import TableHeader from '@/components/efsane-table/partials/table-header'
+import TableTopbar from '@/components/efsane-table/partials/table-topbar'
+import DataColumn from '@/components/efsane-table/partials/data-column'
+import DynamicColumnSetting from "@/components/efsane-table/partials/dynamic-column-setting";
+import ResizeModeButton from "@/components/efsane-table/partials/resize-mode-button"
+import ReloadButton from "@/components/efsane-table/partials/reload-button"
+import Checkbox from "@/components/efsane-table/partials/checkbox"
+import RowNumber from "@/components/efsane-table/partials/row-number"
+import CopyArea from "@/components/efsane-table/partials/copy-area"
+import DownloadArea from "@/components/efsane-table/partials/download-area"
+import TableSettings from "@/components/efsane-table/partials/table-settings"
+import Pagination from "@/components/efsane-table/partials/pagination"
+import TableCountDraw from "@/components/efsane-table/partials/table-count-draw"
+import TableAllSelectAlert from "@/components/efsane-table/partials/table-all-select-alert";
 //mixins
 import Computed from "@/components/efsane-table/computed";
 import StylesComputed from "@/components/efsane-table/stylesComputed";
@@ -279,7 +279,6 @@ export default {
     width: 100%;
     justify-content: space-between;
   }
-  //tooltip
   .efsane-tooltip {
     display: inline;
     position: relative;
@@ -328,7 +327,6 @@ export default {
     border-style: solid;
     border-color: transparent transparent black transparent !important;
   }
-  //tooltip-end
 
   .inline-works{
     display: none;
