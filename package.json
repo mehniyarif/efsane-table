@@ -1,6 +1,6 @@
 {
   "name": "efsane-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/efsane-table.umd.js",
   "module": "dist/efsane-table.esm.js",
   "unpkg": "dist/efsane-table.min.js",
