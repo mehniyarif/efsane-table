@@ -2,7 +2,7 @@
   <div class="table-setting-color-picker" @click.stop="show=!show" :style="cssVariables" v-click-outside="close">
     <div class="container" v-if="show" >
     <div class="material-color-picker" >
-        <div class="material-color-picker__left-panel" @click.stop>
+        <div class="left-panel" @click.stop>
             <ol class="color-selector" >
                 <li v-for="(color, key) in colors" :key="key">
                     <input name="material-color" :id="'color'+color.color"   type="radio" :value="color.color" v-model="selectedColor">
@@ -10,13 +10,13 @@
                 </li>
             </ol>
         </div>
-        <div class="material-color-picker__right-panel" >
+        <div class="right-panel" >
             <div class="color-palette-wrapper" :class="{ 'js-active': selectedColor === color.color }" v-for="(color, key) in colors" :key="key">
                 <h2 class="color-palette-header">{{color.color}}
                   <svg xmlns="http://www.w3.org/2000/svg" @click.stop="close" width="24" height="24" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
                 </h2>
                 <ol class="color-palette"  >
-                    <li id="clipboardItem" :class="{'color-white':ind > 3}" v-for="(variation, ind) in color.variations" @click.stop="selectColor(variation.hex)" :key="ind" class="color-palette__item" :style="{ 'background-color': variation.hex }">
+                    <li id="clipboardItem" :class="{'color-white':ind > 3}" v-for="(variation, ind) in color.variations" @click.stop="selectColor(variation.hex)" :key="ind" class="item" :style="{ 'background-color': variation.hex }">
                         <span >{{variation.weight}}</span>
                         <span  >{{variation.hex}}</span>
                     </li>
@@ -103,11 +103,11 @@ export default {
     border-radius: 5px;
     box-shadow: 0 15px 30px rgba(0,0,0,.1);
 
-    &__left-panel {
+    & .left-panel {
       z-index: 2;
     }
 
-    &__right-panel {
+    & .right-panel {
       position: relative;
       flex-grow: 1;
       overflow: hidden;
@@ -194,7 +194,7 @@ export default {
     flex-direction: column;
     flex-grow: 1;
 
-    &__item {
+    .item {
       position: relative;
       display: flex;
       width: 100%;

@@ -6,14 +6,16 @@ import babel from "rollup-plugin-babel";
 export default {
     input: 'src/components/efsane-table/index.vue', // Path relative to package.json
     external: [
-        'vue'
+        'vue',
+        '@babel/runtime/regenerator'
       ],
     output: {
         globals: {
-          'vue': 'Vue'
+          'vue': 'Vue',
+          '@babel/runtime/regenerator': '_regeneratorRuntime'
         },
         name: 'EfsaneTable',
-        exports: 'named',
+        exports: 'auto',
     },
     plugins: [
         vue({
