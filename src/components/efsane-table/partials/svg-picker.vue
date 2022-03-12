@@ -96,7 +96,7 @@ export default {
 .svg-picker-dropdown{
   position: absolute;
   max-height: var(--svg-picker-max-height);
-  min-width: 250px;
+  min-width: 350px;
   border-radius: 5px;
   z-index: 9999;
   background-color: #fff;
@@ -104,6 +104,7 @@ export default {
   right: -12px;
   top: 30px;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #ccc;
 
@@ -130,12 +131,12 @@ export default {
   z-index:99999;
   top: 0;
   left: 0;
+  right: 0;
   height: 35px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 5px 10px;
   border-bottom: 1px solid rgba(0,0,0,.1);
   svg{
     cursor: pointer;

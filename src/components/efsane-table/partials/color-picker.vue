@@ -193,6 +193,7 @@ export default {
     &__item {
       position: relative;
       display: flex;
+      width: 100%;
       align-items: center;
       justify-content: space-between;
       flex-grow: 1;

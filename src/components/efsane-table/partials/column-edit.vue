@@ -113,7 +113,7 @@ export default {
       this.close()
     },
     showValue(name){
-      return this.toTitleCase(name.replace(/_/g, ' ').replace(/\./g,' / '));
+      return this.toTitleCase(name.replace(/([A-Z])/g, " $1").replace(/__/g, '').replace(/\./g,' / ').replace(/_/g, ' '));
     },
     toTitleCase(str) {
       return str.replace(
