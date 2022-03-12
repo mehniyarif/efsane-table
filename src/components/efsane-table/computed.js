@@ -33,7 +33,7 @@ export default {
           if(column.size && !isNaN(column.size - 1)){
             size +=  `${column.size}px `
           }else if(column.size){
-            size +=  `${column.size} `
+            size +=  `minmax(0, ${column.size}) `
           }else{
             size +=  " 1fr "
           }

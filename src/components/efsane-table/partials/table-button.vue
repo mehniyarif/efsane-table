@@ -44,8 +44,8 @@ export default {
         textColor = "#343A40"
       }
       return {
-        "efsane-button-color": color,
-        "efsane-button-text-color": textColor
+        "--efsane-button-color": color,
+        "--efsane-button-text-color": textColor
       }
     }
   }
@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss" scoped>
   .table-button{
-    background-color: var(efsane-button-color);
+    background-color: var(--efsane-button-color);
     font-family: "Montserrat", Helvetica, Arial, sans-serif;
     font-size: 1rem;
     cursor: pointer;
@@ -63,7 +63,7 @@ export default {
     position: relative;
     overflow: hidden;
     font-weight: 400;
-    color: var(efsane-button-text-color);
+    color: var(--efsane-button-text-color);
     padding: 0.75rem 2rem;
     box-sizing: border-box;
     outline: none;

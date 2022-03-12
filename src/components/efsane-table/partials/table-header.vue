@@ -181,12 +181,18 @@ export default {
     border-top-left-radius: 5px;
     background-color:var(--efsane-header-background-color);
     box-shadow: 0 -1px 3px rgba(0,0,0,.1);
+    min-height: min-content;
     height: var(--efsane-table-header-height);
+    line-height: var(--efsane-table-header-height);
+    padding-block: 5px;
+    max-height: max-content;
+    white-space: nowrap;
+    word-break: keep-all;
     color: var(--efsane-header-text-color);
     font-family: soleil,sans-serif;
     border-inline: 1px solid rgba(0,0,0,.1);
     font-weight: 500;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
   }
   .efsane-table-th{
     position: relative;

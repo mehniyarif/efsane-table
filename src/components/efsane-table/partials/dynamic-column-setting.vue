@@ -16,8 +16,9 @@
         <efsane-input v-model="newColumn.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
         <efsane-select v-model="newColumn.align" name="align"  label="Align" :options="alignOptions" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="newColumn.type" name="type" disabled label="Type" :options="typeOptions" label-property="label" value-property="name"> </efsane-select>
-        <efsane-select v-model="newColumn.list_manipulation" name="type" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
-        <efsane-select v-model="newColumn.text_manipulation" name="type" label="Text Manipulation" :options="textManipulation" label-property="label" value-property="name"> </efsane-select>
+        <efsane-select v-model="newColumn.list_manipulation" name="list" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
+        <efsane-select v-model="newColumn.text_manipulation" name="text" label="Text Manipulation" :options="textManipulation" label-property="label" value-property="name"> </efsane-select>
+        <efsane-select v-model="location" name="location" label="Column Location" :options="locations" label-property="label" value-property="name"> </efsane-select>
         <efsane-switch v-model="newColumn.copyable" name="copyable"  label="Copyable"> </efsane-switch>
         <efsane-switch v-model="newColumn.downloadable" name="downloadable"  label="Downloadable"> </efsane-switch>
 
@@ -104,6 +105,7 @@ export default {
       show:false,
       formStatus:'list',
       selectedColumnName:null,
+      location:"__FIRST__",
       newColumn:{
         header:null,
         tooltip:null,
@@ -125,6 +127,21 @@ export default {
         },
         selectedColumns(){
           return this.columns.map(v => v.name)
+        },
+        locations(){
+          let locations = [
+            {
+              label:"Make First Column",
+              name:"__FIRST__"
+            }
+          ]
+          this.columns.map(column => {
+            locations.push({
+              name:column.name,
+              label: `After ${this.showLabel(column)}`
+            })
+          })
+          return locations
         },
         generateColumns(){
           let result = []
@@ -166,9 +183,18 @@ export default {
       if(['checkbox','row_number','action'].includes(this.selectedColumnName)){
         this.newColumn.type = this.selectedColumnName
       }
-      let newColumns = [...this.columns,this.newColumn]
+      let newColumns = []
+      if(this.location === '__FIRST__'){
+        newColumns = [this.newColumn, ...this.columns]
+      }else{
+        let indexColumn = this.columns.findIndex(v => v.name === this.location)
+        if(indexColumn > -1){
+          newColumns = [...this.columns.slice(0,indexColumn+1), this.newColumn, ...this.columns.slice(indexColumn+1, this.columns.length)]
+        }
+      }
+
       newColumns.map(column => {
-        if(!["checkbox","action","row_number","slot"].includes(column.type)){
+        if(!["checkbox","action","row_number","slot"].includes(column.type) && !this.isSmaller60Px(column.size)){
           column.size = "1fr" // columnslar değiştiği için hepsini sıfırlıyoruz
         }
       })
@@ -176,10 +202,15 @@ export default {
       this.formStatus = 'list'
       this.selectedColumnName = null
     },
+    isSmaller60Px(size){
+      if(size.toString().search('%') > -1) return false
+      if(size.toString().search('fr') > -1) return false
+      return parseInt(size.toString().replace('px', '').trim()) < 60;
+    },
     removeColumn(){
       let newColumns = this.columns.filter(v => v.name !== this.selectedColumnName)
       newColumns.map(column => {
-          if(!["checkbox","action","row_number","slot"].includes(column.type)) {
+          if(!["checkbox","action","row_number","slot"].includes(column.type) && !this.isSmaller60Px(column.size)) {
             column.size = "1fr"  // columnslar değiştiği için hepsini sıfırlıyoruz
           }
       })

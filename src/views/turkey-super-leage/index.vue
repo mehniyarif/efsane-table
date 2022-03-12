@@ -4,6 +4,7 @@
     :data="leages"
     dynamic
     save
+    editable
     table-name="leages"
     :default-columns="columns"
   >

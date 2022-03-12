@@ -28,7 +28,7 @@ export default {
           ? `${this.settings.rowBorderSize}px solid ${this.settings.rowBorderColor}`
           : "none",
         "--efsane-table-topbar-height": this.settings.topbarHeight,
-        "--efsane-table-header-height": this.settings.headerHeight,
+        "--efsane-table-header-height": `${this.settings.headerHeight}px`,
         "--efsane-pagination-height": this.settings.paginationHeight,
       };
     }

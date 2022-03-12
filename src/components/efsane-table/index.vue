@@ -1,7 +1,7 @@
 <template>
-  <div class="efsane-table-wrapper" id="efsane-table-wrapper" :style="styles" :key="tableKey" >
+  <div class="efsane-table-wrapper" id="efsane-table-wrapper" :style="styles" :key="tableKey" @click="clickedTable">
     <table class="efsane-table-container" @mousemove="mouseMove" @mouseup="mouseUp">
-        <table-topbar :data-keys="dataKeys" :table-tabs="tableTabs" :select-tab="selectTab" :current-tab="currentTab">
+        <table-topbar v-if="editable" :data-keys="dataKeys" :table-tabs="tableTabs" :select-tab="selectTab" :current-tab="currentTab">
           <table-all-select-alert slot="table-all-select-alert"  :table-all-select-alert-show="tableAllSelectAlertShow"
                                   :data-all-selected="dataAllSelected"
                                   :table-all-select-alert-text="tableAllSelectAlertText"
@@ -10,7 +10,7 @@
                                   :data-all-select="dataAllSelect">
           </table-all-select-alert>
           <reload-button v-if="reload" slot="reload-button" :reload="reloadFunction" ></reload-button>
-          <resize-mode-button slot="resize-mode-button" :resize-mode="openCloseResizeMode" :settings="settings" ></resize-mode-button>
+          <resize-mode-button  slot="resize-mode-button" :resize-mode="openCloseResizeMode" :settings="settings" ></resize-mode-button>
           <table-settings slot="table-settings"  :actions="currentActions" :shortcuts="shortcuts" :increase-table-key="increaseTableKey" :remove-settings="removeSettings" :settings="settings" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></table-settings>
           <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" :align-options="alignOptions" :type-options="typeOptions" :list-manipulation="listManipulation" :text-manipulation="textManipulation" :data-keys="dataKeys" :increase-table-key="increaseTableKey" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></dynamic-column-setting>
         </table-topbar>
@@ -109,6 +109,7 @@ export default {
     save:Boolean,
     reload:Boolean,
     pagination:Boolean,
+    editable:Boolean,
     outputType:{
       type:String,
       default:"default"  // other option: ["base64"]
@@ -179,10 +180,10 @@ export default {
   @import "css/reboot";
   .efsane-table-wrapper{
       position: relative;
-      min-height: var(--efsane-table-wrapper-height);
+     /* min-height: var(--efsane-table-wrapper-height); */
   }
   .efsane-table-container{
-    position: absolute;
+    position: relative;
     display: block;
     border-collapse: unset;
     border-spacing:0;
@@ -195,12 +196,25 @@ export default {
     overflow-x: hidden;
     display: grid;
     background-color: var(--efsane-table-background-color);
-    box-shadow: -1px 1px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+    box-shadow: 1px 1px 1px rgba(0,0,0,.1);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     scrollbar-width: thin;
     scrollbar-color: #ccc;
+    position: relative;
     border-bottom: 5px solid var(--efsane-table-background-color);
+    border-left: 7px solid #ccc;
+
+    &::before{
+      content: "";
+      background-color: rgba(0,0,0,.1);
+      width: 1px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+    }
 
     &::-webkit-scrollbar {
       width: 7px;

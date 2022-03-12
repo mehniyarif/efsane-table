@@ -51,6 +51,7 @@ export default {
   .efsane-right-topbar{
     display: flex;
     width: max-content;
+    gap: 5px;
     background-color: var(--efsane-header-background-color);
     border-inline: 1px solid rgba(0,0,0,.1);
     border-top: 1px solid rgba(0,0,0,.1);

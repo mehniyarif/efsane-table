@@ -81,7 +81,7 @@ export default {
   },
   computed:{
     requiredColor(){
-      return !this.value && this.isFocus ? 'var(--efsane-danger-color)' : this.focusWarning ? 'var(--efsane-warning-color)' : 'var(--efsane-fourth-color)'
+      return !this.value && this.isFocus ? '#ed1c25' : this.focusWarning ? '#e9b611' : '#607b8b'
     },
     cssVariables(){
       return{
@@ -136,13 +136,6 @@ export default {
         return value
       }
     }
-  },
-  mounted(){
-    setTimeout(() => {
-      if(!this.value){
-        this.$refs[this.id] && this.$refs[this.id].focus()
-      }
-    }, 1500);
   }
 }
 </script>
@@ -176,13 +169,13 @@ export default {
   font-family: 'Poppins','Sans Serif';
   box-sizing: border-box;
   border: 1px solid rgba(0,0,0,0.2);
-  transition: all .3s ease;
   background-color: #fff;
   padding-left: .7rem;
   width: 100%;
 
   &:hover, &:focus {
     box-shadow: 0px 10px 20px -13px rgba(0, 0, 0, 0.1);
+    outline: rgba(0, 0, 0, 0.1);
   }
   &.-select {
     -webkit-appearance: none;

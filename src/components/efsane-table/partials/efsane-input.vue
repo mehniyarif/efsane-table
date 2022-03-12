@@ -65,21 +65,11 @@ export default {
   },
   computed:{
     requiredColor(){
-      return !this.value && this.isFocus ? 'var(--efsane-danger-color)' : this.focusWarning ? 'var(--efsane-warning-color)' : 'var(--efsane-fourth-color)'
-    },
-    validation(){
-      return this.required && this.validate ? 'required|'+this.validate : this.required  ? 'required' : this.validate
+      return !this.value && this.isFocus ? '#ed1c25' : this.focusWarning ? '#e9b611' : '#607b8b'
     },
     errorHandle(){
       return (!this.value || this.errors.has(this.name))
     }
-  },
-  mounted(){
-    setTimeout(() => {
-      if(!this.value){
-        this.$refs[this.id] && this.$refs[this.id].focus()
-      }
-    }, 1500);
   },
   methods:{
 
@@ -124,7 +114,7 @@ export default {
   padding-left: .7rem;
   width: 100%;
   &:focus{
-    border: 1px solid var(--efsane-fourth-color);
+    border: 1px solid #607b8b;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
 }

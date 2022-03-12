@@ -197,7 +197,7 @@ export default {
 <style lang="scss" scoped>
 .table-setting{
   position: relative;
-  margin-right: 10px;
+  margin-left: 2px;
   display: grid;
   place-content: center;
   height: 30px;
@@ -216,12 +216,12 @@ export default {
 .table-setting-dropdown{
   position: absolute;
   max-height: var(--table-setting-max-height);
-  min-width: 300px;
+  min-width: 400px;
   border-radius: 5px;
   z-index: 54000;
   background-color: #fff;
   box-shadow: -15px 20px 60px rgba(0,0,0,.3);
-  right: -12px;
+  right: 0;
   top: 30px;
   scrollbar-width: thin;
   scrollbar-color: #ccc;
@@ -309,7 +309,7 @@ export default {
   }
 }
 .table-setting-dropdown-menu-subitem{
-  width: 100%;
+  width: calc(100% - 20px);
   height: 40px;
   display: flex;
   align-items: center;

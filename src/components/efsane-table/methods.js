@@ -22,7 +22,7 @@ export default {
     getPropertyValue(data, property_list, settings= {}) {
       let result = []
 
-      if(property_list.length > 1){
+      if(property_list.length > 1 && data[property_list[0]]){
           if(Array.isArray(data[property_list[0]])){
             result = result.concat(this.getArrayValues(data[property_list[0]],property_list.slice(1), settings))
           }else if(property_list[0] in data){
@@ -65,6 +65,9 @@ export default {
         default:
           return showValue
       }
+    },
+    clickedTable(){
+        this.dragStatus = false
     },
     toTitleCase(str) {
       return str.replace(

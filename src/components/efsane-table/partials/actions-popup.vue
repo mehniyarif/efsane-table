@@ -122,7 +122,7 @@ export default {
 <style lang="scss" scoped>
   .actions-popup-container{
     position: absolute;
-    right: -12px;
+    right: 0;
     top: 30px;
     display: block;
     min-height: 40vh;
@@ -134,11 +134,11 @@ export default {
   }
   .actions-popup-header{
     height: 35px;
-    width: 100%;
+    width: calc(100% - 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid rgba(0,0,0,.1);
     svg{
       cursor: pointer;
