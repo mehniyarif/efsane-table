@@ -54,30 +54,30 @@
 
 <script>
 //components
-import TableHeader from '@/components/efsane-table/partials/table-header'
-import TableTopbar from '@/components/efsane-table/partials/table-topbar'
-import DataColumn from '@/components/efsane-table/partials/data-column'
-import DynamicColumnSetting from "@/components/efsane-table/partials/dynamic-column-setting";
-import ResizeModeButton from "@/components/efsane-table/partials/resize-mode-button"
-import ReloadButton from "@/components/efsane-table/partials/reload-button"
-import Checkbox from "@/components/efsane-table/partials/checkbox"
-import RowNumber from "@/components/efsane-table/partials/row-number"
-import CopyArea from "@/components/efsane-table/partials/copy-area"
-import DownloadArea from "@/components/efsane-table/partials/download-area"
-import TableSettings from "@/components/efsane-table/partials/table-settings"
-import Pagination from "@/components/efsane-table/partials/pagination"
-import TableCountDraw from "@/components/efsane-table/partials/table-count-draw"
-import TableAllSelectAlert from "@/components/efsane-table/partials/table-all-select-alert";
+import TableHeader from './partials/table-header.vue'
+import TableTopbar from './partials/table-topbar.vue'
+import DataColumn from './partials/data-column.vue'
+import DynamicColumnSetting from "./partials/dynamic-column-setting.vue";
+import ResizeModeButton from "./partials/resize-mode-button.vue"
+import ReloadButton from "./partials/reload-button.vue"
+import Checkbox from "./partials/checkbox.vue"
+import RowNumber from "./partials/row-number.vue"
+import CopyArea from "./partials/copy-area.vue"
+import DownloadArea from "./partials/download-area.vue"
+import TableSettings from "./partials/table-settings.vue"
+import Pagination from "./partials/pagination.vue"
+import TableCountDraw from "./partials/table-count-draw.vue"
+import TableAllSelectAlert from "./partials/table-all-select-alert.vue";
 //mixins
-import Computed from "@/components/efsane-table/computed";
-import StylesComputed from "@/components/efsane-table/stylesComputed";
-import Watch from "@/components/efsane-table/watch";
-import Data from "@/components/efsane-table/data";
-import LocalApi from "@/components/efsane-table/localApi";
-import Provide from "@/components/efsane-table/provide";
-import Emits from "@/components/efsane-table/emits";
-import Methods from "@/components/efsane-table/methods";
-import LifecycleMethods from "@/components/efsane-table/lifecycleMethods";
+import Computed from "./computed.js";
+import StylesComputed from "./stylesComputed.js";
+import Watch from "./watch.js";
+import Data from "./data.js";
+import LocalApi from "./localApi.js";
+import Provide from "./provide.js";
+import Emits from "./emits.js";
+import Methods from "./methods.js";
+import LifecycleMethods from "./lifecycleMethods.js";
 export default {
   components: {
     TableTopbar,

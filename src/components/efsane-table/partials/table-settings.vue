@@ -116,11 +116,11 @@
 </template>
 
 <script>
-import ColorPicker from "./color-picker"
-import ActionsPopup from "./actions-popup";
-import Directives from "../directives"
-import EfsaneSelect from "./efsane-select"
-import EfsaneSwitch from "./efsane-switch"
+import ColorPicker from "./color-picker.vue"
+import ActionsPopup from "./actions-popup.vue";
+import Directives from "../directives.js"
+import EfsaneSelect from "./efsane-select.vue"
+import EfsaneSwitch from "./efsane-switch.vue"
 export default {
   name: "table-setting",
   mixins:[Directives],

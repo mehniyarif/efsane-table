@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Methods from "../methods";
-import Data from "../data";
+import Methods from "../methods.js";
+import Data from "../data.js";
 export default {
   mixins:[Methods, Data],
   props:{

@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import ColorPicker from "./color-picker"
-import SvgPicker from "./svg-picker"
-import Data from "../localApi"
-import EfsaneInput from "./efsane-input"
-import EfsaneSelect from "./efsane-select"
+import ColorPicker from "./color-picker.vue"
+import SvgPicker from "./svg-picker.vue"
+import Data from "../localApi.js"
+import EfsaneInput from "./efsane-input.vue"
+import EfsaneSelect from "./efsane-select.vue"
 export default {
   name: "actions-popup",
   mixins:[Data],

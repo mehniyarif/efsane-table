@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import TableButton from "./table-button"
-import EfsaneSelect from "./efsane-select"
-import EfsaneSwitch from "./efsane-switch"
-import EfsaneInput from "./efsane-input"
-import Directives from '../directives'
+import TableButton from "./table-button.vue"
+import EfsaneSelect from "./efsane-select.vue"
+import EfsaneSwitch from "./efsane-switch.vue"
+import EfsaneInput from "./efsane-input.vue"
+import Directives from '../directives.js'
 export default {
   name: "column-edit",
   mixins:[Directives],

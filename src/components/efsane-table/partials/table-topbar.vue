@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import TableTabs from './table-tabs'
+import TableTabs from './table-tabs.vue'
 export default {
   components:{
     TableTabs

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Directives from '../directives'
+import Directives from '../directives.js'
 
 export default {
   mixins:[Directives],

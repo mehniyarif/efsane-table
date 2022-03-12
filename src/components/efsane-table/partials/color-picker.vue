@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import Data from "../localApi"
-import Directives from '../directives'
+import Data from "../localApi.js"
+import Directives from '../directives.js'
 export default {
   name: "color-picker",
   mixins:[Data, Directives],
@@ -120,6 +120,11 @@ export default {
     padding: 1em 0;
     border-right: 0.25em solid #efefef;
 
+    li{
+
+      list-style-type: none;
+    }
+
     input[type='radio'] {
       display: none;
     }
@@ -157,7 +162,7 @@ export default {
     input[type='radio']:checked + label:after {
       padding: 12px;
     }
-  } // end sucky chunk
+  }
 
   .color-palette-wrapper {
     position: absolute;
@@ -166,7 +171,6 @@ export default {
     bottom: 0;
     left: 0;
     transform: translateX(-100%);
-    //transition: transform 250ms;
 
     display: flex;
     flex-direction: column;

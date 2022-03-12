@@ -1,7 +1,6 @@
 <template>
   <tr class="efsane-table-header drop-zone" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
-    <template v-for="(column, key) in columns"   >
-      <span class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="resizeMode" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
+      <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="resizeMode" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
         <span v-if="!resizeMode || dragStatus" >
           <span v-if="['data','slot','row_number'].includes(column.type)">{{column.header}}</span>
           <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
@@ -11,15 +10,13 @@
         </span>
         <column-edit v-else :columns="columns" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :type-options="typeOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
       </span>
-
-    </template>
   </tr>
 </template>
 
 <script>
-import Checkbox from "./checkbox"
-import ColumnEdit from "./column-edit"
-import ColumnOrder from "./column-order"
+import Checkbox from "./checkbox.vue"
+import ColumnEdit from "./column-edit.vue"
+import ColumnOrder from "./column-order.vue"
 export default {
   name: "table-header",
   components:{

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Directives from '@/components/efsane-table/directives'
+import Directives from '../directives.js'
 
 export default {
   mixins:[Directives],

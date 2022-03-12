@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Data from "../localApi"
-import Directives from '../directives'
+import Data from "../localApi.js"
+import Directives from '../directives.js'
 export default {
   mixins:[Data, Directives],
   name: "svg-picker",
