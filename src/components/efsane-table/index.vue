@@ -180,12 +180,14 @@ export default {
   @import "css/reboot";
   .efsane-table-wrapper{
       position: relative;
+    background-color: transparent;
      /* min-height: var(--efsane-table-wrapper-height); */
   }
   .efsane-table-container{
     position: relative;
     display: block;
     border-collapse: unset;
+    background-color: transparent;
     border-spacing:0;
     -webkit-border-vertical-spacing:0;
     inset: 0;

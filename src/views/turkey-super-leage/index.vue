@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="table-wrapper">
   <efsane-table
     :data="leages"
     dynamic
@@ -106,5 +106,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .table-wrapper{
+    margin-inline: 100px;
+  }
 </style>
