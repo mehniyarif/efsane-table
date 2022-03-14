@@ -18,7 +18,7 @@ export default {
       return this.data
     },
     tableAllSelectAlertShow(){
-        return this.lazyLoadFlag && this.dataCount > this.data.length && this.selected.length === this.data.length
+      return this.lazyLoadFlag &&  this.data && this.dataCount > this.data.length && this.selected.length === this.data.length
     },
     tableSelectedCount(){
       if(this.dataAllSelected){

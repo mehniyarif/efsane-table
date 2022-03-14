@@ -52,7 +52,7 @@ export default {
       }
     },
     currectOffset(){
-      return this.offset ? this.offset : (this.currentPage - 1) * this.limit
+      return (this.currentPage - 1) * this.limit
     }
   },
   created(){
@@ -139,6 +139,7 @@ export default {
     offset(newValue){
       if(!newValue){
         this.currentPage= 1
+        this.$emit('update:offset',1)
       }
       this.createPags()
     },
