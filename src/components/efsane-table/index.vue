@@ -18,6 +18,7 @@
         <table-header :columns="currentColumns" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" :current-tab="currentTab" :resize-mode="settings.colResize" :align-style="alignStyle" :text-manipulation="textManipulation" :align-options="alignOptions" :type-options="typeOptions"  :list-manipulation="listManipulation" :list-all-selected="listAllSelected" :edit-column="editColumn" :change-columns="changeColumnsLocal" :mouse-down="mouseDown" :trigger-list-all-selected="triggerListAllSelected"></table-header>
 
         <tbody class="efsane-table-body">
+
               <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected'}" v-for="(row, line) in currentData" :key="line">
                 <label :key="ind" v-for="(column,ind) in currentColumns" :for="'checkbox-'+line">
                   <span class="efsane-table-td"  :id="'column-'+column.name" :style="alignStyle(column.align)">
@@ -352,4 +353,5 @@ export default {
     top: 0;
     height: 100%;
   }
+
 </style>

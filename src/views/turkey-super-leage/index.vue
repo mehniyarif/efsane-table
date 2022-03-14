@@ -1,7 +1,7 @@
 <template>
 <div class="table-wrapper">
   <efsane-table
-    :data="leages"
+    :data="tabledatas[line]"
     dynamic
     save
     editable
@@ -14,11 +14,15 @@
 </template>
 
 <script>
+import LocalApi from "@/views/turkey-super-leage/data/localApi";
 export default {
   name: 'turkey-super-leage',
+  mixins:[LocalApi],
   data(){
     return{
       leages:[],
+      line:0,
+      tables: [],
       columns:[
         {
           header: "#",
@@ -93,8 +97,22 @@ export default {
   },
   created () {
     this.fetchData()
+    setInterval(()=>{
+      if(this.line === 2){
+        this.line = 0
+        return
+      }
+      this.line +=1
+    },3000)
   },
   methods:{
+    shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array
+    },
     fetchData(){
 
       this.$store.dispatch('leage/fetchLeage', '2021/standings').then((response)=>{
