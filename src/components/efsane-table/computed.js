@@ -31,11 +31,11 @@ export default {
       if(this.currentColumns && this.currentColumns.length){
         this.currentColumns.forEach(column => {
           if(column.size && !isNaN(column.size - 1)){
-            size +=  `${column.size}px `
+            size +=  `minmax(0, ${column.size}px) `
           }else if(column.size){
             size +=  `minmax(0, ${column.size}) `
           }else{
-            size +=  " 1fr "
+            size +=  " minmax(0, 1fr) "
           }
         })
       }

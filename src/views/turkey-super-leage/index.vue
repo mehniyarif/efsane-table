@@ -103,16 +103,9 @@ export default {
         return
       }
       this.line +=1
-    },3000)
+    },2000)
   },
   methods:{
-    shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array
-    },
     fetchData(){
 
       this.$store.dispatch('leage/fetchLeage', '2021/standings').then((response)=>{
