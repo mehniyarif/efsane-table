@@ -1,6 +1,7 @@
 # Efsane Table
 
-![alt vue2](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png" alt="vue 2" width="200"/>
+
 For ***Vue 2*** Framework. ***Please start using it from version 1.1.0 is currently under development.***
 
 
