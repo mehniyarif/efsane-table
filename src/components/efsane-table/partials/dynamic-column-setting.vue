@@ -14,13 +14,9 @@
       <div class="dynamic-column-setting-dropdown-form" v-else-if="formStatus === 'add'">
         <efsane-input v-model="newColumn.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
         <efsane-input v-model="newColumn.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
-        <efsane-select v-model="newColumn.align" name="align"  label="Align" :options="alignOptions" label-property="label" value-property="name"> </efsane-select>
-        <efsane-select v-model="newColumn.type" name="type" disabled label="Type" :options="typeOptions" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="newColumn.list_manipulation" name="list" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
-        <efsane-select v-model="newColumn.text_manipulation" name="text" label="Text Manipulation" :options="textManipulation" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="location" name="location" label="Column Location" :options="locations" label-property="label" value-property="name"> </efsane-select>
         <efsane-switch v-model="newColumn.copyable" name="copyable"  label="Copyable"> </efsane-switch>
-        <efsane-switch v-model="newColumn.downloadable" name="downloadable"  label="Downloadable"> </efsane-switch>
 
         <div class="dynamic-column-setting-dropdown-form-footer">
           <table-button color="info" :disabled="formValid" @click.stop="addColumn">Apply</table-button>
@@ -69,25 +65,7 @@ export default {
       type:Function,
       required:false
     },
-    typeOptions:{
-      type:Array,
-      default:function(){
-        return []
-      }
-    },
-    textManipulation:{
-      type:Array,
-      default:function(){
-        return []
-      }
-    },
     listManipulation:{
-      type:Array,
-      default:function(){
-        return []
-      }
-    },
-    alignOptions:{
       type:Array,
       default:function(){
         return []
@@ -109,14 +87,10 @@ export default {
       newColumn:{
         header:null,
         tooltip:null,
-        align:'center',
-        type:null,
         name:null,
         copyable:false,
-        downloadable:false,
         size:'1fr',
-        list_manipulation:'first',
-        text_manipulation:'default'
+        list_manipulation:'first'
       },
 
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="efsane-table-wrapper" id="efsane-table-wrapper" :style="styles" :key="tableKey" @click="clickedTable">
+  <div v-bind="efsaneTableWrapper" @click="clickedTable">
     <table class="efsane-table-container" @mousemove="mouseMove" @mouseup="mouseUp">
         <table-topbar v-if="editable" :data-keys="dataKeys" :table-tabs="tableTabs" :select-tab="selectTab" :current-tab="currentTab">
           <table-all-select-alert slot="table-all-select-alert"  :table-all-select-alert-show="tableAllSelectAlertShow"
@@ -12,16 +12,15 @@
           <reload-button v-if="reload" slot="reload-button" :reload="reloadFunction" ></reload-button>
           <resize-mode-button  slot="resize-mode-button" :resize-mode="openCloseResizeMode" :settings="settings" ></resize-mode-button>
           <table-settings slot="table-settings"  :actions="currentActions" :shortcuts="shortcuts" :increase-table-key="increaseTableKey" :remove-settings="removeSettings" :settings="settings" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></table-settings>
-          <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" :align-options="alignOptions" :type-options="typeOptions" :list-manipulation="listManipulation" :text-manipulation="textManipulation" :data-keys="dataKeys" :increase-table-key="increaseTableKey" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></dynamic-column-setting>
+          <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" :list-manipulation="listManipulation" :data-keys="dataKeys" :increase-table-key="increaseTableKey" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></dynamic-column-setting>
         </table-topbar>
 
-        <table-header :columns="currentColumns" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" :current-tab="currentTab" :resize-mode="settings.colResize" :align-style="alignStyle" :text-manipulation="textManipulation" :align-options="alignOptions" :type-options="typeOptions"  :list-manipulation="listManipulation" :list-all-selected="listAllSelected" :edit-column="editColumn" :change-columns="changeColumnsLocal" :mouse-down="mouseDown" :trigger-list-all-selected="triggerListAllSelected"></table-header>
+        <table-header :columns="currentColumns" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" :current-tab="currentTab" :resize-mode="settings.colResize" :align-style="alignStyle" :text-manipulation="textManipulation" :align-options="alignOptions" :list-manipulation="listManipulation" :list-all-selected="listAllSelected" :edit-column="editColumn" :change-columns="changeColumnsLocal" :mouse-down="mouseDown" :trigger-list-all-selected="triggerListAllSelected"></table-header>
 
         <tbody class="efsane-table-body">
 
               <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected'}" v-for="(row, line) in currentData" :key="line">
-                <label :key="ind" v-for="(column,ind) in currentColumns" :for="'checkbox-'+line">
-                  <span class="efsane-table-td"  :id="'column-'+column.name" :style="alignStyle(column.align)">
+                  <td class="efsane-table-td" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" :class="{'hover-inactive':!settings.rowHoverStatus}">
                       <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
                       <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
                       <checkbox type="checkbox" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
@@ -35,8 +34,7 @@
                         <download-area v-if="column.downloadable" @click="downloadText"></download-area>
                       </span>
                       <span v-if="borderVisible(ind)" class="efsane-table-td-border" @mousedown="mouseDown(column.name,$event)" ></span>
-                    </span>
-                </label>
+                    </td>
               </tr>
           <tr v-if="!data || !data.length" class="no-data-row">No Data Available</tr>
         </tbody>
@@ -79,6 +77,7 @@ import Provide from "./provide.js";
 import Emits from "./emits.js";
 import Methods from "./methods.js";
 import LifecycleMethods from "./lifecycleMethods.js";
+import BindProps from "./bind-props.js";
 export default {
   components: {
     TableTopbar,
@@ -96,7 +95,7 @@ export default {
     TableCountDraw,
     TableAllSelectAlert
   },
-  mixins: [Computed,StylesComputed,Watch,Data,LocalApi,Provide,Emits,Methods, LifecycleMethods],
+  mixins: [Computed,StylesComputed,Watch,Data,LocalApi,Provide,Emits,Methods, LifecycleMethods, BindProps],
   props:{
     data:{
       type:Array,
@@ -241,19 +240,10 @@ export default {
     &.selected:hover,
     &.selected *{
       background-color: var(--efsane-row-selected-color);
-      .inline-works{
-        background-color: var(--efsane-row-selected-color);
-      }
-    }
+     }
     &:hover:not(.selected){
       background-color: var(--efsane-row-hover-color);
       transform: var(--efsane-row-scroll-animation);
-    }
-    &:hover{
-      .inline-works{
-        display: flex;
-        background-color: var(--efsane-row-hover-color);
-      }
     }
   }
   .efsane-table-td{
@@ -264,6 +254,12 @@ export default {
     text-overflow: ellipsis;
     font-size: var(--efsane-table-row-font-size);
     height: var(--efsane-table-row-height);
+    &:hover{
+      .inline-works{
+        display: flex;
+        background-color: transparent;
+      }
+    }
 
   }
   .efsane-table-td-border{
@@ -349,7 +345,7 @@ export default {
     display: none;
     position: absolute;
     z-index: 1;
-    right: 0;
+    left: 0;
     top: 0;
     height: 100%;
   }

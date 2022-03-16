@@ -27,45 +27,47 @@ props
 * dynamic (type:Boolean, required: No)
 * save (type:Boolean, required: No)
 * reload (type:Boolean, required: No)
+* reload-function (type:Function, required: No)
 * pagination (type:Boolean, required: No)
 * data-count (type:Number, required: Yes)
 * limit (type:Number, required: No)
-* rowHeight (type:Number, required: No)
+* row-height (type:Number, required: No)
 * pagination-offset (type:Number, required: No)
 * editable (type:Boolean, required: No)
 * outputType (type:String, required: No, choices= "base64" , "default")
 * default-columns (type:Array, required: Yes)
-```
-        [{
-          header: "Name",
-          name:"name",
-          size:"60",
-          copyable:true,
-          list_manipulation:"first",
-          text_manipulation:"upper",
-          downloadable:true,
-          type:"data"
-        },{
-          header: "Position",
-          name:"position",
-          size:"60",
-          type:"slot"
-        },{
-          header: "#",
-          name:"row_number",
-          size:"60",
-          type:"row_number"
-        },{
-          header: "#",
-          name:"checkbox",
-          size:"60",
-          type:"checkbox"
-        },
-        {
-          header: "Logo",
-          name:"team.logo",
-          size:"1fr",
-          type:"data",
-          usage:"image-src"
-        }]
-```
+  * Example
+    ```
+            [{
+              header: "Name",
+              name:"name",
+              size:"60",
+              copyable:true,
+              list_manipulation:"first",
+              text_manipulation:"upper",
+              downloadable:true,
+              type:"data"
+            },{
+              header: "Position",
+              name:"position",
+              size:"60",
+              type:"slot"
+            },{
+              header: "#",
+              name:"row_number",
+              size:"60",
+              type:"row_number"
+            },{
+              header: "#",
+              name:"checkbox",
+              size:"60",
+              type:"checkbox"
+            },
+            {
+              header: "Logo",
+              name:"team.logo",
+              size:"1fr",
+              type:"data",
+              usage:"image-src"
+            }]
+    ```
