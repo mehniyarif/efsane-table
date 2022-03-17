@@ -8,6 +8,9 @@
   "browser": {
     "./sfc": "src/components/efsane-table"
   },
+  "engines": {
+    "node": "16.14"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
