@@ -4,6 +4,7 @@
   "main": "dist/efsane-table.umd.js",
   "module": "dist/efsane-table.esm.js",
   "unpkg": "dist/efsane-table.min.js",
+  "start": "node index.js",
   "browser": {
     "./sfc": "src/components/efsane-table"
   },
