@@ -4,7 +4,6 @@
   "main": "dist/efsane-table.umd.js",
   "module": "dist/efsane-table.esm.js",
   "unpkg": "dist/efsane-table.min.js",
-  "start": "node server.js",
   "browser": {
     "./sfc": "src/components/efsane-table"
   },
@@ -12,6 +11,7 @@
     "node": "16.14"
   },
   "scripts": {
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-lib": "vue-cli-service build --target lib --name efsane-table src/components/efsane-table/index.vue",
