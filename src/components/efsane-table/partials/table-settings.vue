@@ -67,6 +67,10 @@
           <span>Row Selected Color</span>
           <color-picker v-model="settings.rowSelectedColor"></color-picker>
         </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['animation'].includes(menuStatus) && accordion">
+          <span>Row Selected Accordion Color</span>
+          <color-picker v-model="settings.rowSelectedAccordionColor"></color-picker>
+        </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['animation'].includes(menuStatus)">
           <span>Row Scroll On Hover</span>
           <efsane-switch v-model="settings.rowScrollStatus" name="row-hover-status" :label="settings.rowScrollStatus ? 'Show' : 'Hide'"> </efsane-switch>
@@ -139,6 +143,7 @@ export default {
       type:Function,
       required:false
     },
+    accordion:Boolean,
     settings:Object,
     increaseTableKey:{
       type:Function,

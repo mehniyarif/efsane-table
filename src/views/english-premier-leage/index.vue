@@ -1,10 +1,12 @@
 <template>
 <div class="table-wrapper">
   <efsane-table
-    :data="tabledatas[line]"
+    :data="tabledatas"
     dynamic
     save
     editable
+    accordion
+    row-height="28"
     table-name="leages"
     :default-columns="columns"
   >
@@ -14,9 +16,9 @@
 </template>
 
 <script>
-import LocalApi from "@/views/turkey-super-leage/data/localApi";
+import LocalApi from "@/views/english-premier-leage/data/localApi";
 export default {
-  name: 'turkey-super-leage',
+  name: 'english-premier-leage',
   mixins:[LocalApi],
   data(){
     return{
@@ -25,7 +27,19 @@ export default {
       tables: [],
       columns:[
         {
-          header: "#",
+          header: "Checkbox",
+          name:"checkbox",
+          size:"60",
+          type:"checkbox"
+        },
+        {
+          header: "More",
+          name:"more",
+          size:"60",
+          type:"more"
+        },
+        {
+          header: "Position",
           name:"position",
           size:"60",
           type:"data"
@@ -33,18 +47,18 @@ export default {
         {
           header: "Logo",
           name:"team.crestUrl",
-          size:"100",
+          size:"60",
           type:"data",
           usage:"image-src"
         },
         {
-          header: "Team Name",
+          header: "Club",
           name:"team.name",
           size:"1fr",
           type:"data"
         },
         {
-          header: "Game",
+          header: "Played",
           name:"playedGames",
           size:"60",
           type:"data"
@@ -56,7 +70,7 @@ export default {
           type:"data"
         },
         {
-          header: "Draw",
+          header: "Drawn",
           name:"draw",
           size:"60",
           type:"data"
@@ -68,25 +82,25 @@ export default {
           type:"data"
         },
         {
-          header: "Goal",
+          header: "GF",
           name:"goalsFor",
           size:"60",
           type:"data"
         },
         {
-          header: "Goal Against",
+          header: "GA",
           name:"goalsAgainst",
           size:"60",
           type:"data"
         },
         {
-          header: "Goal Difference",
+          header: "GD",
           name:"goalDifference",
           size:"60",
           type:"data"
         },
         {
-          header: "Point",
+          header: "Points",
           name:"points",
           size:"60",
           type:"data"
@@ -97,13 +111,6 @@ export default {
   },
   created () {
     this.fetchData()
-    setInterval(()=>{
-      if(this.line === 2){
-        this.line = 0
-        return
-      }
-      this.line +=1
-    },2000)
   },
   methods:{
     fetchData(){

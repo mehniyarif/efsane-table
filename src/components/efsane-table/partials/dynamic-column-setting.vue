@@ -138,7 +138,7 @@ export default {
   },
   watch:{
     selectedColumnName(newValue){
-      if(!['checkbox','row_number','action'].includes(newValue)){
+      if(!['checkbox','row_number','action', 'more'].includes(newValue)){
         this.newColumn.type = 'data'
       }else if(newValue.startsWith("__")){
         this.newColumn.type = 'slot'
@@ -154,7 +154,7 @@ export default {
     async addColumn(){
       this.newColumn.name = this.selectedColumnName
       this.newColumn.type = this.selectedColumnName.startsWith("__") ? 'slot' : 'data'
-      if(['checkbox','row_number','action'].includes(this.selectedColumnName)){
+      if(['checkbox','row_number','action', 'more'].includes(this.selectedColumnName)){
         this.newColumn.type = this.selectedColumnName
       }
       let newColumns = []
@@ -168,7 +168,7 @@ export default {
       }
 
       newColumns.map(column => {
-        if(!["checkbox","action","row_number","slot"].includes(column.type) && !this.isSmaller60Px(column.size)){
+        if(!["checkbox","action","row_number","slot", "more"].includes(column.type) && !this.isSmaller60Px(column.size)){
           column.size = "1fr" // columnslar değiştiği için hepsini sıfırlıyoruz
         }
       })
@@ -184,7 +184,7 @@ export default {
     removeColumn(){
       let newColumns = this.columns.filter(v => v.name !== this.selectedColumnName)
       newColumns.map(column => {
-          if(!["checkbox","action","row_number","slot"].includes(column.type) && !this.isSmaller60Px(column.size)) {
+          if(!["checkbox","action","row_number","slot", "more"].includes(column.type) && !this.isSmaller60Px(column.size)) {
             column.size = "1fr"  // columnslar değiştiği için hepsini sıfırlıyoruz
           }
       })

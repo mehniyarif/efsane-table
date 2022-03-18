@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Turkey Super Leage</router-link> |
-      <router-link to="/turkey-first-leage">Turkey 1. Leage</router-link>
+      <router-link to="/">English Premier Leage</router-link> |
+      <router-link to="/documentation">Documentation</router-link>
     </div>
     <router-view/>
   </div>
