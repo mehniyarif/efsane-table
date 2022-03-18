@@ -2,7 +2,7 @@
   <tr class="efsane-table-header drop-zone" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
       <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="resizeMode" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
         <span v-if="!resizeMode || dragStatus" >
-          <span v-if="['data','slot','row_number'].includes(column.type)">{{column.header}}</span>
+          <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
           <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
             <input slot="checkbox-input" type="checkbox" :value="listAllSelected"  :checked="listAllSelected" @input="triggerListAllSelected" :id="'checkbox-all'" />
           </checkbox>

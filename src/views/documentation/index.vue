@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'turkey-1-leage'
+  name: 'documentation'
 }
 </script>
 

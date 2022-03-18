@@ -60,7 +60,7 @@ export default class TableApp{
     return keys
   }
 
-  generateSmartData(data = [], slots = {}){
+  generateSmartData(data = [], slots = {}, special_columns = []){
     let slot_names = []
     Object.entries(slots).forEach(slot => {
       slot_names.push(slot[0])
@@ -68,7 +68,7 @@ export default class TableApp{
     if(!Array.isArray(data)){
       alert("Table Data Not Valid. Make sure data type is array")
     }
-    return ['row_number','checkbox',...slot_names, ...this.getDataMap(data)]
+    return [...special_columns,...slot_names, ...this.getDataMap(data)]
   }
 
 

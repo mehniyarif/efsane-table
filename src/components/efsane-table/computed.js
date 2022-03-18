@@ -3,7 +3,11 @@ export default {
   computed:{
     dataKeys(){
       let tableApp = new TableApp
-      return tableApp.generateSmartData(this.data, this.$scopedSlots)
+      let specialColumns = ['row_number','checkbox']
+      if(this.accordion){
+        specialColumns.push('more')
+      }
+      return tableApp.generateSmartData(this.data, this.$scopedSlots, specialColumns)
     },
     tableAllSelectAlertText(){
         return `All ${this.selected.length} ${this.tableItemDefinition.toLowerCase()} on this page have been selected.  `

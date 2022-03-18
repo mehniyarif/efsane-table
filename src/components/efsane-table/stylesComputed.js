@@ -21,6 +21,9 @@ export default {
         "--efsane-row-selected-color": this.settings.rowSelectedColorStatus
           ? this.settings.rowSelectedColor
           : "none",
+        "--efsane-row-selected-accordion-color": this.accordion
+          ? this.settings.rowSelectedAccordionColor
+          : "none",
         "--efsane-row-scroll-animation": this.settings.rowScrollStatus
           ? `translateY(${this.settings.rowScrollSize}px)`
           : "none",

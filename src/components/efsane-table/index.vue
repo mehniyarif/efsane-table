@@ -11,7 +11,7 @@
           </table-all-select-alert>
           <reload-button v-if="reload" slot="reload-button" :reload="reloadFunction" ></reload-button>
           <resize-mode-button  slot="resize-mode-button" :resize-mode="openCloseResizeMode" :settings="settings" ></resize-mode-button>
-          <table-settings slot="table-settings"  :actions="currentActions" :shortcuts="shortcuts" :increase-table-key="increaseTableKey" :remove-settings="removeSettings" :settings="settings" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></table-settings>
+          <table-settings slot="table-settings" :accordion="accordion" :actions="currentActions" :shortcuts="shortcuts" :increase-table-key="increaseTableKey" :remove-settings="removeSettings" :settings="settings" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></table-settings>
           <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" :list-manipulation="listManipulation" :data-keys="dataKeys" :increase-table-key="increaseTableKey" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></dynamic-column-setting>
         </table-topbar>
 
@@ -19,22 +19,29 @@
 
         <tbody class="efsane-table-body">
 
-              <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected'}" v-for="(row, line) in currentData" :key="line">
+              <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}" v-for="(row, line) in currentData" :key="line">
+                <div class="row-area">
                   <td class="efsane-table-td" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" :class="{'hover-inactive':!settings.rowHoverStatus}">
-                      <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
-                      <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
-                      <checkbox type="checkbox" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
-                        <input slot="checkbox-input" type="checkbox" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
-                      </checkbox>
-                      <span  v-if="column.type === 'slot'" >
+                    <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
+                    <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
+                    <more-column v-if="column.type === 'more' && accordion" :accordion-match-field="accordionMatchField" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
+                    <checkbox type="checkbox" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
+                      <input slot="checkbox-input" type="checkbox" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
+                    </checkbox>
+                    <span  v-if="column.type === 'slot'" >
                         <slot  :name="column.name" :slot-scope="row"></slot>
                       </span>
-                      <span class="inline-works" v-if="!settings.colResize">
+                    <span class="inline-works" v-if="!settings.colResize">
                         <copy-area v-if="column.copyable" @click="copyText"></copy-area>
                         <download-area v-if="column.downloadable" @click="downloadText"></download-area>
                       </span>
-                      <span v-if="borderVisible(ind)" class="efsane-table-td-border" @mousedown="mouseDown(column.name,$event)" ></span>
-                    </td>
+                    <span v-if="borderVisible(ind)" class="efsane-table-td-border" @mousedown="mouseDown(column.name,$event)" ></span>
+                  </td>
+                </div>
+                <div v-if="accordion && openControl(row, line +1)" class="accordion-area" >
+                  deneme
+                  <slot  name="__more" :slot-scope="row"></slot>
+                </div>
               </tr>
           <tr v-if="!data || !data.length" class="no-data-row">No Data Available</tr>
         </tbody>
@@ -60,6 +67,7 @@ import DynamicColumnSetting from "./partials/dynamic-column-setting.vue";
 import ResizeModeButton from "./partials/resize-mode-button.vue"
 import ReloadButton from "./partials/reload-button.vue"
 import Checkbox from "./partials/checkbox.vue"
+import MoreColumn from "./partials/more-column.vue"
 import RowNumber from "./partials/row-number.vue"
 import CopyArea from "./partials/copy-area.vue"
 import DownloadArea from "./partials/download-area.vue"
@@ -84,6 +92,7 @@ export default {
     TableHeader,
     DataColumn,
     DynamicColumnSetting,
+    MoreColumn,
     ResizeModeButton,
     ReloadButton,
     Checkbox,
@@ -109,7 +118,16 @@ export default {
     save:Boolean,
     reload:Boolean,
     pagination:Boolean,
+    accordion:Boolean,
     editable:Boolean,
+    accordionMatchField: {
+      type:String,
+      default:null
+    },
+    accordionMatchValue:{
+      type:[String,Number,Boolean, Array],
+      default:function (){return[]}
+    },
     outputType:{
       type:String,
       default:"default"  // other option: ["base64"]
@@ -232,19 +250,35 @@ export default {
     }
   }
   .efsane-table-tr{
-    display: grid;
-    grid-template-columns:var(--efsane-table-column-sizes);
+    display: block;
     &:not(:nth-last-child(1)){
       border-bottom: var(--efsane-row-border);
     }
-    &.selected:hover,
-    &.selected *{
+    &.selected:not(.select-accordion):hover,
+    &.selected:not(.select-accordion) *{
       background-color: var(--efsane-row-selected-color);
-     }
-    &:hover:not(.selected){
+    }
+    &.select-accordion,
+    &.select-accordion:hover{
+      background-color: var(--efsane-row-selected-accordion-color);
+      .row-area{
+        border-bottom: 1px solid rgba(0,0,0,.1);
+      }
+    }
+    &:hover:not(.selected):not(.select-accordion){
       background-color: var(--efsane-row-hover-color);
       transform: var(--efsane-row-scroll-animation);
     }
+  }
+  .row-area{
+    display: grid;
+    grid-template-columns:var(--efsane-table-column-sizes);
+  }
+  .accordion-area{
+    background-color: var(--efsane-table-background-color);
+    min-height: 45px;
+    height: max-content;
+    display: flex;
   }
   .efsane-table-td{
     overflow: hidden;

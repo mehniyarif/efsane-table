@@ -307,6 +307,10 @@ export default {
         this.dataAllSelectKeyboard()
       }
 
+    },
+    openControl(row, line){
+      let readMatchField = this.accordionMatchField ? this.readProperty(row, this.accordionMatchField) : line
+      return this.selectedAccordions.includes(readMatchField)
     }
   },
 }
