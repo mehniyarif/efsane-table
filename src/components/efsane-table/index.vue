@@ -39,7 +39,6 @@
                   </td>
                 </div>
                 <div v-if="accordion && openControl(row, line +1)" class="accordion-area" >
-                  deneme
                   <slot  name="__more" :slot-scope="row"></slot>
                 </div>
               </tr>
