@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">English Premier Leage</router-link> |
+      <router-link to="/">England Premier Leage</router-link> |
       <router-link to="/documentation">Documentation</router-link>
     </div>
     <router-view/>
