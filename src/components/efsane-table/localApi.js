@@ -15,6 +15,28 @@ export  default {
           name:"right"
         }
       ],
+      usageTypes:[
+        {
+          label:"Default",
+          name:"default"
+        },
+        {
+          label:"Image Source Link",
+          name:"image-src"
+        },
+        // {
+        //   label:"Redirect Link",
+        //   name:"redirect-src"
+        // },
+        // {
+        //   label:"New Tab Link",
+        //   name:"target-blank-src"
+        // },
+        // {
+        //   label:"Download Icon Link",
+        //   name:"download-src"
+        // }
+      ],
       actionMethods:[
         {
           label:"Download CSV",

@@ -8,7 +8,7 @@
           </checkbox>
           <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
         </span>
-        <column-edit v-else :columns="columns" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
+        <column-edit v-else :columns="columns" :usage-types="usageTypes" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
       </span>
   </tr>
 </template>
@@ -36,6 +36,12 @@ export default {
       default:function(){
         return []
         }
+    },
+    usageTypes:{
+      type:Array,
+      default:function(){
+        return []
+      }
     },
     currentTab:String,
     tableOrder:{

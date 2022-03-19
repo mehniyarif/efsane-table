@@ -15,6 +15,7 @@
         <efsane-input v-model="newColumn.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
         <efsane-input v-model="newColumn.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
         <efsane-select v-model="newColumn.list_manipulation" name="list" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
+        <efsane-select v-model="newColumn.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="location" name="location" label="Column Location" :options="locations" label-property="label" value-property="name"> </efsane-select>
         <efsane-switch v-model="newColumn.copyable" name="copyable"  label="Copyable"> </efsane-switch>
 
@@ -66,6 +67,12 @@ export default {
       required:false
     },
     listManipulation:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    usageTypes:{
       type:Array,
       default:function(){
         return []
