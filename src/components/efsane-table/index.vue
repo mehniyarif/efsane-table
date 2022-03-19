@@ -86,6 +86,7 @@ import Methods from "./methods.js";
 import LifecycleMethods from "./lifecycleMethods.js";
 import BindProps from "./bind-props.js";
 export default {
+  name:"efsane-table",
   components: {
     TableTopbar,
     TableHeader,
