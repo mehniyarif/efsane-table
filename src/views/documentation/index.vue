@@ -1,5 +1,6 @@
 <template>
 <div>
+  Cooming Soon Detail Documentation
 </div>
 </template>
 

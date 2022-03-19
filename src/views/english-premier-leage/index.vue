@@ -5,8 +5,7 @@
     dynamic
     save
     editable
-    accordion
-    row-height="28"
+    row-height="26"
     table-name="leages"
     :default-columns="columns"
   >
@@ -31,12 +30,6 @@ export default {
           name:"checkbox",
           size:"60",
           type:"checkbox"
-        },
-        {
-          header: "More",
-          name:"more",
-          size:"60",
-          type:"more"
         },
         {
           header: "Position",
