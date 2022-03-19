@@ -8,6 +8,7 @@
             <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
             <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
             <efsane-select v-model="columnData.align" name="align"  label="Align" :options="alignOptions" label-property="label" value-property="name"> </efsane-select>
+            <efsane-select v-model="columnData.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
             <efsane-select v-if="!['checkbox', 'action', 'row_number', 'slot'].includes(columnData.type)" v-model="columnData.list_manipulation" name="type" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
             <efsane-select v-if="!['checkbox', 'action', 'row_number', 'slot'].includes(columnData.type)" v-model="columnData.text_manipulation" name="type" label="Text Manipulation" :options="textManipulation" label-property="label" value-property="name"> </efsane-select>
             <efsane-switch v-if="!['checkbox', 'action'].includes(columnData.type)" v-model="columnData.copyable" name="copyable"  label="Copyable"> </efsane-switch>
@@ -41,6 +42,12 @@ export default {
   },
   props:{
     columns:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    usageTypes:{
       type:Array,
       default:function(){
         return []
