@@ -4,9 +4,9 @@
 
 For ***Vue 2*** Framework. ***Please start using it from version 1.1.0 is currently under development.***
 
+**[Show Demo and Detail Documentation](https://efsanetable.herokuapp.com/)**
 
 ## Efsane Table setup
-
 ```
 npm install efsane-table
 ```

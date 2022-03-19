@@ -1,9 +1,16 @@
 {
   "name": "efsane-table",
-  "version": "1.0.23",
+  "version": "1.0.27",
+  "author": "Arif Mehniyar",
+  "keywords": ["vue2", "vue 2", "vue2 table", "vue2table", "vue 2 table", "accordion table", "dynamic table", "drag drop", "dragdrop", "checkbox table", "table", "custom table"],
   "main": "dist/efsane-table.umd.js",
   "module": "dist/efsane-table.esm.js",
   "unpkg": "dist/efsane-table.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehniyarif/efsane-table"
+  },
+  "homepage": "",
   "browser": {
     "./sfc": "src/components/efsane-table"
   },

@@ -39,7 +39,6 @@
                   </td>
                 </div>
                 <div v-if="accordion && openControl(row, line +1)" class="accordion-area" >
-                  deneme
                   <slot  name="__more" :slot-scope="row"></slot>
                 </div>
               </tr>
@@ -87,6 +86,7 @@ import Methods from "./methods.js";
 import LifecycleMethods from "./lifecycleMethods.js";
 import BindProps from "./bind-props.js";
 export default {
+  name:"efsane-table",
   components: {
     TableTopbar,
     TableHeader,
