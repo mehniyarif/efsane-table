@@ -5,7 +5,6 @@ export default {
       let allSelectedAlertBoxHeight = this.tableAllSelectAlertShow ? this.settings.topbarHeight : "0px"
       return {
         "--efsane-table-all-selected-alert-box-height": allSelectedAlertBoxHeight,
-        "--efsane-table-wrapper-height": `calc(${this.settings.tableBodyHeight} + ${this.settings.topbarHeight} + ${this.settings.headerHeight} + ${this.settings.paginationHeight} + ${allSelectedAlertBoxHeight} + 25px)`,
         "--efsane-table-body-height": this.settings.tableBodyHeight,
         "--efsane-table-row-height": `${rowHeight}px`,
         "--efsane-table-row-font-size": `${Math.ceil(rowHeight * 0.4)}px`,
