@@ -209,7 +209,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     display: grid;
-    background-color: var(--efsane-table-background-color);
+    background-color: transparent;
     -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.1);
     box-shadow: 1px 1px 1px rgba(0,0,0,.1);
     border-bottom-left-radius: 5px;
@@ -245,8 +245,13 @@ export default {
   }
   .efsane-table-tr{
     display: block;
+    margin-top: var(--efsane-table-line-gap);
+    background-color: var(--efsane-table-background-color);
     &:not(:nth-last-child(1)){
-      border-bottom: var(--efsane-row-border);
+      border-top: var(--efsane-row-border-top);
+      border-bottom: var(--efsane-row-border-bottom);
+      border-left: var(--efsane-row-border-left);
+      border-right: var(--efsane-row-border-right);
     }
     &.selected:not(.select-accordion):hover,
     &.selected:not(.select-accordion) *{

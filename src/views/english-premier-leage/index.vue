@@ -4,7 +4,6 @@
     :data="tabledatas"
     dynamic
     save
-    hide-header
     editable
     row-height="26"
     table-name="leages"
