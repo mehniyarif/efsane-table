@@ -86,11 +86,6 @@ export default {
           class:"efsane-table-body"
         }
     },
-    rowAreaAttrs(){
-        return{
-          class:"row-area"
-        }
-    },
     efsaneTableTdAttrs(){
         return{
           class:`efsane-table-td ${!this.settings.rowHoverStatus && 'hover-inactive'}"`
