@@ -130,6 +130,7 @@ export default {
 <style lang="scss" scoped>
   .column-edit-container{
     height: 30px;
+    color: rgba(0,0,0,.8);
     width: 30px;
   }
   .column-edit{

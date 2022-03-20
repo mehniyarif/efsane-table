@@ -13,8 +13,8 @@
 
         <tbody v-bind="efsaneTableBodyAttrs">
 
-              <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}" v-for="(row, line) in currentData" :key="line">
-                <div v-bind="rowAreaAttrs">
+              <tr class="efsane-table-tr"  v-for="(row, line) in currentData" :key="line">
+                <div class="row-area" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
                   <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" >
                     <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
                     <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
@@ -244,15 +244,19 @@ export default {
     }
   }
   .efsane-table-tr{
+    height: 100%;
     display: block;
-    margin-top: var(--efsane-table-line-gap);
+  }
+  .row-area{
+    display: grid;
+    grid-template-columns:var(--efsane-table-column-sizes);
+    margin-bottom: var(--efsane-table-line-gap);
     background-color: var(--efsane-table-background-color);
-    &:not(:nth-last-child(1)){
-      border-top: var(--efsane-row-border-top);
-      border-bottom: var(--efsane-row-border-bottom);
-      border-left: var(--efsane-row-border-left);
-      border-right: var(--efsane-row-border-right);
-    }
+    border-left: var(--efsane-row-border-left);
+    border-right: var(--efsane-row-border-right);
+    border-top: var(--efsane-row-border-top);
+    border-bottom: var(--efsane-row-border-bottom);
+
     &.selected:not(.select-accordion):hover,
     &.selected:not(.select-accordion) *{
       background-color: var(--efsane-row-selected-color);
@@ -268,10 +272,6 @@ export default {
       background-color: var(--efsane-row-hover-color);
       transform: var(--efsane-row-scroll-animation);
     }
-  }
-  .row-area{
-    display: grid;
-    grid-template-columns:var(--efsane-table-column-sizes);
   }
   .accordion-area{
     background-color: var(--efsane-table-background-color);
