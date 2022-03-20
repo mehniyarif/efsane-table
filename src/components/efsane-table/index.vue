@@ -1,53 +1,47 @@
 <template>
-  <div v-bind="efsaneTableWrapper" @click="clickedTable">
-    <table class="efsane-table-container" @mousemove="mouseMove" @mouseup="mouseUp">
-        <table-topbar v-if="editable" :data-keys="dataKeys" :table-tabs="tableTabs" :select-tab="selectTab" :current-tab="currentTab">
-          <table-all-select-alert slot="table-all-select-alert"  :table-all-select-alert-show="tableAllSelectAlertShow"
-                                  :data-all-selected="dataAllSelected"
-                                  :table-all-select-alert-text="tableAllSelectAlertText"
-                                  :table-item-definition="tableItemDefinition"
-                                  :data-count="dataCount"
-                                  :data-all-select="dataAllSelect">
-          </table-all-select-alert>
-          <reload-button v-if="reload" slot="reload-button" :reload="reloadFunction" ></reload-button>
-          <resize-mode-button  slot="resize-mode-button" :resize-mode="openCloseResizeMode" :settings="settings" ></resize-mode-button>
-          <table-settings slot="table-settings" :accordion="accordion" :actions="currentActions" :shortcuts="shortcuts" :increase-table-key="increaseTableKey" :remove-settings="removeSettings" :settings="settings" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></table-settings>
-          <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" :usage-types="usageTypes" :list-manipulation="listManipulation" :data-keys="dataKeys" :increase-table-key="increaseTableKey" :change-columns-local="changeColumnsLocal" :columns="currentColumns"></dynamic-column-setting>
+  <div v-bind="efsaneTableWrapperAttrs" @click="clickedTable">
+    <table v-bind="efsaneTableContainerAttrs" @mousemove="mouseMove" @mouseup="mouseUp">
+        <table-topbar v-if="editable" v-bind="tableTopBarAttrs">
+          <table-all-select-alert slot="table-all-select-alert"  v-bind="tableAllSelectAlertAttrs"></table-all-select-alert>
+          <reload-button v-if="reload" slot="reload-button" v-bind="reloadButtonAttrs" ></reload-button>
+          <resize-mode-button  slot="resize-mode-button" v-bind="resizeModeButtonAttrs" ></resize-mode-button>
+          <table-settings slot="table-settings" v-bind="tableSettingsAttrs"></table-settings>
+          <dynamic-column-setting v-if="dynamic" slot="dynamic-column-setting" v-bind="dynamicColumnSettingAttrs"></dynamic-column-setting>
         </table-topbar>
 
-        <table-header :columns="currentColumns" :table-offset.sync="currentOffset" :usage-types="usageTypes" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" :current-tab="currentTab" :resize-mode="settings.colResize" :align-style="alignStyle" :text-manipulation="textManipulation" :align-options="alignOptions" :list-manipulation="listManipulation" :list-all-selected="listAllSelected" :edit-column="editColumn" :change-columns="changeColumnsLocal" :mouse-down="mouseDown" :trigger-list-all-selected="triggerListAllSelected"></table-header>
+        <table-header v-if="!hideHeader" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" v-bind="tableHeaderAttrs"></table-header>
 
-        <tbody class="efsane-table-body">
+        <tbody v-bind="efsaneTableBodyAttrs">
 
               <tr class="efsane-table-tr" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}" v-for="(row, line) in currentData" :key="line">
-                <div class="row-area">
-                  <td class="efsane-table-td" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" :class="{'hover-inactive':!settings.rowHoverStatus}">
+                <div v-bind="rowAreaAttrs">
+                  <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" >
                     <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
                     <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
-                    <more-column v-if="column.type === 'more' && accordion" :accordion-match-field="accordionMatchField" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
-                    <checkbox type="checkbox" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
-                      <input slot="checkbox-input" type="checkbox" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
+                    <more-column v-if="column.type === 'more' && accordion" v-bind="moreColumnAttrs" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
+                    <checkbox v-bind="checkboxAttrs" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
+                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
                     </checkbox>
                     <span  v-if="column.type === 'slot'" >
                         <slot  :name="column.name" :slot-scope="row"></slot>
                       </span>
-                    <span class="inline-works" v-if="!settings.colResize">
+                    <span v-bind="inlineWorksAttrs" v-if="!settings.colResize">
                         <copy-area v-if="column.copyable" @click="copyText"></copy-area>
                         <download-area v-if="column.downloadable" @click="downloadText"></download-area>
                       </span>
-                    <span v-if="borderVisible(ind)" class="efsane-table-td-border" @mousedown="mouseDown(column.name,$event)" ></span>
+                    <span v-if="borderVisible(ind)" v-bind="efsaneTableTdBorderAttrs" @mousedown="mouseDown(column.name,$event)" ></span>
                   </td>
                 </div>
-                <div v-if="accordion && openControl(row, line +1)" class="accordion-area" >
+                <div v-if="accordion && openControl(row, line +1)" v-bind="accordionAreaAttrs">
                   <slot  name="__more" :slot-scope="row"></slot>
                 </div>
               </tr>
-          <tr v-if="!data || !data.length" class="no-data-row">No Data Available</tr>
+          <tr v-if="!data || !data.length" v-bind="noDataRowAttrs">No Data Available</tr>
         </tbody>
 
-        <div class="efsane-table-footer" v-if="lazyLoadFlag">
-          <pagination v-if="pagination && currentTab !== 'selected'" :data-count="dataCount" :offset.sync="currentOffset" :limit="limit"></pagination>
-          <table-count-draw v-if="dataCount && dataCount > 1" :data-count="dataCount" :name="tableItemDefinition" :offset="currentOffset" :limit="limit" :selectedLen="tableSelectedCount"></table-count-draw>
+        <div v-bind="efsaneTableFooterAttrs" v-if="lazyLoadFlag">
+          <pagination v-if="pagination && currentTab !== 'selected'" v-bind="paginationAttrs" :offset.sync="currentOffset"></pagination>
+          <table-count-draw v-if="dataCount && dataCount > 1" v-bind="tableCountDrawAttrs" ></table-count-draw>
         </div>
         <slot name="footer"></slot>
 
@@ -84,7 +78,7 @@ import Provide from "./provide.js";
 import Emits from "./emits.js";
 import Methods from "./methods.js";
 import LifecycleMethods from "./lifecycleMethods.js";
-import BindProps from "./bind-props.js";
+import BindProps from "./attrs.js";
 export default {
   name:"efsane-table",
   components: {
@@ -119,6 +113,7 @@ export default {
     reload:Boolean,
     pagination:Boolean,
     accordion:Boolean,
+    hideHeader:Boolean,
     editable:Boolean,
     accordionMatchField: {
       type:String,
@@ -197,9 +192,8 @@ export default {
 <style lang="scss" scoped>
   @import "css/reboot";
   .efsane-table-wrapper{
-      position: relative;
+    position: relative;
     background-color: transparent;
-     /* min-height: var(--efsane-table-wrapper-height); */
   }
   .efsane-table-container{
     position: relative;
@@ -212,10 +206,10 @@ export default {
   }
   .efsane-table-body{
     max-height: var(--efsane-table-body-height);
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     display: grid;
-    background-color: var(--efsane-table-background-color);
+    background-color: transparent;
     -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.1);
     box-shadow: 1px 1px 1px rgba(0,0,0,.1);
     border-bottom-left-radius: 5px;
@@ -251,8 +245,13 @@ export default {
   }
   .efsane-table-tr{
     display: block;
+    margin-top: var(--efsane-table-line-gap);
+    background-color: var(--efsane-table-background-color);
     &:not(:nth-last-child(1)){
-      border-bottom: var(--efsane-row-border);
+      border-top: var(--efsane-row-border-top);
+      border-bottom: var(--efsane-row-border-bottom);
+      border-left: var(--efsane-row-border-left);
+      border-right: var(--efsane-row-border-right);
     }
     &.selected:not(.select-accordion):hover,
     &.selected:not(.select-accordion) *{

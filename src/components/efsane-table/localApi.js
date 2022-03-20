@@ -1646,7 +1646,54 @@ export  default {
               hex: "#263238"
             }
           ]
-        }]
+        },
+        {
+          color: "White and Black",
+          variations: [
+            {
+              weight: 50,
+              hex: "#fff"
+            },
+            {
+              weight: 100,
+              hex: "#E9ECEF"
+            },
+            {
+              weight: 200,
+              hex: "#DEE2E6"
+            },
+            {
+              weight: 300,
+              hex: "#CED4DA"
+            },
+            {
+              weight: 400,
+              hex: "#ADB5BD"
+            },
+            {
+              weight: 500,
+              hex: "#6C757D"
+            },
+            {
+              weight: 600,
+              hex: "#495057"
+            },
+            {
+              weight: 700,
+              hex: "#343A40"
+            },
+            {
+              weight: 800,
+              hex: "#212529"
+            },
+            {
+              weight: 900,
+              hex: "#000"
+            }
+          ]
+        }
+
+        ]
     }
   }
 }

@@ -12,6 +12,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"  viewBox="0 0 512 512"><title>Animation</title><rect fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" x="280.48" y="122.9" width="63.03" height="378.2" rx="31.52" transform="rotate(-45 312.002 311.994)"/><path d="M178.38 178.38a31.64 31.64 0 000 44.75L223.25 268 268 223.25l-44.87-44.87a31.64 31.64 0 00-44.75 0z"/><path stroke="currentColor" stroke-miterlimit="10" stroke-width="32" stroke-linecap="round" d="M48 192h48M90.18 90.18l33.94 33.94M192 48v48M293.82 90.18l-33.94 33.94M124.12 259.88l-33.94 33.94"/></svg></div>
         <div class="table-setting-dropdown-menu-item" :class="{'selected':menuStatus === 'actions'}" v-if="['list','actions'].includes(menuStatus)" @click.stop="menuStatus='actions'" ><span>Actions</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 512 512"><title>Actions</title><path d="M32 145.52v221c0 13.28 13 21.72 23.63 15.35l188.87-113c9.24-5.53 9.24-20.07 0-25.6l-188.87-113C45 123.8 32 132.24 32 145.52zM260.57 145.52v221c0 13.28 13 21.72 23.63 15.35l188.87-113c9.24-5.53 9.24-20.07 0-25.6l-188.87-113c-10.64-6.47-23.63 1.97-23.63 15.25z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg></div>
+        <div class="table-setting-dropdown-menu-item" :class="{'selected':menuStatus === 'alerts'}" v-if="['list','alerts'].includes(menuStatus)" @click.stop="menuStatus='alerts'" ><span>Alerts</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 512 512"><title>Alerts</title><path d="M256 80c-8.66 0-16.58 7.36-16 16l8 216a8 8 0 008 8h0a8 8 0 008-8l8-216c.58-8.64-7.34-16-16-16z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg></div>
         <div class="table-setting-dropdown-menu-item" :class="{'selected':menuStatus === 'themes'}" v-if="['list','themes'].includes(menuStatus)" @click.stop="menuStatus='themes'" ><span>Themes</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"  viewBox="0 0 512 512"><title>Themes</title><path d="M321.89 171.42C233 114 141 155.22 56 65.22c-19.8-21-8.3 235.5 98.1 332.7 77.79 71 197.9 63.08 238.4-5.92s18.28-163.17-70.61-220.58zM173 253c86 81 175 129 292 147" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg></div>
         <div class="table-setting-dropdown-menu-item" :class="{'selected':menuStatus === 'shortcuts'}" v-if="['list','shortcuts'].includes(menuStatus)" @click.stop="menuStatus='shortcuts'" ><span>Shortcuts</span>
@@ -35,20 +37,40 @@
           <color-picker v-model="settings.tableTextColor"></color-picker>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
-          <span>Row Border Bottom</span>
-          <efsane-switch v-model="settings.rowBorderStatus" name="row-hover-status" :label="settings.rowBorderStatus ? 'Show' : 'Hide'"> </efsane-switch>
+          <span>Row Border Top</span>
+          <span class="table-setting-dropdown-menu-subitem-right">
+            <efsane-select v-model="settings.rowBorderTopSize" style="width: 65px;" :options="[0,1,2,3,4,5]"></efsane-select>
+            <color-picker v-model="settings.rowBorderTopColor"></color-picker>
+          </span>
         </div>
-        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus) && settings.rowBorderStatus">
-          <span>Row Border Bottom Color</span>
-          <color-picker v-model="settings.rowBorderColor"></color-picker>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Row Border Bottom</span>
+          <span class="table-setting-dropdown-menu-subitem-right">
+            <efsane-select v-model="settings.rowBorderBottomSize" style="width: 65px;" :options="[0,1,2,3,4,5]"></efsane-select>
+            <color-picker v-model="settings.rowBorderBottomColor"></color-picker>
+          </span>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Row Border Left</span>
+          <span class="table-setting-dropdown-menu-subitem-right">
+            <efsane-select v-model="settings.rowBorderLeftSize" style="width: 65px;" :options="[0,1,2,3,4,5]"></efsane-select>
+            <color-picker v-model="settings.rowBorderLeftColor"></color-picker>
+          </span>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Row Border Right</span>
+          <span class="table-setting-dropdown-menu-subitem-right">
+            <efsane-select v-model="settings.rowBorderRightSize" style="width: 65px;" :options="[0,1,2,3,4,5]"></efsane-select>
+            <color-picker v-model="settings.rowBorderRightColor"></color-picker>
+          </span>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
           <span>Row Height</span>
           <efsane-select v-model="settings.rowHeight" style="width: 65px;" :options="[20,22,24,26,28,30,32,34,36,38,40,45,50,55,60,70,75]"></efsane-select>
         </div>
-        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus) && settings.rowBorderStatus">
-          <span>Row Border Bottom Size</span>
-          <efsane-select v-model="settings.rowBorderSize" style="width: 65px;" :options="[1,2,3,4]"></efsane-select>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Line Gap</span>
+          <efsane-select v-model="settings.lineGap" style="width: 65px;" :options="[0,1,2,3,4,5,7,9,11,13,15,17,20,25,30,35,40]"></efsane-select>
         </div>
         <!--        Animation-->
         <div class="table-setting-dropdown-menu-subitem" v-if="['animation'].includes(menuStatus)">
@@ -81,7 +103,9 @@
         </div>
         <!--        actions-->
         <div class="table-setting-dropdown-menu-subitem" v-if="['actions'].includes(menuStatus)">
-          <span @click="ActionModalShow = true">New Action Column</span>
+
+          <span>Coming Soon</span>
+<!--          <span @click="ActionModalShow = true">New Action Column</span>-->
         </div>
         <template v-for="(action,key) in actions">
           <div :key="key" class="table-setting-dropdown-menu-subitem" v-if="['actions'].includes(menuStatus)">
@@ -92,6 +116,10 @@
             </span>
           </div>
         </template>
+        <!--        alerts-->
+        <div class="table-setting-dropdown-menu-subitem" v-if="['alerts'].includes(menuStatus)">
+          <span>Coming Soon</span>
+        </div>
         <!--        themes-->
         <div class="table-setting-dropdown-menu-subitem" v-if="['themes'].includes(menuStatus)">
           <span>Coming Soon</span>
@@ -204,6 +232,7 @@ export default {
   position: relative;
   margin-left: 2px;
   display: grid;
+  color: rgba(0,0,0,.8);
   place-content: center;
   height: 30px;
   width: 30px;
@@ -328,6 +357,13 @@ export default {
   }
   span{
     cursor: pointer;
+  }
+  .table-setting-dropdown-menu-subitem-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    gap: 10px;
   }
 }
 .action-inline-menu{
