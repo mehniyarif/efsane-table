@@ -308,8 +308,13 @@ export default {
       }
 
     },
+    transitionKey(row, line){
+      if(!this.transitionConstField) return line
+      let propertyValue =  this.readProperty(row, {name:this.transitionConstField})
+      return propertyValue && propertyValue || line
+    },
     openControl(row, line){
-      let readMatchField = this.accordionMatchField ? this.readProperty(row, this.accordionMatchField) : line
+      let readMatchField = this.accordionMatchField ? this.readProperty(row, {name:this.accordionMatchField}) : line
       return this.selectedAccordions.includes(readMatchField)
     }
   },

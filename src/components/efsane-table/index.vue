@@ -13,14 +13,18 @@
 
         <tbody v-bind="efsaneTableBodyAttrs">
 
-              <tr class="efsane-table-tr"  v-for="(row, line) in currentData" :key="line">
-                <div class="row-area" :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
+        <component :is="transition ? 'transition-group' : 'tr'"
+                   name="tr-list"
+                   :tag="transition ? 'tr' : ''"
+                   class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
+
+                <div class="row-area" :key="line"  :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
                   <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" >
                     <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
                     <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
                     <more-column v-if="column.type === 'more' && accordion" v-bind="moreColumnAttrs" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
                     <checkbox v-bind="checkboxAttrs" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
-                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
+                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="tr-listAllSelectedWatcher" :id="'checkbox-'+line" />
                     </checkbox>
                     <span  v-if="column.type === 'slot'" >
                         <slot  :name="column.name" :slot-scope="row"></slot>
@@ -35,7 +39,7 @@
                 <div v-if="accordion && openControl(row, line +1)" v-bind="accordionAreaAttrs">
                   <slot  name="__more" :slot-scope="row"></slot>
                 </div>
-              </tr>
+          </component>
           <tr v-if="!data || !data.length" v-bind="noDataRowAttrs">No Data Available</tr>
         </tbody>
 
@@ -113,7 +117,12 @@ export default {
     reload:Boolean,
     pagination:Boolean,
     accordion:Boolean,
+    transition:Boolean,
     hideHeader:Boolean,
+    transitionConstField:{
+      type:String,
+      default:null
+    },
     editable:Boolean,
     accordionMatchField: {
       type:String,
@@ -202,7 +211,7 @@ export default {
     background-color: transparent;
     border-spacing:0;
     -webkit-border-vertical-spacing:0;
-    inset: 0;
+    inset-block: 0;
   }
   .efsane-table-body{
     max-height: var(--efsane-table-body-height);
@@ -319,6 +328,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--efsane-table-background-color);
   }
   .efsane-table-footer{
     display: flex;
@@ -382,5 +392,12 @@ export default {
     top: 0;
     height: 100%;
   }
+  .tr-list-move{
+    transition-duration: 3s;
+    transition-timing-function: ease-in-out;
+    background-color: green;
+    z-index: 2;
+  }
+
 
 </style>
