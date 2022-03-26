@@ -1,10 +1,12 @@
 <template>
 <div class="table-wrapper">
   <efsane-table
-    :data="tabledatas"
+    :data="tabledatas[line]"
     dynamic
     save
     editable
+    :transition="false"
+    transition-const-field="team.id"
     row-height="26"
     table-name="leages"
     :default-columns="columns"
@@ -104,6 +106,13 @@ export default {
   },
   created () {
     this.fetchData()
+    setInterval(()=>{
+      if(this.line === 1){
+        this.line = 0
+        return
+      }
+      this.line +=1
+    },5000)
   },
   methods:{
     fetchData(){

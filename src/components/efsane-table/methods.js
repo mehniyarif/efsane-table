@@ -308,9 +308,31 @@ export default {
       }
 
     },
+    transitionKey(row, line){
+      if(!this.transitionConstField) return line
+      let propertyValue =  this.readProperty(row, {name:this.transitionConstField})
+      return propertyValue && propertyValue || line
+    },
     openControl(row, line){
-      let readMatchField = this.accordionMatchField ? this.readProperty(row, this.accordionMatchField) : line
+      let readMatchField = this.accordionMatchField ? this.readProperty(row, {name:this.accordionMatchField}) : line
       return this.selectedAccordions.includes(readMatchField)
+    },
+    displayTooltip(event, element){
+      this.tooltip = element.dataset.tooltip
+      let rect = element.getBoundingClientRect()
+      this.tooltipPageY = rect.top
+      this.tooltipPageX = rect.left
+    },
+    setUpTooltip(){
+      let tooltipElements = Array.from(document.querySelectorAll(".efsane-tooltip"))
+      tooltipElements.forEach((element)=>{
+        element.addEventListener("mouseenter", (event)=>{
+            this.displayTooltip(event, element)
+        })
+        element.addEventListener("mouseleave", ()=>{
+          this.tooltip = null
+        })
+      })
     }
   },
 }

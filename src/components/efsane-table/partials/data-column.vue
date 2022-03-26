@@ -1,9 +1,9 @@
 <template>
-  <span class="data-column">
+  <span class="data-column" :data-tooltip="column.tooltip" :class="{'efsane-tooltip':column.tooltip}">
       <img v-if="usage === 'image-src'" :src="readValue" :alt="readValue" class="data-column-image">
       <span v-else>
-        {{readValue}}
-        <slot></slot>
+            {{readValue}}
+            <slot></slot>
       </span>
   </span>
 </template>
