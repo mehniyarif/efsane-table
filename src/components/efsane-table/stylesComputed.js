@@ -43,6 +43,8 @@ export default {
         "--efsane-table-topbar-height": this.settings.topbarHeight,
         "--efsane-table-header-height": `${this.settings.headerHeight}px`,
         "--efsane-pagination-height": this.settings.paginationHeight,
+        "--efsane-tooltip-background-color": this.settings.tooltipBackgroundColor,
+        "--efsane-tooltip-text-color": this.settings.tooltipTextColor,
       };
     }
   }

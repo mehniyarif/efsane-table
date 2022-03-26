@@ -316,6 +316,23 @@ export default {
     openControl(row, line){
       let readMatchField = this.accordionMatchField ? this.readProperty(row, {name:this.accordionMatchField}) : line
       return this.selectedAccordions.includes(readMatchField)
+    },
+    displayTooltip(event, element){
+      this.tooltip = element.dataset.tooltip
+      let rect = element.getBoundingClientRect()
+      this.tooltipPageY = rect.top
+      this.tooltipPageX = rect.left
+    },
+    setUpTooltip(){
+      let tooltipElements = Array.from(document.querySelectorAll(".efsane-tooltip"))
+      tooltipElements.forEach((element)=>{
+        element.addEventListener("mouseenter", (event)=>{
+            this.displayTooltip(event, element)
+        })
+        element.addEventListener("mouseleave", ()=>{
+          this.tooltip = null
+        })
+      })
     }
   },
 }

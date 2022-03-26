@@ -5,6 +5,7 @@
     dynamic
     save
     editable
+    :transition="false"
     transition-const-field="team.id"
     row-height="26"
     table-name="leages"

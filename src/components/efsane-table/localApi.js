@@ -1,6 +1,36 @@
 export  default {
   data(){
     return {
+      types:[
+        {
+          label:"Text",
+          name:"text"
+        },
+        {
+          label:"Number",
+          name:"number"
+        },
+        {
+          label:"Currency",
+          name:"currency"
+        },
+        {
+          label:"Date",
+          name:"date"
+        },
+        {
+          label:"Date Time",
+          name:"datetime"
+        },
+        {
+          label:"Time",
+          name:"time"
+        },
+        {
+          label:"Source Link",
+          name:"source"
+        }
+      ],
       alignOptions:[
         {
           label:"Center",

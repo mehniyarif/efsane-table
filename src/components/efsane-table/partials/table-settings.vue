@@ -37,6 +37,14 @@
           <color-picker v-model="settings.tableTextColor"></color-picker>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Tooltip Background Color</span>
+          <color-picker v-model="settings.tooltipBackgroundColor"></color-picker>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
+          <span>Tooltip Text Color</span>
+          <color-picker v-model="settings.tooltipTextColor"></color-picker>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['design'].includes(menuStatus)">
           <span>Row Border Top</span>
           <span class="table-setting-dropdown-menu-subitem-right">
             <efsane-select v-model="settings.rowBorderTopSize" style="width: 65px;" :options="[0,1,2,3,4,5]"></efsane-select>

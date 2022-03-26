@@ -19,12 +19,12 @@
                    class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
 
                 <div class="row-area" :key="line"  :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
-                  <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)" >
+                  <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)">
                     <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
                     <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
                     <more-column v-if="column.type === 'more' && accordion" v-bind="moreColumnAttrs" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
                     <checkbox v-bind="checkboxAttrs" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
-                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="tr-listAllSelectedWatcher" :id="'checkbox-'+line" />
+                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
                     </checkbox>
                     <span  v-if="column.type === 'slot'" >
                         <slot  :name="column.name" :slot-scope="row"></slot>
@@ -51,7 +51,7 @@
 
     </table>
 
-
+    <efsane-tooltip :tooltip="tooltip" :page-x="tooltipPageX" :page-y="tooltipPageY"></efsane-tooltip>
   </div>
 </template>
 
@@ -72,6 +72,7 @@ import TableSettings from "./partials/table-settings.vue"
 import Pagination from "./partials/pagination.vue"
 import TableCountDraw from "./partials/table-count-draw.vue"
 import TableAllSelectAlert from "./partials/table-all-select-alert.vue";
+import EfsaneTooltip from "./partials/efsane-tooltip";
 //mixins
 import Computed from "./computed.js";
 import StylesComputed from "./stylesComputed.js";
@@ -100,7 +101,8 @@ export default {
     TableSettings,
     Pagination,
     TableCountDraw,
-    TableAllSelectAlert
+    TableAllSelectAlert,
+    EfsaneTooltip
   },
   mixins: [Computed,StylesComputed,Watch,Data,LocalApi,Provide,Emits,Methods, LifecycleMethods, BindProps],
   props:{
@@ -335,44 +337,7 @@ export default {
     width: 100%;
     justify-content: space-between;
   }
-  .efsane-tooltip {
-    display: inline;
-    position: relative;
-  }
-  .efsane-tooltip:hover:after{
-    display: -webkit-flex;
-    display: flex;
-    transition-delay: 3s;
-    transition-property: all;
-    -webkit-justify-content: center;
-    justify-content: center;
-    background: #444;
-    border-radius: 8px;
-    color: #fff;
-    content: attr(efsane-title);
-    margin: 15px auto 0;
-    font-family: soleil,sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px;
-    position: absolute;
-    z-index:9999999999;
-    right: 5px;
-    min-width: 75px;
-    white-space: nowrap;
-  }
-  .efsane-tooltip:hover:before{
-    border: solid;
-    border-color: #444 transparent;
-    border-width:  0 9px 18px 9px;
-    transition-delay: 3s;
-    transition-property: all;
-    content: "";
-    right: 45%;
-    top: 30px;
-    z-index:9999999999;
-    position: absolute;
-  }
+
 
 
   svg[title]{

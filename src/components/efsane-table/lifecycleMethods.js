@@ -9,5 +9,8 @@ export default {
   },
   destroyed(){
     window.removeEventListener('keyup', this.shortcutApply);
+  },
+  updated(){
+    this.setUpTooltip()
   }
 }
