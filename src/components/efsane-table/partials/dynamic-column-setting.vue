@@ -1,6 +1,6 @@
 <template>
 <div class="dynamic-column-setting "  v-click-outside="close" :style="cssVariables">
-  <svg class="dynamic-column-setting-dropdown-icon"   xmlns="http://www.w3.org/2000/svg" @click="show=!show" width="20" height="20" viewBox="0 0 24 24"><title >Columns Settings</title><path fill="#cdcdcd" d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/></svg>
+  <svg class="dynamic-column-setting-dropdown-icon"   xmlns="http://www.w3.org/2000/svg" @click="show=!show" width="20" height="20" viewBox="0 0 24 24"><title >Columns settings</title><path fill="#cdcdcd" d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"/></svg>
   <div class="dynamic-column-setting-dropdown" v-if="show">
       <div class="dynamic-column-setting-dropdown-header">{{formStatus === 'list' ? 'Columns Menu' : formStatus === 'add' ? 'Add Column' : 'Remove Column'}}</div>
       <div class="dynamic-column-setting-dropdown-items-container" v-if="formStatus === 'list'">
@@ -239,8 +239,8 @@ export default {
     margin-right: 10px;
     display: grid;
     place-content: center;
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     &:hover{
       background-color: rgba(0,0,0,.1);
       border-radius: 50%;

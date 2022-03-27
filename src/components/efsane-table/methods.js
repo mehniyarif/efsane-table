@@ -81,7 +81,7 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     borderVisible(ind){
-        return this.currentColumns.length > ind +1 && this.settings.resizeMode
+        return ind && this.settings.resizeMode
     },
     alignStyle(align){
       if(!['center','left','right'].includes(align)){
@@ -157,15 +157,6 @@ export default {
     },
     increaseTableKey(){
         this.tableKey +=1
-    },
-    mouseDown(selectName, e){
-      this.settings.resizing = true
-      this.startPoint = e.pageX
-      this.resizeSelectName = selectName
-    },
-    mouseUp(e){
-      this.settings.resizing = false
-      this.endPoint = e.pageX
     },
     changeColumnsLocal(value){
       this.currentColumns = value
@@ -247,26 +238,36 @@ export default {
       let text = this.getCopyChilds(closest.childNodes)
       this.downloadTxt(text)
     },
+    mouseDown(selectName, e){
+      this.settings.resizing = true
+      this.startPoint = e.pageX
+      this.resizeSelectName = selectName
+    },
+    mouseUp(e){
+      this.settings.resizing = false
+      this.endPoint = e.pageX
+    },
     mouseMove(e){
       this.endPoint = e.pageX
       if(this.settings.resizing){
         let ind = this.currentColumns.findIndex(v => v.name === this.resizeSelectName)
-        let nextSelectName = this.currentColumns[ind+1].name
-        let previousElement = document.getElementById(`column-${this.resizeSelectName}`)
+        let currentName = this.currentColumns[ind - 1].name
+        let nextSelectName = this.currentColumns[ind].name
+        let previousElement = document.getElementById(`column-${currentName}`)
         let nextElement = document.getElementById(`column-${nextSelectName}`)
         if(this.startPoint > this.endPoint){
           let diff = this.startPoint - this.endPoint
           let safeZone = 30
           if(previousElement.clientWidth - safeZone > diff){
-            this.currentColumns[ind]['size'] = previousElement.clientWidth - diff
-            this.currentColumns[ind + 1]['size'] = nextElement.clientWidth + diff
+            this.currentColumns[ind -1]['size'] = previousElement.clientWidth - diff
+            this.currentColumns[ind]['size'] = nextElement.clientWidth + diff
           }
         }else{
           let diff = this.endPoint - this.startPoint
           let safeZone = 30
           if(nextElement.clientWidth - safeZone> diff){
-            this.currentColumns[ind]['size'] = previousElement.clientWidth + diff
-            this.currentColumns[ind + 1]['size'] = nextElement.clientWidth - diff
+            this.currentColumns[ind -1]['size'] = previousElement.clientWidth + diff
+            this.currentColumns[ind]['size'] = nextElement.clientWidth - diff
           }
         }
         this.startPoint = this.endPoint
