@@ -13,34 +13,42 @@
 
         <tbody v-bind="efsaneTableBodyAttrs">
 
-        <component :is="transition ? 'transition-group' : 'tr'"
-                   name="tr-list"
-                   :tag="transition ? 'tr' : ''"
-                   class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
+          <component :is="transition ? 'transition-group' : 'tr'"
+                     name="tr-list"
+                     :tag="transition ? 'tr' : ''"
+                     class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
 
-                <div class="row-area" :key="line"  :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
-                  <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)">
-                    <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
-                    <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
-                    <more-column v-if="column.type === 'more' && accordion" v-bind="moreColumnAttrs" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
-                    <checkbox v-bind="checkboxAttrs" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
-                      <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
-                    </checkbox>
-                    <span  v-if="column.type === 'slot'" >
-                        <slot  :name="column.name" :slot-scope="row"></slot>
-                      </span>
-                    <span v-bind="inlineWorksAttrs" v-if="!settings.colResize">
-                        <copy-area v-if="column.copyable" @click="copyText"></copy-area>
-                        <download-area v-if="column.downloadable" @click="downloadText"></download-area>
-                      </span>
-                    <span v-if="borderVisible(ind)" v-bind="efsaneTableTdBorderAttrs" @mousedown="mouseDown(column.name,$event)" ></span>
-                  </td>
-                </div>
-                <div v-if="accordion && openControl(row, line +1)" v-bind="accordionAreaAttrs">
-                  <slot  name="__more" :slot-scope="row"></slot>
-                </div>
-          </component>
-          <tr v-if="!data || !data.length" v-bind="noDataRowAttrs">No Data Available</tr>
+                  <div class="row-area" :key="line"  :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
+                    <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)">
+
+                      <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
+
+                      <row-number v-if="column.type === 'row_number'"  :ind="line" ></row-number>
+
+                      <more-column v-if="column.type === 'more' && accordion" v-bind="moreColumnAttrs" :line="line + 1" :row="row" :open="openControl(row, line +1)" :selected-accordions.sync="selectedAccordions"></more-column>
+
+                      <checkbox v-bind="checkboxAttrs" v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-'+line">
+                        <input slot="checkbox-input" v-bind="checkboxInputAttrs" :value="line + 1" v-model="selectedIndexs" @input="listAllSelectedWatcher" :id="'checkbox-'+line" />
+                      </checkbox>
+
+                      <span  v-if="column.type === 'slot'" >
+                          <slot  :name="column.name" :slot-scope="row"></slot>
+                        </span>
+
+                      <span v-bind="inlineWorksAttrs" v-if="!settings.resizeMode">
+                          <copy-area v-if="column.copyable" @click="copyText"></copy-area>
+                          <download-area v-if="column.downloadable" @click="downloadText"></download-area>
+                        </span>
+
+                      <span v-if="borderVisible(ind)" v-bind="efsaneTableTdBorderAttrs" @mousedown="mouseDown(column.name,$event)" ><span>&nbsp;</span> </span>
+
+                    </td>
+                  </div>
+                  <div v-if="accordion && openControl(row, line +1)" v-bind="accordionAreaAttrs">
+                    <slot  name="__more" :slot-scope="row"></slot>
+                  </div>
+            </component>
+            <tr v-if="!data || !data.length" v-bind="noDataRowAttrs">No Data Available</tr>
         </tbody>
 
         <div v-bind="efsaneTableFooterAttrs" v-if="lazyLoadFlag">
@@ -301,22 +309,28 @@ export default {
 
   }
   .efsane-table-td-border{
-    width: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     height: 100%;
-    background-color: transparent;
-    border-inline: 5px solid transparent;
+    line-height: 100%;
     cursor: col-resize;
     position: absolute;
-    right: 0;
+    display: flex;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    right: 1px;
+    width: 1px;
     top: 0;
-    &::before{
-      content: "";
-      position: absolute;
-      left: 1px;
-      top: 0;
-      width: 1px;
+    span{
       height: 100%;
-      background-color: rgba(0,0,0,.1);
+      line-height: 100%;
+      position: relative;
+      border-left: 1px dashed rgba(0,0,0,.2);
+      width: 0;
     }
   }
   .no-data-row{

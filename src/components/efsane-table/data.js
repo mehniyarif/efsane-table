@@ -2,7 +2,6 @@ export default {
   data(){
     return{
       tableKey:0,
-      resizeMode:false,
       startPoint:null,
       endPoint:null,
       selectName:null,
@@ -51,7 +50,8 @@ export default {
         rowBorderRightColor:"#EEEEEE",
         tableBodyHeight:"65vh",
         paginationHeight:"35px",
-        colResize:false,
+        resizing:false,
+        resizeMode:false,
         shortcutSelectAllToggle:"alt+q",
         shortcutSelectFilteredAll:"shift+f",
       }

@@ -81,7 +81,7 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     borderVisible(ind){
-        return this.currentColumns.length > ind +1 && this.settings.colResize
+        return this.currentColumns.length > ind +1 && this.settings.resizeMode
     },
     alignStyle(align){
       if(!['center','left','right'].includes(align)){
@@ -108,7 +108,7 @@ export default {
         this.sendListAllSelectedMode(true)
     },
     openCloseResizeMode(){
-      this.settings.colResize =! this.settings.colResize
+      this.settings.resizeMode =! this.settings.resizeMode
     },
     triggerListAllSelected(event){
         this.listAllSelected = event.target.checked
@@ -159,12 +159,12 @@ export default {
         this.tableKey +=1
     },
     mouseDown(selectName, e){
-      this.resizeMode = true
+      this.settings.resizing = true
       this.startPoint = e.pageX
       this.resizeSelectName = selectName
     },
     mouseUp(e){
-      this.resizeMode = false
+      this.settings.resizing = false
       this.endPoint = e.pageX
     },
     changeColumnsLocal(value){
@@ -249,7 +249,7 @@ export default {
     },
     mouseMove(e){
       this.endPoint = e.pageX
-      if(this.resizeMode){
+      if(this.settings.resizing){
         let ind = this.currentColumns.findIndex(v => v.name === this.resizeSelectName)
         let nextSelectName = this.currentColumns[ind+1].name
         let previousElement = document.getElementById(`column-${this.resizeSelectName}`)
