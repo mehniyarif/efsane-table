@@ -1,16 +1,19 @@
 <template>
-  <tr class="efsane-table-header drop-zone" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
-      <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="resizeMode" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
-        <span v-if="!resizeMode || dragStatus" >
-          <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
-          <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
-            <input slot="checkbox-input" type="checkbox" :value="listAllSelected"  :checked="listAllSelected" @input="triggerListAllSelected" :id="'checkbox-all'" />
-          </checkbox>
-          <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
+  <thead class="efsane-table-header">
+    <tr  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
+        <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':settings.resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
+          <span v-if="!settings.resizeMode || dragStatus" >
+            <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
+            <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
+              <input slot="checkbox-input" type="checkbox" :value="listAllSelected"  :checked="listAllSelected" @input="triggerListAllSelected" :id="'checkbox-all'" />
+            </checkbox>
+            <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
+          </span>
+          <column-edit v-else :columns="columns" :usage-types="usageTypes" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
+          <span v-if="borderVisible(key)" class="efsane-table-th-border" @mousedown="mouseDown(column.name,$event)"><span>&nbsp;</span></span>
         </span>
-        <column-edit v-else :columns="columns" :usage-types="usageTypes" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
-      </span>
-  </tr>
+    </tr>
+  </thead>
 </template>
 
 <script>
@@ -44,6 +47,7 @@ export default {
       }
     },
     currentTab:String,
+    settings:Object,
     tableOrder:{
       type:String,
       default:null
@@ -81,15 +85,21 @@ export default {
       type:Function,
       required:false
     },
-    triggerListAllSelected:{
+    mouseDown:{
       type:Function,
       required:false
     },
-    resizeMode:Boolean
+    triggerListAllSelected:{
+      type:Function,
+      required:false
+    }
   },
   methods:{
+    borderVisible(ind){
+      return this.columns.length > ind +1 && this.settings.resizeMode
+    },
     selectHeader(column){
-      if(this.resizeMode)
+      if(this.settings.resizeMode)
         return
 
       if(column.type === 'data'){
@@ -106,7 +116,7 @@ export default {
       }
     },
     showOrderIcon(column){
-      if (column.type === 'data' && !this.resizeMode)
+      if (column.type === 'data' && !this.settings.resizeMode)
         return true
     },
     onDrop (evt) {
@@ -143,6 +153,7 @@ export default {
       let currentElement = evt.target.closest(".efsane-table-th")
       if(currentElement.getAttribute("class").search("drop-zone") > -1)
         return
+
       currentElement.style.opacity = ".8"
       currentElement.style.border = "2px dashed #ccc"
     },
@@ -172,39 +183,66 @@ export default {
 
 <style lang="scss" scoped>
   .efsane-table-header{
-    display: grid;
-    grid-template-columns:var(--efsane-table-column-sizes);
-    padding-right: 8px;
+    border-inline: 1px solid rgba(0,0,0,.1);
+    color: var(--efsane-header-text-color);
+    font-family: soleil,sans-serif;
+    border-bottom: 1px solid rgba(204,204,204,.2);
+    border-top: none;
+    display: flex;
+    font-weight: 500;
+    box-sizing: border-box;
+    width: 100%;
     border-top-left-radius: 5px;
     background-color:var(--efsane-header-background-color);
     box-shadow: 0 -1px 1px rgba(0,0,0,.1);
+    max-height: max-content;
     min-height: min-content;
     height: var(--efsane-table-header-height);
     line-height: var(--efsane-table-header-height);
-    padding-block: 5px;
-    max-height: max-content;
-    white-space: nowrap;
-    word-break: keep-all;
-    color: var(--efsane-header-text-color);
-    font-family: soleil,sans-serif;
-    border-inline: 1px solid rgba(0,0,0,.1);
-    border-bottom: 1px solid rgba(204,204,204,.2);
-    border-top: none;
-    font-weight: 500;
+    padding-block: 2px;
+  }
+  .efsane-table-header > tr{
+    display: grid;
+    width: 100%;
+    grid-template-columns:var(--efsane-table-column-sizes);
   }
   .efsane-table-th{
     position: relative;
     cursor: pointer;
+    white-space: nowrap;
+    word-break: keep-all;
+    box-sizing: content-box;
     background-color:var(--efsane-header-background-color);
-    &.drag-el{
-      &:nth-child(even){
-        border-inline: 1px dashed rgba(0,0,0,.2);
-      }
-    }
     & > span {
       display: flex;
       align-items: center;
       gap: 5px;
+    }
+  }
+
+  .efsane-table-th-border{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 100%;
+    line-height: 100%;
+    cursor: col-resize;
+    position: absolute;
+    display: flex;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    right: 0;
+    width: 1px;
+    top: 0;
+    span{
+      height: 100%;
+      line-height: 100%;
+      position: relative;
+      border-left: 1px dashed rgba(0,0,0,.2);
+      width: 0;
     }
   }
 

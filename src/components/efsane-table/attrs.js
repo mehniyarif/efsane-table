@@ -38,7 +38,7 @@ export default {
     },
     resizeModeButtonAttrs(){
         return{
-          resizeMode:this.openCloseResizeMode,
+          openCloseResizeMode:this.openCloseResizeMode,
           settings:this.settings
         }
     },
@@ -69,7 +69,7 @@ export default {
           columns:this.currentColumns,
           usageTypes:this.usageTypes,
           currentTab:this.currentTab,
-          resizeMode:this.settings.colResize,
+          settings:this.settings,
           alignStyle:this.alignStyle,
           textManipulation:this.textManipulation,
           alignOptions:this.alignOptions,

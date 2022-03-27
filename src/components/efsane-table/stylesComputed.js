@@ -48,6 +48,7 @@ export default {
         "--efsane-table-border-top": this.hideHeader ?  "1px solid rgba(0,0,0,.1)" : "none",
         "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-border-top-right-radius": this.hideHeader ?  "5px" : "0",
+        "--efsane-table-column-border-right": this.dragStatus ?   "none" : "3px solid transparent",
       };
     }
   }
