@@ -45,6 +45,9 @@ export default {
         "--efsane-pagination-height": this.settings.paginationHeight,
         "--efsane-tooltip-background-color": this.settings.tooltipBackgroundColor,
         "--efsane-tooltip-text-color": this.settings.tooltipTextColor,
+        "--efsane-table-border-top": this.hideHeader ?  "1px solid rgba(0,0,0,.1)" : "none",
+        "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
+        "--efsane-table-border-top-right-radius": this.hideHeader ?  "5px" : "0",
       };
     }
   }
