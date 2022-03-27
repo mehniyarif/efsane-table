@@ -177,7 +177,7 @@ export default {
     padding-right: 8px;
     border-top-left-radius: 5px;
     background-color:var(--efsane-header-background-color);
-    box-shadow: 0 -1px 3px rgba(0,0,0,.1);
+    box-shadow: 0 -1px 1px rgba(0,0,0,.1);
     min-height: min-content;
     height: var(--efsane-table-header-height);
     line-height: var(--efsane-table-header-height);
@@ -188,8 +188,9 @@ export default {
     color: var(--efsane-header-text-color);
     font-family: soleil,sans-serif;
     border-inline: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(204,204,204,.2);
+    border-top: none;
     font-weight: 500;
-    margin-bottom: 1px;
   }
   .efsane-table-th{
     position: relative;

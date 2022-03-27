@@ -160,7 +160,7 @@ export default {
     },
     tableName:{
       type:String,
-      default:"efsane2022Table"  // other option: ["base64"]
+      default:"efsaneTable"  // other option: ["base64"]
     },
     tableItemDefinition:{
       type:String,
@@ -221,25 +221,13 @@ export default {
     overflow-x: hidden;
     display: grid;
     background-color: transparent;
-    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.1);
-    box-shadow: 1px 1px 1px rgba(0,0,0,.1);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: var(--efsane-table-border-top-left-radius) var(--efsane-table-border-top-right-radius) 5px 5px;
     scrollbar-width: thin;
     scrollbar-color: #ccc;
     position: relative;
-    border-bottom: 5px solid var(--efsane-table-background-color);
-    border-left: 7px solid #ccc;
-
-    &::before{
-      content: "";
-      background-color: rgba(0,0,0,.1);
-      width: 1px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-    }
+    border: 1px solid rgba(0,0,0,.1);
+    border-top: var(--efsane-table-border-top);
+    padding-bottom: 3px;
 
     &::-webkit-scrollbar {
       width: 7px;
@@ -257,6 +245,12 @@ export default {
   .efsane-table-tr{
     height: 100%;
     display: block;
+
+    &:nth-last-child(1){
+      .row-area{
+        border-bottom: none;
+      }
+    }
   }
   .row-area{
     display: grid;
@@ -360,7 +354,7 @@ export default {
   .tr-list-move{
     transition-duration: 3s;
     transition-timing-function: ease-in-out;
-    background-color: green;
+    background-color: #45e1e1;
     z-index: 2;
   }
 

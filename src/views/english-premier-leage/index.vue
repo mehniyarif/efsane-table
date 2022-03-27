@@ -4,10 +4,11 @@
     :data="tabledatas[line]"
     dynamic
     save
-    editable
+    :editable="true"
     :transition="false"
     transition-const-field="team.id"
     row-height="26"
+    :hide-header="false"
     table-name="leages"
     :default-columns="columns"
   >
