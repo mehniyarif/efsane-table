@@ -1,6 +1,6 @@
 <template>
   <div class="table-setting "  v-click-outside="close" :style="cssVariables">
-    <svg xmlns="http://www.w3.org/2000/svg" class="table-setting-dropdown-icon" @click="show=!show" width="24" height="24" viewBox="0 0 512 512"><title>Table Settings</title><path fill="#cdcdcd" stroke="#cdcdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"/><circle cx="336" cy="128" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="176" cy="256" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="336" cy="384" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="table-setting-dropdown-icon" @click="show=!show" width="24" height="24" viewBox="0 0 512 512"><title>Table settings</title><path fill="#cdcdcd" stroke="#cdcdcd" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"/><circle cx="336" cy="128" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="176" cy="256" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="336" cy="384" r="32" fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
     <div class="table-setting-dropdown" v-if="show">
       <div class="table-setting-dropdown-header"><span>Table Settings</span>
         <svg @click.stop="menuStatus='list'" v-if="!['list'].includes(menuStatus)" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 512 512"><title>Back</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M249.38 336L170 256l79.38-80M181.03 256H342"/><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
@@ -242,8 +242,8 @@ export default {
   display: grid;
   color: rgba(0,0,0,.8);
   place-content: center;
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   &:hover{
     background-color: rgba(0,0,0,.1);
     border-radius: 50%;
@@ -252,6 +252,7 @@ export default {
     }
     .table-setting-dropdown-icon path{
       fill: #fff;
+      stroke: #fff;
     }
   }
 }

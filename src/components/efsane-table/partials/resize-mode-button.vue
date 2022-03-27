@@ -1,6 +1,6 @@
 <template>
 <button class="resize-mode-button-container" :class="{'selected':settings.resizeMode}" @click="openCloseResizeMode">
-  <svg  class="resize-mode-button-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"> <title>Change Column Sizes</title> <path fill="#cdcdcd" d="M0 0v24h24v-24h-24zm2 6h9v16h-9v-16zm20 16h-9v-16h9v16z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" class="resize-mode-button-icon" width="24" height="24" viewBox="0 0 24 24"><title>Change columns location and size</title> <path fill="#cdcdcd" d="M6 13v4l-6-5 6-5v4h3v2h-3zm9-2v2h3v4l6-5-6-5v4h-3zm-4-6v14h2v-14h-2z"/></svg>
 </button>
 </template>
 
@@ -22,8 +22,8 @@ export default {
     position: relative;
     display: grid;
     place-content: center;
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     margin-right: 10px;
     background-color: var(--efsane-header-background-color);
     border:none;

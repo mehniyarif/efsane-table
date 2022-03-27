@@ -96,7 +96,7 @@ export default {
   },
   methods:{
     borderVisible(ind){
-      return this.columns.length > ind +1 && this.settings.resizeMode
+      return ind && this.settings.resizeMode
     },
     selectHeader(column){
       if(this.settings.resizeMode)
@@ -199,7 +199,7 @@ export default {
     min-height: min-content;
     height: var(--efsane-table-header-height);
     line-height: var(--efsane-table-header-height);
-    padding-block: 2px;
+    padding-block: 3px;
   }
   .efsane-table-header > tr{
     display: grid;
@@ -234,7 +234,7 @@ export default {
     display: flex;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    right: 0;
+    left: 0;
     width: 1px;
     top: 0;
     span{

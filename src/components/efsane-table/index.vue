@@ -322,7 +322,7 @@ export default {
     display: flex;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    right: 1px;
+    left: 0;
     width: 1px;
     top: 0;
     span{
