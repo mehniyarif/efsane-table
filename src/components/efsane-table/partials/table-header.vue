@@ -204,7 +204,7 @@ export default {
   .efsane-table-header > tr{
     display: grid;
     width: 100%;
-    grid-template-columns:var(--efsane-table-column-sizes);
+    grid-template-columns:var(--efsane-table-header-column-sizes);
   }
   .efsane-table-th{
     position: relative;

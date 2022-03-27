@@ -9,6 +9,7 @@ export default {
       selectedAccordions:this.accordionMatchValue && [this.accordionMatchValue].flat(),
       selected:[],
       dragStatus:false,
+      scrollWidth:7,
       currentOffset:0,
       lazyLoadFlag:false,
       tooltip:null,

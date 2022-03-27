@@ -11,7 +11,7 @@
 
         <table-header v-if="!hideHeader" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" v-bind="tableHeaderAttrs"></table-header>
 
-        <tbody v-bind="efsaneTableBodyAttrs">
+        <tbody v-bind="efsaneTableBodyAttrs" ref="tableBody">
 
           <component :is="transition ? 'transition-group' : 'tr'"
                      name="tr-list"
@@ -236,9 +236,10 @@ export default {
     border: 1px solid rgba(0,0,0,.1);
     border-top: var(--efsane-table-border-top);
     padding-bottom: 3px;
+    padding-right: var(--efsane-table-body-scrollbar-padding);
 
     &::-webkit-scrollbar {
-      width: 7px;
+      width: var(--efsane-table-scrollbar-width);
     }
 
     &::-webkit-scrollbar-thumb {
