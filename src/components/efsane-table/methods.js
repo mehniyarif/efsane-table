@@ -297,6 +297,13 @@ export default {
     selectTab(value){
       this.currentTab = value
     },
+    scrollbarVisible() {
+      if(this.$refs.tableBody.scrollHeight > this.$refs.tableBody.clientHeight){
+        this.scrollWidth = 7
+      }else{
+        this.scrollWidth = 0
+      }
+    },
     shortcutApply(event){
       let controlValue = [{k:"ctrl",v:event.ctrlKey} , {k:"alt",v:event.altKey}, {k:"shift",v:event.shiftKey}].find(v => v.v)
       let currentValue = `${controlValue ? controlValue.k+'+' : ''}${event.key.toLowerCase()}`

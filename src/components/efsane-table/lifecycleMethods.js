@@ -6,11 +6,13 @@ export default {
     window.addEventListener('keyup', this.shortcutApply);
   },
   mounted(){
+    this.scrollbarVisible()
   },
   destroyed(){
     window.removeEventListener('keyup', this.shortcutApply);
   },
   updated(){
     this.setUpTooltip()
+    this.scrollbarVisible()
   }
 }

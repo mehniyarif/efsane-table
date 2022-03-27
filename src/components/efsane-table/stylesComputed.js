@@ -11,6 +11,7 @@ export default {
         "--efsane-table-line-gap": `${lineGap}px`,
         "--efsane-table-row-font-size": `${Math.ceil(rowHeight * 0.4)}px`,
         "--efsane-table-column-sizes": this.columnSizes,
+        "--efsane-table-header-column-sizes": `${this.columnSizes} minmax(0, ${this.scrollWidth}px)`,
         "--efsane-table-background-color": this.settings.tableBackgroundColor,
         "--efsane-header-background-color":
           this.settings.headerBackgroundColor,
@@ -49,6 +50,7 @@ export default {
         "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-border-top-right-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-column-border-right": this.dragStatus ?   "none" : "3px solid transparent",
+        "--efsane-table-scrollbar-width": `${this.scrollWidth}px`,
       };
     }
   }
