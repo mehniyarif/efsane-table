@@ -41,12 +41,15 @@ export default {
         "--efsane-row-border-right": this.settings.rowBorderRightSize
           ? `${this.settings.rowBorderRightSize}px solid ${this.settings.rowBorderRightColor}`
           : "none",
+        "--efsane-table-body-border": this.settings.bodyBorderSize
+          ? `${this.settings.bodyBorderSize}px solid ${this.settings.bodyBorderColor}`
+          : "none",
         "--efsane-table-topbar-height": this.settings.topbarHeight,
         "--efsane-table-header-height": `${this.settings.headerHeight}px`,
         "--efsane-pagination-height": this.settings.paginationHeight,
         "--efsane-tooltip-background-color": this.settings.tooltipBackgroundColor,
         "--efsane-tooltip-text-color": this.settings.tooltipTextColor,
-        "--efsane-table-border-top": this.hideHeader ?  "1px solid rgba(0,0,0,.1)" : "none",
+        "--efsane-table-border-top": this.hideHeader ?  "none" : "1px solid rgba(0,0,0,.1)",
         "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-border-top-right-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-column-border-right": this.dragStatus ?   "none" : "3px solid transparent",

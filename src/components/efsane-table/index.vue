@@ -118,7 +118,7 @@ export default {
       type:Array,
       required:false
     },
-    settingsData:{
+    defaultSettings:{
       type:Object,
       default:null
     },
@@ -233,7 +233,7 @@ export default {
     scrollbar-width: thin;
     scrollbar-color: #ccc;
     position: relative;
-    border: 1px solid rgba(0,0,0,.1);
+    border: var(--efsane-table-body-border);
     border-top: var(--efsane-table-border-top);
     padding-bottom: 3px;
     padding-right: var(--efsane-table-body-scrollbar-padding);
@@ -254,12 +254,6 @@ export default {
   .efsane-table-tr{
     height: 100%;
     display: block;
-
-    &:nth-last-child(1){
-      .row-area{
-        border-bottom: none;
-      }
-    }
   }
   .row-area{
     display: grid;
