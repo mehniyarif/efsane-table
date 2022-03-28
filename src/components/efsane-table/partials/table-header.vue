@@ -199,7 +199,7 @@ export default {
     min-height: min-content;
     height: var(--efsane-table-header-height);
     line-height: var(--efsane-table-header-height);
-    padding-block: 3px;
+    padding-block: 4px;
   }
   .efsane-table-header > tr{
     display: grid;

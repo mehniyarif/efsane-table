@@ -234,7 +234,6 @@ export default {
     scrollbar-color: #ccc;
     position: relative;
     border: var(--efsane-table-body-border);
-    border-top: var(--efsane-table-border-top);
     padding-bottom: 3px;
     padding-right: var(--efsane-table-body-scrollbar-padding);
 
@@ -254,6 +253,17 @@ export default {
   .efsane-table-tr{
     height: 100%;
     display: block;
+
+    &:nth-child(1){
+      .row-area{
+        border-top: var(--efsane-first-row-border-top)
+      }
+    }
+    &:nth-last-child(1){
+      .row-area{
+        border-bottom: var(--efsane-last-row-border-bottom);
+      }
+    }
   }
   .row-area{
     display: grid;

@@ -32,7 +32,13 @@ export default {
         "--efsane-row-border-top": this.settings.rowBorderTopSize
           ? `${this.settings.rowBorderTopSize}px solid ${this.settings.rowBorderTopColor}`
           : "none",
+        "--efsane-first-row-border-top": this.settings.firstRowBorderTop
+          ? `${this.settings.rowBorderTopSize}px solid ${this.settings.rowBorderTopColor}`
+          : "none",
         "--efsane-row-border-bottom": this.settings.rowBorderBottomSize
+          ? `${this.settings.rowBorderBottomSize}px solid ${this.settings.rowBorderBottomColor}`
+          : "none",
+        "--efsane-last-row-border-bottom": this.settings.lastRowBorderBottom
           ? `${this.settings.rowBorderBottomSize}px solid ${this.settings.rowBorderBottomColor}`
           : "none",
         "--efsane-row-border-left": this.settings.rowBorderLeftSize
@@ -49,7 +55,6 @@ export default {
         "--efsane-pagination-height": this.settings.paginationHeight,
         "--efsane-tooltip-background-color": this.settings.tooltipBackgroundColor,
         "--efsane-tooltip-text-color": this.settings.tooltipTextColor,
-        "--efsane-table-border-top": this.hideHeader ?  "none" : "1px solid rgba(0,0,0,.1)",
         "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-border-top-right-radius": this.hideHeader ?  "5px" : "0",
         "--efsane-table-column-border-right": this.dragStatus ?   "none" : "3px solid transparent",

@@ -45,6 +45,7 @@ export default {
         rowBorderTopSize:1,
         rowBorderLeftSize:1,
         rowBorderRightSize:1,
+        bodyBorderSize:0,
         tableBackgroundColor: "#FFF8E1",
         rowHoverColor: "#FFE082"
       },
