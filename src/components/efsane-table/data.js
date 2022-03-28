@@ -49,6 +49,8 @@ export default {
         rowBorderLeftColor:"#EEEEEE",
         rowBorderRightSize:0,
         rowBorderRightColor:"#EEEEEE",
+        bodyBorderSize:0,
+        bodyBorderColor:"#EEEEEE",
         tableBodyHeight:"65vh",
         paginationHeight:"35px",
         resizing:false,

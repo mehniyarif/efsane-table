@@ -274,8 +274,8 @@ export default {
       }
     },
     setSettings(settings = {}){
-      if(this.settingsData){
-        settings = this.settingsData
+      if(this.defaultSettings){
+        settings = this.defaultSettings
       }
       Object.entries(settings).forEach(setting => {
         if(setting[0]){
