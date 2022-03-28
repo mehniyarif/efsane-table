@@ -42,8 +42,8 @@ export default {
     position: relative;
     display: grid;
     place-content: center;
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;

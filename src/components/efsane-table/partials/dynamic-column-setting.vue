@@ -239,8 +239,8 @@ export default {
     margin-right: 10px;
     display: grid;
     place-content: center;
-    height: 25px;
-    width: 25px;
+    height: 28px;
+    width: 28px;
     &:hover{
       background-color: rgba(0,0,0,.1);
       border-radius: 50%;
