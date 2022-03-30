@@ -18,7 +18,8 @@ export default {
           dataKeys:this.dataKeys,
           tableTabs:this.tableTabs,
           selectTab:this.selectTab,
-          currentTab:this.currentTab
+          currentTab:this.currentTab,
+          showMenu:this.showMenu
         }
     },
     tableAllSelectAlertAttrs(){
@@ -51,6 +52,7 @@ export default {
               increaseTableKey:this.increaseTableKey,
               removeSettings:this.removeSettings,
               settings:this.settings,
+              menuStatuses:this.menuStatuses,
               changeColumnsLocal:this.changeColumnsLocal,
               columns:this.currentColumns
         }

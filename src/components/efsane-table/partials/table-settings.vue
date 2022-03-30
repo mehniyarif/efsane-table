@@ -148,6 +148,10 @@
           <efsane-switch v-model="settings.selectedTabStatus" name="row-hover-status" :label="settings.selectedTabStatus ? 'Show' : 'Hide'"> </efsane-switch>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
+          <span>Menu Visibility</span>
+          <efsane-select v-model="settings.showMenuStatus" style="width: 150px;" label-property="label" value-property="value" :options="menuStatuses"></efsane-select>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
           <span @click="removeSettings" >Reset Table Settings</span>
         </div>
         <!--        shortcuts-->
@@ -196,6 +200,12 @@ export default {
       required:false
     },
     columns:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    menuStatuses:{
       type:Array,
       default:function(){
         return []

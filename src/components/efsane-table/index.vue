@@ -1,6 +1,6 @@
 <template>
   <div v-bind="efsaneTableWrapperAttrs" @click="clickedTable">
-    <table v-bind="efsaneTableContainerAttrs" @mousemove="mouseMove" @mouseup="mouseUp">
+    <table v-bind="efsaneTableContainerAttrs" @mousemove="mouseMove" @mouseup="mouseUp" @mouseover="mouseHoverOnBody" @mouseleave="mouseLeaveOnBody">
         <table-topbar v-if="editable" v-bind="tableTopBarAttrs">
           <table-all-select-alert slot="table-all-select-alert"  v-bind="tableAllSelectAlertAttrs"></table-all-select-alert>
           <reload-button v-if="reload" slot="reload-button" v-bind="reloadButtonAttrs" ></reload-button>
@@ -11,7 +11,7 @@
 
         <table-header v-if="!hideHeader" :table-offset.sync="currentOffset" :table-order.sync="tableOrder" :drag-status.sync="dragStatus" v-bind="tableHeaderAttrs"></table-header>
 
-        <tbody v-bind="efsaneTableBodyAttrs" ref="tableBody">
+        <tbody  v-bind="efsaneTableBodyAttrs" ref="tableBody">
 
           <component :is="transition ? 'transition-group' : 'tr'"
                      name="tr-list"

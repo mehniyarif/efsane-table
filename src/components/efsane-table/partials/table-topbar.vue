@@ -2,7 +2,7 @@
   <div class="efsane-table-topbar" :style="styles">
     <slot name="table-all-select-alert" ></slot>
     <table-tabs :table-tabs="tableTabs" :select-tab="selectTab"  :current-tab="currentTab"></table-tabs>
-    <div class="efsane-right-topbar" >
+    <div class="efsane-right-topbar" v-if="showMenu">
       <slot name="reload-button"></slot>
       <slot name="resize-mode-button"></slot>
       <slot name="table-settings"></slot>
@@ -27,7 +27,8 @@ export default {
       type:Function,
       default:()=>{return []}
     },
-    currentTab:String
+    currentTab:String,
+    showMenu:Boolean
   },
   computed:{
     styles(){

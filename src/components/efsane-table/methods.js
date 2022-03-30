@@ -66,8 +66,23 @@ export default {
           return showValue
       }
     },
+    setShowMenu(){
+      if(parseInt(this.settings.showMenuStatus) === 1){
+        this.showMenu = true
+      }
+    },
     clickedTable(){
         this.dragStatus = false
+    },
+    mouseHoverOnBody(){
+      if(parseInt(this.settings.showMenuStatus) === 2){
+        this.showMenu = true
+      }
+    },
+    mouseLeaveOnBody(){
+      if(parseInt(this.settings.showMenuStatus) === 2){
+        this.showMenu = false
+      }
     },
     toTitleCase(str) {
       return str.replace(

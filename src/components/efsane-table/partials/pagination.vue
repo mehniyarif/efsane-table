@@ -139,7 +139,7 @@ export default {
     offset(newValue){
       if(!newValue){
         this.currentPage= 1
-        this.$emit('update:offset',1)
+        this.$emit('update:offset',0)
       }
       this.createPags()
     },

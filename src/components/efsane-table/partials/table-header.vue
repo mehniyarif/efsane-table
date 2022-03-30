@@ -1,5 +1,5 @@
 <template>
-  <thead class="efsane-table-header">
+  <thead class="efsane-table-header" >
     <tr  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
         <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
           <span v-if="!resizeMode || dragStatus" >
@@ -200,6 +200,7 @@ export default {
     box-sizing: border-box;
     width: 100%;
     border-top-left-radius: 5px;
+    border-top-right-radius: var(--efsane-table-header-border-top-right-radius);
     background-color:var(--efsane-header-background-color);
     box-shadow: 0 -1px 1px rgba(0,0,0,.1);
     max-height: max-content;

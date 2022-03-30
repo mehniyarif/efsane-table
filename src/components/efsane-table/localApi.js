@@ -45,6 +45,16 @@ export  default {
           name:"right"
         }
       ],
+      menuStatuses:[
+        {
+          label:"Always Show",
+          value:1
+        },
+        {
+          label:"Show While Hover on Table",
+          value:2
+        },
+      ],
       usageTypes:[
         {
           label:"Default",

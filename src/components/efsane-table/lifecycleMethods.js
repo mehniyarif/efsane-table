@@ -4,6 +4,7 @@ export default {
     this.setSettings()
     this.sendColumns(this.currentColumns)
     window.addEventListener('keyup', this.shortcutApply);
+    this.setShowMenu()
   },
   mounted(){
     this.scrollbarVisible()

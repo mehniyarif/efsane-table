@@ -10,6 +10,7 @@ export default {
         this.sendSettings(newValue)
         this.tableTabsControl()
         this.clearSelected()
+        this.setShowMenu()
       },
       deep:true
     },
