@@ -123,7 +123,7 @@ export default {
       }
     },
     showOrderIcon(column){
-      if (column.type === 'data' && !this.resizeMode)
+      if (['data' ,'slot'].includes(column.type) && !this.resizeMode)
         return true
     },
     onDrop (evt) {
