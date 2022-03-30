@@ -16,6 +16,7 @@ export default {
       tooltipPageY:null,
       tooltipPageX:null,
       tableTabs:[],
+      resizeMode:false,
       listAllSelected:false,
       tableOrder:this.ordering,
       currentTab:"main",
@@ -56,7 +57,6 @@ export default {
         tableBodyHeight:"65vh",
         paginationHeight:"35px",
         resizing:false,
-        resizeMode:false,
         shortcutSelectAllToggle:"alt+q",
         shortcutSelectFilteredAll:"shift+f",
       }

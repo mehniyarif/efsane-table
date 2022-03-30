@@ -1,8 +1,8 @@
 <template>
   <thead class="efsane-table-header">
     <tr  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
-        <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':settings.resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
-          <span v-if="!settings.resizeMode || dragStatus" >
+        <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
+          <span v-if="!resizeMode || dragStatus" >
             <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
             <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
               <input slot="checkbox-input" type="checkbox" :value="listAllSelected"  :checked="listAllSelected" @input="triggerListAllSelected" :id="'checkbox-all'" />
@@ -81,6 +81,7 @@ export default {
     },
     listAllSelected:Boolean,
     dragStatus:Boolean,
+    resizeMode:Boolean,
     alignStyle:{
       type:Function,
       required:false
@@ -96,27 +97,33 @@ export default {
   },
   methods:{
     borderVisible(ind){
-      return ind && this.settings.resizeMode
+      return ind && this.resizeMode
     },
     selectHeader(column){
-      if(this.settings.resizeMode)
+      if(this.resizeMode)
         return
 
-      if(column.type === 'data'){
+      if(['data', 'slot'].includes(column.type)){
+        let name = column.name
+
+        if(column.type === 'slot'){
+          name = name.replace("__", "")
+        }
+
         if(this.tableOrder === column.name){
-          this.$emit('update:table-order',`-${column.name}`)
+          this.$emit('update:table-order',`-${name}`)
           this.$emit('update:table-offset', 0)
-        }else if (this.tableOrder === `-${column.name}`){
+        }else if (this.tableOrder === `-${name}`){
           this.$emit('update:table-order',null)
         }
         else{
-          this.$emit('update:table-order',column.name)
+          this.$emit('update:table-order',name)
           this.$emit('update:table-offset', 0)
         }
       }
     },
     showOrderIcon(column){
-      if (column.type === 'data' && !this.settings.resizeMode)
+      if (column.type === 'data' && !this.resizeMode)
         return true
     },
     onDrop (evt) {

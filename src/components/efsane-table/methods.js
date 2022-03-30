@@ -81,7 +81,7 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     borderVisible(ind){
-        return ind && this.settings.resizeMode
+        return ind && this.resizeMode
     },
     alignStyle(align){
       if(!['center','left','right'].includes(align)){
@@ -108,7 +108,7 @@ export default {
         this.sendListAllSelectedMode(true)
     },
     openCloseResizeMode(){
-      this.settings.resizeMode =! this.settings.resizeMode
+      this.resizeMode =! this.resizeMode
     },
     triggerListAllSelected(event){
         this.listAllSelected = event.target.checked
@@ -283,6 +283,12 @@ export default {
         }
       })
       this.sendSettings(this.settings)
+    },
+    clearSelected(){
+      this.selected = []
+      this.selectedIndexs = []
+      this.dataAllSelected = false
+      this.listAllSelected = false
     },
     tableTabsControl(){
       let selectedIndex = this.tableTabs.findIndex(v => v.name === 'selected')

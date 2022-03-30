@@ -9,6 +9,7 @@ export default {
       handler(newValue){
         this.sendSettings(newValue)
         this.tableTabsControl()
+        this.clearSelected()
       },
       deep:true
     },
@@ -26,9 +27,11 @@ export default {
     },
     currentOffset(newValue){
       this.sendPaginationOffset(newValue)
+      this.clearSelected()
     },
     tableOrder(newValue){
       this.sendTableOrder(newValue)
+      this.clearSelected()
     },
     tableAllSelectAlertShow(newValue){
       if(!newValue){
@@ -39,6 +42,12 @@ export default {
     lazyLoad(){
       this.lazyLoadFlag = true
 
+    },
+    data:{
+      handler(){
+        this.clearSelected()
+      },
+      deep:true
     }
   }
 }
