@@ -104,20 +104,20 @@ export default {
         return
 
       if(['data', 'slot'].includes(column.type)){
-        let name = column.name
+        let columnName = column.name
 
         if(column.type === 'slot'){
-          name = name.replace("__", "")
+          columnName = columnName.replace("__", "")
         }
 
-        if(this.tableOrder === column.name){
-          this.$emit('update:table-order',`-${name}`)
+        if(this.tableOrder === columnName){
+          this.$emit('update:table-order',`-${columnName}`)
           this.$emit('update:table-offset', 0)
-        }else if (this.tableOrder === `-${name}`){
+        }else if (this.tableOrder === `-${columnName}`){
           this.$emit('update:table-order',null)
         }
         else{
-          this.$emit('update:table-order',name)
+          this.$emit('update:table-order',columnName)
           this.$emit('update:table-offset', 0)
         }
       }
