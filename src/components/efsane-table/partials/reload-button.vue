@@ -12,11 +12,7 @@ export default {
     reload:{
       type:Function,
       default:null
-    },
-    resizeMode:{
-      type:Function,
-      default:null
-    },
+    }
   },
   data(){
     return{

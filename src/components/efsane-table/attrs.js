@@ -39,7 +39,8 @@ export default {
     resizeModeButtonAttrs(){
         return{
           openCloseResizeMode:this.openCloseResizeMode,
-          settings:this.settings
+          settings:this.settings,
+          resizeMode:this.resizeMode
         }
     },
     tableSettingsAttrs(){
@@ -78,6 +79,7 @@ export default {
           editColumn:this.editColumn,
           changeColumns:this.changeColumnsLocal,
           mouseDown:this.mouseDown,
+          resizeMode:this.resizeMode,
           triggerListAllSelected:this.triggerListAllSelected
         }
     },

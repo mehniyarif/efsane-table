@@ -1,5 +1,5 @@
 <template>
-<button class="resize-mode-button-container" :class="{'selected':settings.resizeMode}" @click="openCloseResizeMode">
+<button class="resize-mode-button-container" :class="{'selected':resizeMode}" @click="openCloseResizeMode">
   <svg xmlns="http://www.w3.org/2000/svg" class="resize-mode-button-icon" width="20" height="20" viewBox="0 0 24 24"><title>Change columns location and size</title> <path fill="#cdcdcd" d="M6 13v4l-6-5 6-5v4h3v2h-3zm9-2v2h3v4l6-5-6-5v4h-3zm-4-6v14h2v-14h-2z"/></svg>
 </button>
 </template>
@@ -9,6 +9,7 @@ export default {
   name: "resize-mode-button",
   props:{
     settings:Object,
+    resizeMode:Boolean,
     openCloseResizeMode:{
       type:Function,
       default:null

@@ -35,7 +35,7 @@
                           <slot  :name="column.name" :slot-scope="row"></slot>
                         </span>
 
-                      <span v-bind="inlineWorksAttrs" v-if="!settings.resizeMode">
+                      <span v-bind="inlineWorksAttrs" v-if="!resizeMode">
                           <copy-area v-if="column.copyable" @click="copyText"></copy-area>
                           <download-area v-if="column.downloadable" @click="downloadText"></download-area>
                         </span>
