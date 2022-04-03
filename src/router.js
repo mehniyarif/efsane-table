@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import EnglishPremierLeage from '@/views/english-premier-leage'
+import Overview from '@/views/overview'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'English Premier Leage',
-    component: EnglishPremierLeage
+    name: 'Overview',
+    component: Overview
   },
   {
     path: '/documentation',

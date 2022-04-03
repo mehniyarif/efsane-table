@@ -10,7 +10,7 @@
       </a>
     </div>
     <div id="nav">
-      <router-link to="/">England Premier Leage</router-link> |
+      <router-link to="/">Overview</router-link> |
       <router-link to="/documentation">Documentation</router-link>
     </div>
     <router-view/>
