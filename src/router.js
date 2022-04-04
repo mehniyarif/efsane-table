@@ -24,6 +24,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/new-features')
   },
   {
+    path: '/goals',
+    name: 'Goals',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/goals')
+  },
+  {
     path: '/props',
     name: 'Props',
     component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/props')

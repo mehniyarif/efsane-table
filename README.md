@@ -37,7 +37,45 @@ usage
 >
 </efsane-table>
 ```
+***Default Columns***
 
+Example Definition
+
+  ```
+          [{
+            header: "Name",
+            name:"name",
+            size:"60",
+            copyable:true,
+            list_manipulation:"first",
+            text_manipulation:"upper",
+            downloadable:true,
+            type:"data"
+          },{
+            header: "Position",
+            name:"position",
+            size:"60",
+            type:"slot"
+          },{
+            header: "#",
+            name:"row_number",
+            size:"60",
+            type:"row_number"
+          },{
+            header: "#",
+            name:"checkbox",
+            size:"60",
+            type:"checkbox"
+          },
+          {
+            header: "Logo",
+            name:"team.logo",
+            size:"1fr",
+            type:"data",
+            usage:"image-src"
+          }]
+  ```
+  
 ***Props***
 
 <table>
@@ -297,41 +335,6 @@ usage
 </tbody>
 </table>
 
-  * Example
-    ```
-            [{
-              header: "Name",
-              name:"name",
-              size:"60",
-              copyable:true,
-              list_manipulation:"first",
-              text_manipulation:"upper",
-              downloadable:true,
-              type:"data"
-            },{
-              header: "Position",
-              name:"position",
-              size:"60",
-              type:"slot"
-            },{
-              header: "#",
-              name:"row_number",
-              size:"60",
-              type:"row_number"
-            },{
-              header: "#",
-              name:"checkbox",
-              size:"60",
-              type:"checkbox"
-            },
-            {
-              header: "Logo",
-              name:"team.logo",
-              size:"1fr",
-              type:"data",
-              usage:"image-src"
-            }]
-    ```
     
   ***Emits***
 
@@ -793,6 +796,70 @@ settings:{
 <td>shift+f</td>
 <td></td>
 <td>1.1.0</td>
+</tr>
+</tbody>
+</table>
+
+***Goals***
+
+<table>
+<thead>
+<tr>
+<th>Goal Title</th>
+<th>Description</th>
+<th>Target Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self Ordering</td>
+<td>The Table will can sort the data without backend</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Data Types</td>
+<td>The Table Columns can be different types likes Date, Datetime, Number, Link, Phone, Zipcode etc.</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Data Types Method</td>
+<td>The Data Types can modification like Date Format for Date Type or can add target attribute for Link Type</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td>The Table can give to user some action API&#39;s and users can create own action columns</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Alerts</td>
+<td>The Table can give to user some alert Icons, Prefixs, Styles and users can create own alerts</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Data Tree Tooltip</td>
+<td>The Table can show data tree in tooltip if columns data object in objects or array in arrays or etc.</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Conditional Flip Columns</td>
+<td>The Table can calculate column condition and then show correct data in column</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Detail Tabs</td>
+<td>The Table can separate selected items with multi tabs alson this tabs may under or over table</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Multi Mission Header</td>
+<td>Header shouldn&#39;t contain only data header also can be contain different contents or actions buttons</td>
+<td>1.2.0</td>
+</tr>
+<tr>
+<td>Table Themes</td>
+<td>The Table can customize different themes</td>
+<td>1.2.0</td>
 </tr>
 </tbody>
 </table>

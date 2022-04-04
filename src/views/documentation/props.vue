@@ -8,6 +8,334 @@
         editable
         accordion
       ></efsane-table>
+    <div class="sub-details">
+      <details>
+        <summary>This Table Codes</summary>
+        <pre  v-text="exampleCode"></pre>
+      </details>
+      <small>Efsane Table was used to create this table</small>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "props",
+  data(){
+    return{
+      settings:{
+        tableTextColor:"#283593",
+        headerBackgroundColor:"#283593",
+        headerTextColor:"#ffffff"
+      },
+      columns:[
+        {
+          type:"more",
+          header:"Description",
+          name:"more",
+          size:"100",
+          copyable:false,
+          tooltip:"Open Description"
+        },
+        {
+          type:"data",
+          header:"Prop Name",
+          name:"propsName",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Prop Name"
+        },
+        {
+          type:"data",
+          header:"Data Type",
+          name:"type",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Data Type"
+        },
+        {
+          type:"data",
+          header:"Required",
+          name:"required",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Required"
+        },
+        {
+          type:"data",
+          header:"Sync Modifier",
+          name:"syncModifier",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Sync Modifier"
+        },
+        {
+          type:"data",
+          header:"Default",
+          name:"default",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Default"
+        },
+        {
+          type:"data",
+          header:"Available Version",
+          name:"available",
+          size:"1fr",
+          copyable:true,
+          tooltip:"Available"
+        }
+      ],
+      tableProps:[
+        {
+          propsName:"table-name",
+          type:"String",
+          required:true,
+          syncModifier:false,
+          default:"efsaneTable",
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"data",
+          type:"Array",
+          required:true,
+          syncModifier:false,
+          options:"",
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"default-settings",
+          type:"Object",
+          required:true,
+          syncModifier:false,
+          options:"",
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"dynamic",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"save",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"reload",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"pagination",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"accordion",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"accordion-match-value",
+          type:"String,Number,Boolean, Array",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"transition",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"Not Yet"
+        },
+        {
+          propsName:"transition-const-field",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:null,
+          description:"",
+          available:"Not Yet"
+        },
+        {
+          propsName:"hide-header",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:false,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"editable",
+          type:"Boolean",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"output-type",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          default:"default",
+          options:"default, base64",
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"data-count",
+          type:"Number",
+          required:false,
+          syncModifier:false,
+          default:0,
+          options:"",
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"limit",
+          type:"Number",
+          required:false,
+          syncModifier:false,
+          options:"",
+          default:25,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"ordering",
+          type:"String",
+          required:false,
+          syncModifier:true,
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"pagination-offset",
+          type:"String",
+          required:false,
+          syncModifier:true,
+          default:0,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"table-item-definition",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          default:"items",
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"columns",
+          type:"Array",
+          required:false,
+          syncModifier:false,
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"reload-function",
+          type:"Function",
+          required:false,
+          syncModifier:false,
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"default-columns",
+          type:"Array",
+          required:false,
+          syncModifier:false,
+          default:null,
+          description:"",
+          available:"1.1.0"
+        },
+        {
+          propsName:"actions",
+          type:"Array",
+          required:false,
+          syncModifier:false,
+          default:null,
+          description:"",
+          available:"Not Yet"
+        },
+        {
+          propsName:"default-actions",
+          type:"Array",
+          required:false,
+          syncModifier:false,
+          default:null,
+          description:"",
+          available:"Not Yet"
+        },
+      ],
+      exampleCode:`<template>
+  <div class="table-props-wrapper">
+      <efsane-table
+        :data="tableProps"
+        :default-columns="columns"
+        table-name="table-props"
+        :default-settings="settings"
+        editable
+        accordion
+      ></efsane-table>
+    <div class="sub-details">
+      <details>
+        <summary>This Table Codes</summary>
+        <pre  v-text="exampleCode"></pre>
+      </details>
+      <small>Efsane Table was used to create this table</small>
+    </div>
   </div>
 </template>
 
@@ -314,6 +642,9 @@ export default {
       ]
     }
   }
+}`
+    }
+  }
 }
 </script>
 
@@ -321,5 +652,13 @@ export default {
   .table-props-wrapper{
     width: 90%;
     margin-inline: 5%;
+    display: block;
+    text-align: left;
+
+    .sub-details{
+      display: flex;
+      margin-top: 15px;
+      justify-content: space-between;
+    }
   }
 </style>
