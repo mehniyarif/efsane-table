@@ -1,7 +1,7 @@
 <template>
   <thead class="efsane-table-header" >
     <tr  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
-        <span v-for="(column, key) in columns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
+        <span v-for="(column, key) in visibleColumns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
           <span v-if="!resizeMode || dragStatus" >
             <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
             <checkbox v-if="column.type === 'checkbox' && currentTab !== 'selected'" :name="'checkbox-all'" >
@@ -9,7 +9,7 @@
             </checkbox>
             <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
           </span>
-          <column-edit v-else :columns="columns" :usage-types="usageTypes" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
+          <column-edit v-else :columns="columns" :usage-types="usageTypes" :visibility-options="visibilityOptions" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
           <span v-if="borderVisible(key)" class="efsane-table-th-border" @mousedown="mouseDown(column.name,$event)"><span>&nbsp;</span></span>
         </span>
     </tr>
@@ -74,6 +74,18 @@ export default {
       }
     },
     alignOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    visibleColumns:{
       type:Array,
       default:function(){
         return []

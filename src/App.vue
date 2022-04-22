@@ -11,6 +11,7 @@
     </div>
     <div id="nav">
       <router-link to="/">Overview</router-link> |
+      <router-link to="/demo">Demo</router-link> |
       <router-link to="/documentation">Documentation</router-link> |
       <router-link to="/goals">Goals</router-link>
     </div>

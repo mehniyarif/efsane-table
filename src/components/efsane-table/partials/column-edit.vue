@@ -6,6 +6,7 @@
           <div class="column-edit-dropdown-header">{{ this.showValue(columns[ind].name) }}</div>
           <div class="column-edit-dropdown-form" >
             <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
+            <efsane-select v-model="columnData.visibility" name="list" label="Visibility" :options="visibilityOptions" label-property="label" value-property="name"> </efsane-select>
             <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
             <efsane-select v-model="columnData.align" name="align"  label="Align" :options="alignOptions" label-property="label" value-property="name"> </efsane-select>
             <efsane-select v-model="columnData.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
@@ -71,6 +72,12 @@ export default {
         return []
       }
     },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
     editColumn:{
       type:Function,
       required:false
@@ -82,6 +89,7 @@ export default {
       show:false,
       columnData:{
         header:this.columns[this.ind].header,
+        visibility:this.columns[this.ind].visibility || 'always',
         tooltip:this.columns[this.ind].tooltip,
         align:this.columns[this.ind].align || 'center',
         type:this.columns[this.ind].type,

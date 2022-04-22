@@ -145,11 +145,15 @@
         <!--        settings-->
         <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
           <span>Selected Tab</span>
-          <efsane-switch v-model="settings.selectedTabStatus" name="row-hover-status" :label="settings.selectedTabStatus ? 'Show' : 'Hide'"> </efsane-switch>
+          <efsane-switch v-model="settings.selectedTabStatus" name="row-hover-status" :label="settings.selectedTabStatus ? 'Enable' : 'Disable'"> </efsane-switch>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
           <span>Menu Visibility</span>
           <efsane-select v-model="settings.showMenuStatus" style="width: 150px;" label-property="label" value-property="value" :options="menuStatuses"></efsane-select>
+        </div>
+        <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
+          <span>Column Auto Visibility</span>
+          <efsane-switch v-model="settings.autoVisibility" name="row-hover-status" :label="settings.autoVisibility ? 'Enable' : 'Disable'"> </efsane-switch>
         </div>
         <div class="table-setting-dropdown-menu-subitem" v-if="['settings'].includes(menuStatus)">
           <span @click="removeSettings" >Reset Table Settings</span>

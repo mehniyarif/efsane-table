@@ -13,6 +13,7 @@
       </div>
       <div class="dynamic-column-setting-dropdown-form" v-else-if="formStatus === 'add'">
         <efsane-input v-model="newColumn.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
+        <efsane-select v-model="newColumn.visibility" name="list" label="Visibility" :options="visibilityOptions" label-property="label" value-property="name"> </efsane-select>
         <efsane-input v-model="newColumn.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
         <efsane-select v-model="newColumn.list_manipulation" name="list" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="newColumn.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
@@ -78,6 +79,12 @@ export default {
         return []
       }
     },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
     columns:{
       type:Array,
       default:function(){
@@ -92,6 +99,7 @@ export default {
       selectedColumnName:null,
       location:"__FIRST__",
       newColumn:{
+        visibility:'always',
         header:null,
         tooltip:null,
         name:null,

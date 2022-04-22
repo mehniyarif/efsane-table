@@ -61,6 +61,7 @@ export default {
         return{
             usageTypes:this.usageTypes,
             listManipulation:this.listManipulation,
+            visibilityOptions:this.visibilityOptions,
             dataKeys:this.dataKeys,
             increaseTableKey:this.increaseTableKey,
             changeColumnsLocal:this.changeColumnsLocal,
@@ -74,7 +75,9 @@ export default {
           currentTab:this.currentTab,
           settings:this.settings,
           alignStyle:this.alignStyle,
+          visibleColumns:this.visibleColumns,
           textManipulation:this.textManipulation,
+          visibilityOptions:this.visibilityOptions,
           alignOptions:this.alignOptions,
           listManipulation:this.listManipulation,
           listAllSelected:this.listAllSelected,

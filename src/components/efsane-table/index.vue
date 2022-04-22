@@ -15,11 +15,12 @@
 
           <component :is="transition ? 'transition-group' : 'tr'"
                      name="tr-list"
+                     :id="`efsane-table-tr-${line}`"
                      :tag="transition ? 'tr' : ''"
                      class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
 
                   <div class="row-area" :key="line"  :class="{'selected':selectedIndexs.includes(line + 1) || currentTab === 'selected' , 'select-accordion': openControl(row, line +1)}">
-                    <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in currentColumns" :id="'column-'+column.name" :style="alignStyle(column.align)">
+                    <td v-bind="efsaneTableTdAttrs" :key="ind" v-for="(column,ind) in visibleColumns" :id="'column-'+column.name" :style="alignStyle(column.align)">
 
                       <data-column v-if="column.type === 'data'"  :data="row" :column="column"></data-column>
 
