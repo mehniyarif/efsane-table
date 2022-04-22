@@ -46,7 +46,7 @@ export default {
         {
           type:"data",
           header:"Feature Title",
-          name:"goalTitle",
+          name:"featureTitle",
           size:"1fr",
           copyable:true,
           tooltip:"Feature Title"
@@ -62,7 +62,7 @@ export default {
       ],
       tableNewFeatures:[
         {
-          goalTitle:"Conditional Flip Columns",
+          featureTitle:"Conditional Flip Columns",
           description:"If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \"exists if\". " +
             "Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.",
           available:"1.1.2"
@@ -116,7 +116,7 @@ export default {
         {
           type:"data",
           header:"Feature Title",
-          name:"goalTitle",
+          name:"featureTitle",
           size:"1fr",
           copyable:true,
           tooltip:"Feature Title"
@@ -132,7 +132,7 @@ export default {
       ],
       tableNewFeatures:[
         {
-          goalTitle:"Conditional Flip Columns",
+          featureTitle:"Conditional Flip Columns",
           description:"If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \\"exists if\\". " +
             "Also, make sure that the \\"column auto visibility\\" setting is enabled in the table settings.",
           available:"1.1.2"

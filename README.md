@@ -4,9 +4,15 @@
 
 For ***Vue 2*** Framework. 
 
-Version ***1.1.0***  is Released 🎉✨
+Version ***1.1.2***  is Released 🎉✨
 
 **[Show Demo and Detail Documentation](https://efsanetable.herokuapp.com/)**
+
+**New Features**
+
+*Conditional Flip Columns*
+- If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \"exists if\". 
+- Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.
 
 Draggable Columns
 <img  class="image-container" fetchpriorty="high" alt="Draggable Columns" src="https://efsane.s3.eu-central-1.amazonaws.com/efsane-draggable.gif">
