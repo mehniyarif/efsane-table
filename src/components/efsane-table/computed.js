@@ -15,6 +15,16 @@ export default {
     lazyLoad(){
       return (this.data)
     },
+    autoVisibility(){
+      return this.settings.autoVisibility
+    },
+    visibleColumns(){
+        if(this.autoVisibility){
+          return this.currentColumns.filter(v => v?.visibility !== 'exists' || (v?.visibility === 'exists' && this.visibleDataKeys.includes(v?.name)))
+        }else{
+          return this.currentColumns
+        }
+    },
     currentData(){
       if(this.currentTab === 'selected'){
         return this.selected
@@ -32,8 +42,8 @@ export default {
     },
     columnSizes(){
       let size = ""
-      if(this.currentColumns && this.currentColumns.length){
-        this.currentColumns.forEach(column => {
+      if(this.visibleColumns && this.visibleColumns.length){
+        this.visibleColumns.forEach(column => {
           if(column.size && !isNaN(column.size - 1)){
             size +=  `minmax(0, ${column.size}px) `
           }else if(column.size){

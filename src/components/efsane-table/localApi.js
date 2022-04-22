@@ -107,6 +107,10 @@ export  default {
         {
           label:"Row Number",
           name:"row_number"
+        },
+        {
+          label:"More",
+          name:"more"
         }
       ],
       listManipulation:[
@@ -121,6 +125,16 @@ export  default {
         {
           label:"Give the sum of numeric expressions",
           name:"sum"
+        },
+      ],
+      visibilityOptions:[
+        {
+          label:"Always Visible",
+          name:"always"
+        },
+        {
+          label:"Exists if",
+          name:"exists"
         },
       ],
       textManipulation:[

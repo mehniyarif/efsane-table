@@ -1,3 +1,4 @@
+import TableApp from "./app";
 export default {
   methods:{
     getArrayValues(arr,property_list,settings = {}){
@@ -361,6 +362,27 @@ export default {
         element.addEventListener("mouseleave", ()=>{
           this.tooltip = null
         })
+      })
+    },
+    observerTable(observerList){
+      observerList.forEach((element)=>{
+        let number = element.target?.id.replace(/\D/g, "")
+        if(element.isIntersecting){
+          this.observeObject[number+1] = this.currentData[number]
+        }else{
+          this.observeObject[number+1] = ""
+        }
+      })
+      let list = [...new Set(Object.values(this.observeObject))]
+      let tableApp = new TableApp
+      this.visibleDataKeys= tableApp.generateSmartData(list, this.$scopedSlots, [])
+    },
+    setObservers(){
+      let observer = new IntersectionObserver(this.observerTable, this.observeOptions)
+      this.$refs.tableBody.childNodes.forEach((element)=>{
+        if (element instanceof HTMLElement) {
+          observer.observe(element)
+        }
       })
     }
   },

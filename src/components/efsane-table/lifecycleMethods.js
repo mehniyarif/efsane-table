@@ -8,6 +8,7 @@ export default {
   },
   mounted(){
     this.scrollbarVisible()
+    this.setObservers()
   },
   destroyed(){
     window.removeEventListener('keyup', this.shortcutApply);

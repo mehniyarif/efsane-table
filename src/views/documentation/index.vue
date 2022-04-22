@@ -74,6 +74,10 @@ export default {
           title:"Settings",
           link:"settings"
         },
+        {
+          title:"Column Settings",
+          link:"column-settings"
+        },
       ],
       exampleCode:`
  <template>
@@ -143,6 +147,10 @@ export default {
         {
           title:"Settings",
           link:"settings"
+        },
+        {
+          title:"Column Settings",
+          link:"column-settings"
         },
       ],
       }

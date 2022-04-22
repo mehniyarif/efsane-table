@@ -16,42 +16,52 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation')
+    component: () => import(/* webpackChunkName: "documentation" */ '@/views/documentation')
   },
   {
     path: '/new-features',
     name: 'New Features',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/new-features')
+    component: () => import(/* webpackChunkName: "new-features" */ '@/views/documentation/new-features')
   },
   {
     path: '/goals',
     name: 'Goals',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/goals')
+    component: () => import(/* webpackChunkName: "goals" */ '@/views/documentation/goals')
   },
   {
     path: '/props',
     name: 'Props',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/props')
+    component: () => import(/* webpackChunkName: "props" */ '@/views/documentation/props')
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import(/* webpackChunkName: "demo" */ '@/views/demo')
   },
   {
     path: '/slots',
     name: 'Slots',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/slots')
+    component: () => import(/* webpackChunkName: "slots" */ '@/views/documentation/slots')
   },
   {
     path: '/emits',
     name: 'Emits',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/emits')
+    component: () => import(/* webpackChunkName: "emits" */ '@/views/documentation/emits')
   },
   {
     path: '/themes',
     name: 'Themes',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/themes')
+    component: () => import(/* webpackChunkName: "themes" */ '@/views/documentation/themes')
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/documentation/settings')
+    component: () => import(/* webpackChunkName: "settings" */ '@/views/documentation/settings')
+  },
+  {
+    path: '/column-settings',
+    name: 'Column Settings',
+    component: () => import(/* webpackChunkName: "column-settings" */ '@/views/documentation/column-settings')
   }
 ]
 

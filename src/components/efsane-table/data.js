@@ -1,6 +1,13 @@
 export default {
   data(){
     return{
+      observeOptions: {
+        root: document.querySelector('#efsane-table-content-wrapper'),
+        rootMargin: '0px',
+        threshold: 0
+      },
+      observeObject:{},
+      visibleDataKeys:[],
       tableKey:0,
       startPoint:null,
       endPoint:null,
@@ -22,13 +29,14 @@ export default {
       showMenu:false,
       currentTab:"main",
       dataAllSelected:false,
-      currentColumns: this.columns && this.columns.length ? this.columns : this.defaultColumns,
+      currentColumns: this.columns && this.columns.length ? this.columns : this.defaultColumns || [],
       currentActions:this.actions && this.actions.length ? this.actions : this.defaultActions,
       settings:{
         tableBackgroundColor:"#fff",
         tableTextColor:"#343A40",
         headerBackgroundColor:"#F7F9F9",
         headerTextColor: "#343A40",
+        autoVisibility:true,
         topbarHeight:"28px",
         headerHeight:"30px",
         rowHeight:null,
