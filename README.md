@@ -4,7 +4,7 @@
 
 For ***Vue 2*** Framework. 
 
-Version ***1.1.2***  is Released 🎉✨
+Version ***1.1.3***  is Released 🎉✨
 
 **[Show Demo and Detail Documentation](https://efsanetable.herokuapp.com/)**
 
@@ -943,7 +943,7 @@ settings:{
 <td>always</td>
 <td>always,exists</td>
 <td>If a column will only be displayed if there is data, you can solve this problem by selecting the column&#39;s visibility setting &quot;exists if&quot;. Also, make sure that the &quot;column auto visibility&quot; setting is enabled in the table settings.</td>
-<td>1.1.2</td>
+<td>1.1.3</td>
 </tr>
 <tr>
 <td>visibility condition</td>
@@ -953,7 +953,7 @@ settings:{
 <td>[self column]</td>
 <td>[exists columns]</td>
 <td>If the column will appear according to another column, the name of that column should be entered here.</td>
-<td>1.1.2</td>
+<td>1.1.3</td>
 </tr>
 </tbody>
 </table>
