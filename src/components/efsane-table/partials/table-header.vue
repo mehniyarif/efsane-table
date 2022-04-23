@@ -9,7 +9,7 @@
             </checkbox>
             <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
           </span>
-          <column-edit v-else :columns="columns" :usage-types="usageTypes" :visibility-options="visibilityOptions" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
+          <column-edit v-else :columns="columns" :usage-types="usageTypes" :visibility-options="visibilityOptions"  :data-keys="dataKeys" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
           <span v-if="borderVisible(key)" class="efsane-table-th-border" @mousedown="mouseDown(column.name,$event)"><span>&nbsp;</span></span>
         </span>
     </tr>
@@ -79,12 +79,6 @@ export default {
         return []
       }
     },
-    visibilityOptions:{
-      type:Array,
-      default:function(){
-        return []
-      }
-    },
     visibleColumns:{
       type:Array,
       default:function(){
@@ -105,7 +99,19 @@ export default {
     triggerListAllSelected:{
       type:Function,
       required:false
-    }
+    },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
+    dataKeys:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
   },
   methods:{
     borderVisible(ind){

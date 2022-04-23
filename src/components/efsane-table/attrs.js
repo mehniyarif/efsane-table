@@ -61,9 +61,9 @@ export default {
         return{
             usageTypes:this.usageTypes,
             listManipulation:this.listManipulation,
-            visibilityOptions:this.visibilityOptions,
             dataKeys:this.dataKeys,
             increaseTableKey:this.increaseTableKey,
+            visibilityOptions:this.visibilityOptions,
             changeColumnsLocal:this.changeColumnsLocal,
             columns:this.currentColumns
         }
@@ -74,10 +74,11 @@ export default {
           usageTypes:this.usageTypes,
           currentTab:this.currentTab,
           settings:this.settings,
+          dataKeys:this.dataKeys,
+          visibilityOptions:this.visibilityOptions,
           alignStyle:this.alignStyle,
           visibleColumns:this.visibleColumns,
           textManipulation:this.textManipulation,
-          visibilityOptions:this.visibilityOptions,
           alignOptions:this.alignOptions,
           listManipulation:this.listManipulation,
           listAllSelected:this.listAllSelected,

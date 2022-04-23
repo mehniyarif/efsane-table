@@ -77,7 +77,8 @@ export default {
       {
         type:"data",
         header:"test",
-        name:"test",
+        name:"test_test",
+        visibility:"exists",
         size:"100"
       },
       {

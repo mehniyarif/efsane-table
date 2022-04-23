@@ -5,8 +5,9 @@
       <div class="column-edit-dropdown" v-if="show">
           <div class="column-edit-dropdown-header">{{ this.showValue(columns[ind].name) }}</div>
           <div class="column-edit-dropdown-form" >
-            <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
             <efsane-select v-model="columnData.visibility" name="list" label="Visibility" :options="visibilityOptions" label-property="label" value-property="name"> </efsane-select>
+            <efsane-select v-if="columnData.visibility === 'exists'"  v-model="columnData.visibilityCondition" name="list" label="If Exists Column" :options="dataKeysList" label-property="label" value-property="value" > </efsane-select>
+            <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
             <efsane-input v-if="!['checkbox'].includes(columnData.type)" v-model="columnData.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
             <efsane-select v-model="columnData.align" name="align"  label="Align" :options="alignOptions" label-property="label" value-property="name"> </efsane-select>
             <efsane-select v-model="columnData.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
@@ -66,13 +67,19 @@ export default {
         return []
       }
     },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
     alignOptions:{
       type:Array,
       default:function(){
         return []
       }
     },
-    visibilityOptions:{
+    dataKeys:{
       type:Array,
       default:function(){
         return []
@@ -90,6 +97,7 @@ export default {
       columnData:{
         header:this.columns[this.ind].header,
         visibility:this.columns[this.ind].visibility || 'always',
+        visibilityCondition:this.columns[this.ind].visibilityCondition,
         tooltip:this.columns[this.ind].tooltip,
         align:this.columns[this.ind].align || 'center',
         type:this.columns[this.ind].type,
@@ -103,6 +111,16 @@ export default {
     }
   },
   computed:{
+        dataKeysList(){
+          let resultList = []
+          this.dataKeys.forEach((item)=>{
+            resultList.push({
+              label:this.showValue(item),
+              value:item
+            })
+          })
+          return resultList
+        },
         formValid(){
             return !this.columnData.header
         },

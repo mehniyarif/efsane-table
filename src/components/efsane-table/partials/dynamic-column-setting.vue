@@ -12,8 +12,9 @@
         </div>
       </div>
       <div class="dynamic-column-setting-dropdown-form" v-else-if="formStatus === 'add'">
-        <efsane-input v-model="newColumn.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
         <efsane-select v-model="newColumn.visibility" name="list" label="Visibility" :options="visibilityOptions" label-property="label" value-property="name"> </efsane-select>
+        <efsane-select v-if="newColumn.visibility === 'exists'" v-model="newColumn.visibilityCondition" name="list" label="If Exists Column" :options="dataKeysList" label-property="label" value-property="value"> </efsane-select>
+        <efsane-input v-model="newColumn.header" name="header" data-vv-name="Header" label="Header"> </efsane-input>
         <efsane-input v-model="newColumn.tooltip" name="tooltip" data-vv-name="Tooltip" label="Tooltip"> </efsane-input>
         <efsane-select v-model="newColumn.list_manipulation" name="list" label="List Manipulation" :options="listManipulation" label-property="label" value-property="name"> </efsane-select>
         <efsane-select v-model="newColumn.usage" name="list" label="Usage" :options="usageTypes" label-property="label" value-property="name"> </efsane-select>
@@ -59,6 +60,12 @@ export default {
         return []
       }
     },
+    visibilityOptions:{
+      type:Array,
+      default:function(){
+        return []
+      }
+    },
     changeColumnsLocal:{
       type:Function,
       required:false
@@ -79,12 +86,6 @@ export default {
         return []
       }
     },
-    visibilityOptions:{
-      type:Array,
-      default:function(){
-        return []
-      }
-    },
     columns:{
       type:Array,
       default:function(){
@@ -100,6 +101,7 @@ export default {
       location:"__FIRST__",
       newColumn:{
         visibility:'always',
+        visibilityCondition:'',
         header:null,
         tooltip:null,
         name:null,
@@ -111,6 +113,16 @@ export default {
     }
   },
   computed:{
+        dataKeysList(){
+          let resultList = []
+          this.dataKeys.forEach((item)=>{
+            resultList.push({
+              label:this.showValue(item),
+              value:item
+            })
+          })
+          return resultList
+        },
         formValid(){
             return !this.newColumn.header
         },

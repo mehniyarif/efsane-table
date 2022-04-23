@@ -345,7 +345,7 @@ export default {
           },
           {
             "position": 20,
-            "test": 20,
+            "test_test": 20,
             "team": {
               "id": 68,
               "name": "Norwich City FC",
