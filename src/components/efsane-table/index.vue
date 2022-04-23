@@ -15,7 +15,7 @@
 
           <component :is="transition ? 'transition-group' : 'tr'"
                      name="tr-list"
-                     :id="`efsane-table-tr-${line}`"
+                     :data-line="line"
                      :tag="transition ? 'tr' : ''"
                      class="efsane-table-tr"  v-for="(row, line) in currentData" :key="transitionKey(row, line)">
 

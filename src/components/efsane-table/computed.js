@@ -7,7 +7,7 @@ export default {
       if(this.accordion){
         specialColumns.push('more')
       }
-      return tableApp.generateSmartData(this.data, this.$scopedSlots, specialColumns)
+      return tableApp.generateSmartData(this.data, this.$scopedSlots, specialColumns,false)
     },
     tableAllSelectAlertText(){
         return `All ${this.selected.length} ${this.tableItemDefinition.toLowerCase()} on this page have been selected.  `

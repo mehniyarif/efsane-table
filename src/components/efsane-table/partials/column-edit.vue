@@ -97,7 +97,7 @@ export default {
       columnData:{
         header:this.columns[this.ind].header,
         visibility:this.columns[this.ind].visibility || 'always',
-        visibilityCondition:this.columns[this.ind].visibilityCondition,
+        visibilityCondition:this.columns[this.ind].visibilityCondition || this.columns[this.ind].name,
         tooltip:this.columns[this.ind].tooltip,
         align:this.columns[this.ind].align || 'center',
         type:this.columns[this.ind].type,
@@ -114,10 +114,12 @@ export default {
         dataKeysList(){
           let resultList = []
           this.dataKeys.forEach((item)=>{
-            resultList.push({
-              label:this.showValue(item),
-              value:item
-            })
+            if(!['checkbox','action','row_number','more'].includes(item)){
+              resultList.push({
+                label:this.showValue(item),
+                value:item
+              })
+            }
           })
           return resultList
         },

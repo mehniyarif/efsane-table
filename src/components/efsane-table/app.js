@@ -21,46 +21,51 @@ export default class TableApp{
     return arrDataKeys
   }
 
-  getObjectKeys = (obj, prefix = '') => {
+  getObjectKeys = (obj, prefix = '', existIf=false) => {
     if(!obj) return []
 
     return Object.entries(obj).reduce((collector, [key, val]) => {
-      const newKeys = [ ...collector, prefix ? `${prefix}.${key}` : key ]
-      if (Object.prototype.toString.call(val) === '[object Object]') {
-        const newPrefix = prefix ? `${prefix}.${key}` : key
-        const otherKeys = this.getObjectKeys(val, newPrefix)
-        return [ ...newKeys, ...otherKeys ]
-      }
-      return newKeys
+        if(existIf && ["",null,undefined].includes(typeof val === 'string' ? val.trim() : val)) return  collector
+
+        const newKeys = [ ...collector, prefix ? `${prefix}.${key}` : key ]
+        if (Object.prototype.toString.call(val) === '[object Object]') {
+          const newPrefix = prefix ? `${prefix}.${key}` : key
+          const otherKeys = this.getObjectKeys(val, newPrefix, existIf)
+          return [ ...newKeys, ...otherKeys ]
+        }
+        return newKeys
     }, [])
   }
 
-  getDataLine(obj = {}){
+  getDataLine(obj = {}, existIf=false){
     if(!obj) return []
 
     let keys = []
-    Object.entries(obj).map(item => {
-      if(Array.isArray(item[1])){
-        keys= keys.concat(this.addParent(item[0],this.getDataMap(item[1])))
-      }else if(typeof item[1] == 'object'){
-        keys= keys.concat(this.addParent(item[0],this.getObjectKeys(item[1])))
+    Object.entries(obj).map(([key, value]) => {
+      if(existIf && ["",null,undefined].includes(typeof value === 'string' ? value.trim() : value)) return  keys
+
+      if(Array.isArray(value)){
+        keys= keys.concat(this.addParent(key,this.getDataMap(value, existIf)))
+      }else if(typeof value == 'object'){
+        keys= keys.concat(this.addParent(key,this.getObjectKeys(value,'', existIf)))
       }else{
-        keys.push(item[0])
+        keys.push(key)
       }
     })
     return keys
   }
 
-  getDataMap(arr = []){
+  getDataMap(arr = [], existIf=false){
+    //existIf parametresi true ise empty string, null ve undefined değerleri olan valueların keyleri dönmez.
     if(!arr || !arr.length) return []
     let keys = []
     arr.forEach(line => {
-        keys = [... new Set(keys.concat(this.getDataLine(line)))]
+        keys = [... new Set(keys.concat(this.getDataLine(line, existIf)))]
     })
     return keys
   }
 
-  generateSmartData(data = [], slots = {}, special_columns = []){
+  generateSmartData(data = [], slots = {}, special_columns = [], existIf=false){
     let slot_names = []
     Object.entries(slots).forEach(slot => {
       slot_names.push(slot[0])
@@ -68,7 +73,7 @@ export default class TableApp{
     if(!Array.isArray(data)){
       alert("Table Data Not Valid. Make sure data type is array")
     }
-    return [...special_columns,...slot_names, ...this.getDataMap(data)]
+    return [...special_columns,...slot_names, ...this.getDataMap(data,existIf)]
   }
 
 

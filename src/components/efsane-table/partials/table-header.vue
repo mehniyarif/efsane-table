@@ -9,7 +9,7 @@
             </checkbox>
             <column-order :column="column" :table-order="tableOrder" v-if="showOrderIcon(column)"></column-order>
           </span>
-          <column-edit v-else :columns="columns" :usage-types="usageTypes" :visibility-options="visibilityOptions"  :data-keys="dataKeys" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
+          <column-edit v-else :columns="visibleColumns" :usage-types="usageTypes" :visibility-options="visibilityOptions"  :data-keys="dataKeys" :text-manipulation="textManipulation" :edit-column="editColumn" :align-options="alignOptions" :list-manipulation="listManipulation"  :ind="key"></column-edit>
           <span v-if="borderVisible(key)" class="efsane-table-th-border" @mousedown="mouseDown(column.name,$event)"><span>&nbsp;</span></span>
         </span>
     </tr>
@@ -167,6 +167,8 @@ export default {
       this.firstDragItem = currentElement
     },
     endDrag(evt){
+      if(!this.secondDragItem) return
+
       if(evt.target.draggable)
         this.secondDragItem.style.backgroundColor = "var(--efsane-header-background-color)"
       this.secondDragItem.style.opacity = "1"

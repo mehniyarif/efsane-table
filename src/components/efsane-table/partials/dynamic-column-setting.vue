@@ -5,7 +5,7 @@
       <div class="dynamic-column-setting-dropdown-header">{{formStatus === 'list' ? 'Columns Menu' : formStatus === 'add' ? 'Add Column' : 'Remove Column'}}</div>
       <div class="dynamic-column-setting-dropdown-items-container" v-if="formStatus === 'list'">
         <div v-for="(column, key) in generateColumns" :key="key" class="dynamic-column-setting-item">
-          <svg :class="{'selected':selectedColumns.includes(column.name)}" @click.stop="showForm(column.name)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.166 16.943l1.4 1.4-4.622 4.657h-2.944l6.166-6.057zm11.768-6.012c2.322-2.322 4.482-.457 6.066-1.931l-8-8c-1.474 1.584.142 3.494-2.18 5.817-3.016 3.016-4.861-.625-10.228 4.742l9.6 9.6c5.367-5.367 1.725-7.211 4.742-10.228z"/></svg>
+          <svg @click.stop="showForm(column.name)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>{{svgTitle(column)}}</title><path :style="svgStyle(column)"  d="M6.166 16.943l1.4 1.4-4.622 4.657h-2.944l6.166-6.057zm11.768-6.012c2.322-2.322 4.482-.457 6.066-1.931l-8-8c-1.474 1.584.142 3.494-2.18 5.817-3.016 3.016-4.861-.625-10.228 4.742l9.6 9.6c5.367-5.367 1.725-7.211 4.742-10.228z"/></svg>
           <span>{{ showLabel(column) }}
             <svg class="help" v-if="column.type === 'slot'" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 512 512"><title>Custom {{ showLabel(column) }} Field</title><path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M200 202.29s.84-17.5 19.57-32.57C230.68 160.77 244 158.18 256 158c10.93-.14 20.69 1.67 26.53 4.45 10 4.76 29.47 16.38 29.47 41.09 0 26-17 37.81-36.37 50.8S251 281.43 251 296" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"/><circle cx="250" cy="348" r="20"/></svg>
           </span>
@@ -101,7 +101,7 @@ export default {
       location:"__FIRST__",
       newColumn:{
         visibility:'always',
-        visibilityCondition:'',
+        visibilityCondition: null,
         header:null,
         tooltip:null,
         name:null,
@@ -116,10 +116,12 @@ export default {
         dataKeysList(){
           let resultList = []
           this.dataKeys.forEach((item)=>{
-            resultList.push({
-              label:this.showValue(item),
-              value:item
-            })
+            if(!['checkbox','action','row_number','more'].includes(item)){
+              resultList.push({
+                label:this.showValue(item),
+                value:item
+              })
+            }
           })
           return resultList
         },
@@ -165,6 +167,7 @@ export default {
   },
   watch:{
     selectedColumnName(newValue){
+      this.newColumn.visibilityCondition = newValue
       if(!['checkbox','row_number','action', 'more'].includes(newValue)){
         this.newColumn.type = 'data'
       }else if(newValue.startsWith("__")){
@@ -175,6 +178,15 @@ export default {
     }
   },
   methods:{
+    svgStyle(column){
+      return {
+        "fill":column.visibility === 'exists' ? "#b73be0" : this.selectedColumns.includes(column.name) ? "#337AB7" : "#ccc"
+      }
+    },
+    svgTitle(column){
+      return column.visibility === 'exists' ? `Appears if there are values in the ${this.showValue(column.visibilityCondition || column.name)} column`
+          : "column to appear"
+    },
     close(){
       this.show=false
     },

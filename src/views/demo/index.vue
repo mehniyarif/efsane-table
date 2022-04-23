@@ -85,12 +85,15 @@ export default {
         type:"data",
         header:"GD",
         name:"goalDifference",
+        visibility:"exists",
+        visibilityCondition:"points",
         size:"100"
       },
       {
         type:"data",
         header:"Points",
         name:"points",
+        visibility:"exists",
         size:"100"
       }
     ],
