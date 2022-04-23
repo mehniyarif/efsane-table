@@ -36,7 +36,7 @@ export default {
         type:"data",
         header:"Team Name",
         name:"team.name",
-        size:"3fr"
+        size:"4fr"
       },
       {
         type:"data",
@@ -72,13 +72,6 @@ export default {
         type:"data",
         header:"GA",
         name:"goalsAgainst",
-        size:"100"
-      },
-      {
-        type:"data",
-        header:"test",
-        name:"test_test",
-        visibility:"exists",
         size:"100"
       },
       {

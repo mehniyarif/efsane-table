@@ -10,9 +10,10 @@ Version ***1.1.2***  is Released 🎉✨
 
 **New Features**
 
-*Conditional Flip Columns*
+*Conditional Columns*
 - If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \"exists if\". 
 - Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.
+- If the column will appear according to another column, the name of the that column should be entered  visibility Condition.
 
 Draggable Columns
 <img  class="image-container" fetchpriorty="high" alt="Draggable Columns" src="https://efsane.s3.eu-central-1.amazonaws.com/efsane-draggable.gif">
@@ -60,6 +61,8 @@ Example Definition
           },{
             header: "Position",
             name:"position",
+            visibility:"exists",
+            visibilityCondition:"name",
             size:"60",
             type:"slot"
           },{
@@ -76,6 +79,7 @@ Example Definition
           {
             header: "Logo",
             name:"team.logo",
+            visibility:"exists",
             size:"1fr",
             type:"data",
             usage:"image-src"
@@ -806,14 +810,162 @@ settings:{
 </tbody>
 </table>
 
-***Goals***
-
+***Column Settings***
 <table>
 <thead>
 <tr>
-<th>Goal Title</th>
-<th>Description</th>
-<th>Target Version</th>
+<th>settingName</th>
+<th>type</th>
+<th>required</th>
+<th>name</th>
+<th>default</th>
+<th>options</th>
+<th>description</th>
+<th>available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>true</td>
+<td>Type</td>
+<td>data</td>
+<td>data,slot,action,alert,more,checkbox,row-number</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>tooltip</td>
+<td>String</td>
+<td>false</td>
+<td>Tooltip</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>header</td>
+<td>String</td>
+<td>false</td>
+<td>Header</td>
+<td>[data property name as title case]</td>
+<td></td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>listManipulation</td>
+<td>String</td>
+<td>false</td>
+<td>List Manipulation</td>
+<td>first</td>
+<td>first,comma,sum</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>size</td>
+<td>fr,px</td>
+<td>true</td>
+<td>Size</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>size</td>
+<td>String(fr,px)</td>
+<td>true</td>
+<td>Size</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>usage</td>
+<td>String</td>
+<td>false</td>
+<td>Usage</td>
+<td>default</td>
+<td>default,image-src</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>copyable</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Copyable</td>
+<td>false</td>
+<td>true,false</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>downloadable</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Downloadable</td>
+<td>false</td>
+<td>true,false</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>textManipulation</td>
+<td>String</td>
+<td>false</td>
+<td>Text Manipulation</td>
+<td>default</td>
+<td>default,upper,lower,title,capitalize</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>align</td>
+<td>String</td>
+<td>false</td>
+<td>Align</td>
+<td>center</td>
+<td>left,center,right</td>
+<td></td>
+<td>1.1.0</td>
+</tr>
+<tr>
+<td>visibility</td>
+<td>String</td>
+<td>false</td>
+<td>Visibility</td>
+<td>always</td>
+<td>always,exists</td>
+<td>If a column will only be displayed if there is data, you can solve this problem by selecting the column&#39;s visibility setting &quot;exists if&quot;. Also, make sure that the &quot;column auto visibility&quot; setting is enabled in the table settings.</td>
+<td>1.1.2</td>
+</tr>
+<tr>
+<td>visibility condition</td>
+<td>String</td>
+<td>false</td>
+<td>VisibilityCondition</td>
+<td>[self column]</td>
+<td>[exists columns]</td>
+<td>If the column will appear according to another column, the name of that column should be entered here.</td>
+<td>1.1.2</td>
+</tr>
+</tbody>
+</table>
+
+
+***Goals***
+<table>
+<thead>
+<tr>
+<th>goalTitle</th>
+<th>description</th>
+<th>target</th>
 </tr>
 </thead>
 <tbody>

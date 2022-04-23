@@ -220,6 +220,16 @@ export default {
             "Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.",
           available:"1.1.2"
         },
+        {
+          settingName:"visibility condition",
+          type:"String",
+          required:false,
+          name:"VisibilityCondition",
+          default:"[self column]",
+          options:"[exists columns]",
+          description:"If the column will appear according to another column, the name of that column should be entered here.",
+          available:"1.1.2"
+        },
       ],
       exampleCode:`<template>
   <div class="table-settings-wrapper">
