@@ -1,9 +1,9 @@
 export default {
   watch:{
     selectedIndexs(newValue){
-        this.selected = this.data.filter((value,key) => newValue.includes(key+1))
-        this.sendSelectedData(this.selected)
-        this.tableTabsControl()
+      this.selected = this.data.filter((value,key) => newValue.includes(key+1))
+      this.sendSelectedData(this.selected)
+      this.tableTabsControl()
     },
     settings:{
       handler(newValue){
@@ -46,6 +46,7 @@ export default {
     data:{
       handler(){
         this.clearSelected()
+        this.setObservers()
       },
       deep:true
     }
