@@ -36,7 +36,7 @@ export default {
         type:"data",
         header:"Team Name",
         name:"team.name",
-        size:"3fr"
+        size:"4fr"
       },
       {
         type:"data",
@@ -76,20 +76,17 @@ export default {
       },
       {
         type:"data",
-        header:"test",
-        name:"test",
-        size:"100"
-      },
-      {
-        type:"data",
         header:"GD",
         name:"goalDifference",
+        visibility:"exists",
+        visibilityCondition:"points",
         size:"100"
       },
       {
         type:"data",
         header:"Points",
         name:"points",
+        visibility:"exists",
         size:"100"
       }
     ],

@@ -7,7 +7,7 @@ export default {
       if(this.accordion){
         specialColumns.push('more')
       }
-      return tableApp.generateSmartData(this.data, this.$scopedSlots, specialColumns)
+      return tableApp.generateSmartData(this.data, this.$scopedSlots, specialColumns,false)
     },
     tableAllSelectAlertText(){
         return `All ${this.selected.length} ${this.tableItemDefinition.toLowerCase()} on this page have been selected.  `
@@ -19,7 +19,7 @@ export default {
       return this.settings.autoVisibility
     },
     visibleColumns(){
-        if(this.autoVisibility){
+        if(this.autoVisibility){ // TODO: burada conditional columna göre işlem yapılacak
           return this.currentColumns.filter(v => v?.visibility !== 'exists' || (v?.visibility === 'exists' && this.visibleDataKeys.includes(v?.name)))
         }else{
           return this.currentColumns

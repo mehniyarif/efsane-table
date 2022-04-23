@@ -173,6 +173,10 @@ export default {
     },
     increaseTableKey(){
         this.tableKey +=1
+        setTimeout(()=>{
+          // tablo refresh edilirken işlemediği için async yaptık
+          this.setObservers()
+        },0)
     },
     changeColumnsLocal(value){
       this.currentColumns = value
@@ -365,8 +369,9 @@ export default {
       })
     },
     observerTable(observerList){
+      // buradaki olay column özelliği olan visibility ve visibilitCondition özelliklerine gözükecek columnları bulmaktır.
       observerList.forEach((element)=>{
-        let number = element.target?.id.replace(/\D/g, "")
+        let number = element.target.dataset?.line
         if(element.isIntersecting){
           this.observeObject[number+1] = this.currentData[number]
         }else{
@@ -375,12 +380,25 @@ export default {
       })
       let list = [...new Set(Object.values(this.observeObject))]
       let tableApp = new TableApp
-      this.visibleDataKeys= tableApp.generateSmartData(list, this.$scopedSlots, [])
+      let existsKeys = tableApp.generateSmartData(list, this.$scopedSlots, [],true)
+      let conditions = this.currentColumns.filter(v => v.visibility === 'exists').map(v => [v.name, v.visibilityCondition || v.name])
+      if(conditions?.length){
+        conditions.forEach(([key,conditionKey])=>{
+              if(!existsKeys.includes(conditionKey)){
+                let index = existsKeys.findIndex(v => v === key)
+                if(index > -1){
+                  existsKeys.splice(index,1)
+                }
+              }
+        })
+      }
+      this.visibleDataKeys= existsKeys
     },
     setObservers(){
       let observer = new IntersectionObserver(this.observerTable, this.observeOptions)
-      this.$refs.tableBody.childNodes.forEach((element)=>{
+      this.$refs.tableBody?.childNodes.forEach((element)=>{
         if (element instanceof HTMLElement) {
+          observer.unobserve(element)
           observer.observe(element)
         }
       })

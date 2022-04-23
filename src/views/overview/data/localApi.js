@@ -15,7 +15,7 @@ export default {
             "won": 22,
             "draw": 3,
             "lost": 3,
-            "points": 69,
+            "points": "",
             "goalsFor": 68,
             "goalsAgainst": 18,
             "goalDifference": 50
@@ -32,7 +32,7 @@ export default {
             "won": 20,
             "draw": 6,
             "lost": 2,
-            "points": 66,
+            "points": "",
             "goalsFor": 73,
             "goalsAgainst": 20,
             "goalDifference": 53
@@ -49,7 +49,7 @@ export default {
             "won": 17,
             "draw": 8,
             "lost": 3,
-            "points": 59,
+            "points": "",
             "goalsFor": 57,
             "goalsAgainst": 19,
             "goalDifference": 38
@@ -66,7 +66,7 @@ export default {
             "won": 16,
             "draw": 3,
             "lost": 7,
-            "points": 51,
+            "points": "",
             "goalsFor": 43,
             "goalsAgainst": 29,
             "goalDifference": 14
@@ -83,7 +83,7 @@ export default {
             "won": 14,
             "draw": 8,
             "lost": 7,
-            "points": 50,
+            "points": "",
             "goalsFor": 48,
             "goalsAgainst": 40,
             "goalDifference": 8
@@ -100,7 +100,7 @@ export default {
             "won": 14,
             "draw": 6,
             "lost": 9,
-            "points": 48,
+            "points": "",
             "goalsFor": 48,
             "goalsAgainst": 36,
             "goalDifference": 12
@@ -117,7 +117,7 @@ export default {
             "won": 14,
             "draw": 4,
             "lost": 11,
-            "points": 46,
+            "points": "",
             "goalsFor": 29,
             "goalsAgainst": 23,
             "goalDifference": 6
@@ -134,7 +134,7 @@ export default {
             "won": 14,
             "draw": 3,
             "lost": 10,
-            "points": 45,
+            "points": "",
             "goalsFor": 42,
             "goalsAgainst": 35,
             "goalDifference": 7
@@ -151,7 +151,7 @@ export default {
             "won": 11,
             "draw": 3,
             "lost": 14,
-            "points": 36,
+            "points": "",
             "goalsFor": 41,
             "goalsAgainst": 39,
             "goalDifference": 2
@@ -168,7 +168,7 @@ export default {
             "won": 8,
             "draw": 11,
             "lost": 10,
-            "points": 35,
+            "points": "",
             "goalsFor": 36,
             "goalsAgainst": 45,
             "goalDifference": -9
@@ -185,7 +185,7 @@ export default {
             "won": 7,
             "draw": 12,
             "lost": 9,
-            "points": 33,
+            "points": "",
             "goalsFor": 39,
             "goalsAgainst": 38,
             "goalDifference": 1
@@ -202,7 +202,7 @@ export default {
             "won": 9,
             "draw": 6,
             "lost": 11,
-            "points": 33,
+            "points": "",
             "goalsFor": 40,
             "goalsAgainst": 45,
             "goalDifference": -5
@@ -219,7 +219,7 @@ export default {
             "won": 7,
             "draw": 12,
             "lost": 9,
-            "points": 33,
+            "points": "",
             "goalsFor": 26,
             "goalsAgainst": 34,
             "goalDifference": -8
@@ -236,7 +236,7 @@ export default {
             "won": 7,
             "draw": 10,
             "lost": 11,
-            "points": 31,
+            "points": "",
             "goalsFor": 32,
             "goalsAgainst": 48,
             "goalDifference": -16
@@ -253,7 +253,7 @@ export default {
             "won": 8,
             "draw": 6,
             "lost": 15,
-            "points": 30,
+            "points": "",
             "goalsFor": 32,
             "goalsAgainst": 45,
             "goalDifference": -13
@@ -270,7 +270,7 @@ export default {
             "won": 6,
             "draw": 8,
             "lost": 15,
-            "points": 26,
+            "points": "",
             "goalsFor": 31,
             "goalsAgainst": 65,
             "goalDifference": -34
@@ -287,7 +287,7 @@ export default {
             "won": 6,
             "draw": 4,
             "lost": 16,
-            "points": 22,
+            "points": "",
             "goalsFor": 28,
             "goalsAgainst": 47,
             "goalDifference": -19
@@ -304,7 +304,7 @@ export default {
             "won": 6,
             "draw": 4,
             "lost": 19,
-            "points": 22,
+            "points": "",
             "goalsFor": 29,
             "goalsAgainst": 55,
             "goalDifference": -26
@@ -321,7 +321,7 @@ export default {
             "won": 3,
             "draw": 12,
             "lost": 12,
-            "points": 21,
+            "points": "    ",
             "goalsFor": 22,
             "goalsAgainst": 38,
             "goalDifference": -16
@@ -338,14 +338,14 @@ export default {
             "won": 4,
             "draw": 5,
             "lost": 20,
-            "points": 17,
+            "points": "",
             "goalsFor": 18,
             "goalsAgainst": 63,
             "goalDifference": -45
           },
           {
             "position": 20,
-            "test": 20,
+            "test_test": 20,
             "team": {
               "id": 68,
               "name": "Norwich City FC",
@@ -356,7 +356,7 @@ export default {
             "won": 4,
             "draw": 5,
             "lost": 20,
-            "points": 17,
+            "points": 12,
             "goalsFor": 18,
             "goalsAgainst": 63,
             "goalDifference": -45
