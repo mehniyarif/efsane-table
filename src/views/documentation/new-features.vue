@@ -65,7 +65,7 @@ export default {
           featureTitle:"Conditional Columns",
           description:"If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \"exists if\". If the column will appear according to another column, the name of the that column should be entered  visibility Condition.\n" +
             "Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.",
-          available:"1.1.3"
+          available:"1.2.0"
         }
       ],
       exampleCode:`<template>

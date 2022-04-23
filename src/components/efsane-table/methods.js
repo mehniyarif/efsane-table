@@ -24,11 +24,11 @@ export default {
       let result = []
 
       if(property_list.length > 1 && data[property_list[0]]){
-          if(Array.isArray(data[property_list[0]])){
-            result = result.concat(this.getArrayValues(data[property_list[0]],property_list.slice(1), settings))
-          }else if(property_list[0] in data){
-            result = result.concat(this.getPropertyValue(data[property_list[0]], property_list.slice(1), settings))
-          }
+        if(Array.isArray(data[property_list[0]])){
+          result = result.concat(this.getArrayValues(data[property_list[0]],property_list.slice(1), settings))
+        }else if(property_list[0] in data){
+          result = result.concat(this.getPropertyValue(data[property_list[0]], property_list.slice(1), settings))
+        }
       }else{
 
         if(Array.isArray(data[property_list[0]])){
@@ -73,7 +73,7 @@ export default {
       }
     },
     clickedTable(){
-        this.dragStatus = false
+      this.dragStatus = false
     },
     mouseHoverOnBody(){
       if(parseInt(this.settings.showMenuStatus) === 2){
@@ -97,7 +97,7 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     borderVisible(ind){
-        return ind && this.resizeMode
+      return ind && this.resizeMode
     },
     alignStyle(align){
       if(!['center','left','right'].includes(align)){
@@ -118,22 +118,22 @@ export default {
       }
     },
     dataAllSelect(){
-        this.dataAllSelected = true
-        this.listAllSelected = true
-        this.sendDataAllSelectedMode(true)
-        this.sendListAllSelectedMode(true)
+      this.dataAllSelected = true
+      this.listAllSelected = true
+      this.sendDataAllSelectedMode(true)
+      this.sendListAllSelectedMode(true)
     },
     openCloseResizeMode(){
       this.resizeMode =! this.resizeMode
     },
     triggerListAllSelected(event){
-        this.listAllSelected = event.target.checked
-        this.sendListAllSelectedMode(event.target.checked)
-        if(event.target.checked){
-          this.selectedIndexs = Array.from({length: this.data.length}, (_, i) => i + 1)
-        }else{
-          this.selectedIndexs = []
-        }
+      this.listAllSelected = event.target.checked
+      this.sendListAllSelectedMode(event.target.checked)
+      if(event.target.checked){
+        this.selectedIndexs = Array.from({length: this.data.length}, (_, i) => i + 1)
+      }else{
+        this.selectedIndexs = []
+      }
     },
     listAllSelectKeyboard(){
       this.listAllSelected =! this.listAllSelected
@@ -152,18 +152,18 @@ export default {
       this.selectedIndexs = Array.from({length: this.data.length}, (_, i) => i + 1)
     },
     listAllSelectedWatcher(event){
-        if(!event.target.checked){
-          this.listAllSelected = false
-          this.dataAllSelected = false
-          this.sendDataAllSelectedMode(false)
-          this.sendListAllSelectedMode(false)
+      if(!event.target.checked){
+        this.listAllSelected = false
+        this.dataAllSelected = false
+        this.sendDataAllSelectedMode(false)
+        this.sendListAllSelectedMode(false)
+      }
+      setTimeout(()=>{
+        if(event.target.checked && this.selectedIndexs.length == this.data.length){
+          this.listAllSelected = true
+          this.sendListAllSelectedMode(true)
         }
-        setTimeout(()=>{
-          if(event.target.checked && this.selectedIndexs.length == this.data.length){
-            this.listAllSelected = true
-            this.sendListAllSelectedMode(true)
-          }
-        },100)
+      },100)
     },
     editColumn(column){
       let ind = this.currentColumns.findIndex(v => v.name === column.name)
@@ -172,11 +172,11 @@ export default {
       this.increaseTableKey()
     },
     increaseTableKey(){
-        this.tableKey +=1
-        setTimeout(()=>{
-          // tablo refresh edilirken işlemediği için async yaptık
-          this.setObservers()
-        },0)
+      this.tableKey +=1
+      setTimeout(()=>{
+        // tablo refresh edilirken işlemediği için async yaptık
+        this.setObservers()
+      },0)
     },
     changeColumnsLocal(value){
       this.currentColumns = value
@@ -213,14 +213,14 @@ export default {
       if(nodes && nodes.length){
 
         nodes.forEach(node => {
-              if(node.classList && node.classList.contains("inline-works")){
-                  return
-              }
-              text.push(node.textContent)
-                if(node.childNodes && node.childNodes.length){
-                  text.push(this.getCopyChilds(text, node.childNodes))
-                }
-            })
+          if(node.classList && node.classList.contains("inline-works")){
+            return
+          }
+          text.push(node.textContent)
+          if(node.childNodes && node.childNodes.length){
+            text.push(this.getCopyChilds(text, node.childNodes))
+          }
+        })
       }
       return text.join(" ").trim()
     },
@@ -313,13 +313,13 @@ export default {
     tableTabsControl(){
       let selectedIndex = this.tableTabs.findIndex(v => v.name === 'selected')
       if((this.selected.length === 0 && selectedIndex > -1) || !this.settings.selectedTabStatus){
-          this.tableTabs.splice(selectedIndex, 1)
-          this.selectTab('main')
-        }
+        this.tableTabs.splice(selectedIndex, 1)
+        this.selectTab('main')
+      }
       if(this.selected.length > 0 && selectedIndex === -1 && this.settings.selectedTabStatus){
         this.tableTabs.push({name:"selected",title:`Selected ${this.tableItemDefinition.toLowerCase()}`})
-        }
-      },
+      }
+    },
     selectTab(value){
       this.currentTab = value
     },
@@ -361,7 +361,7 @@ export default {
       let tooltipElements = Array.from(document.querySelectorAll(".efsane-tooltip"))
       tooltipElements.forEach((element)=>{
         element.addEventListener("mouseenter", (event)=>{
-            this.displayTooltip(event, element)
+          this.displayTooltip(event, element)
         })
         element.addEventListener("mouseleave", ()=>{
           this.tooltip = null
@@ -384,22 +384,30 @@ export default {
       let conditions = this.currentColumns.filter(v => v.visibility === 'exists').map(v => [v.name, v.visibilityCondition || v.name])
       if(conditions?.length){
         conditions.forEach(([key,conditionKey])=>{
-              if(!existsKeys.includes(conditionKey)){
-                let index = existsKeys.findIndex(v => v === key)
-                if(index > -1){
-                  existsKeys.splice(index,1)
-                }
-              }
+          if(!existsKeys.includes(conditionKey)){
+            let index = existsKeys.findIndex(v => v === key)
+            if(index > -1){
+              existsKeys.splice(index,1)
+            }
+          }
         })
       }
-      this.visibleDataKeys= existsKeys
+      this.observeChangingCount +=1
+      if(this.observeChangingCount > 1){
+        clearTimeout(this.observeChangingTimeout)
+      }
+      this.observeChangingTimeout = setTimeout(()=>{
+        this.visibleDataKeys= existsKeys
+        this.observeChangingCount = 0
+      },500)
+
     },
     setObservers(){
-      let observer = new IntersectionObserver(this.observerTable, this.observeOptions)
+      this.observer?.disconnect()
+      this.observer  = new IntersectionObserver(this.observerTable, this.observeOptions)
       this.$refs.tableBody?.childNodes.forEach((element)=>{
         if (element instanceof HTMLElement) {
-          observer.unobserve(element)
-          observer.observe(element)
+          this.observer.observe(element)
         }
       })
     }

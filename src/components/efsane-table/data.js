@@ -7,7 +7,10 @@ export default {
         threshold: 0
       },
       observeObject:{},
+      observer:null,
       visibleDataKeys:[],
+      observeChangingTimeout:null,
+      observeChangingCount:0,
       tableKey:0,
       startPoint:null,
       endPoint:null,
