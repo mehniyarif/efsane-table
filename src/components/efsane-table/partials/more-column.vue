@@ -23,6 +23,10 @@ export default {
       type:[Number,String],
       default:null
     },
+    accordionMechanic:{
+      type:String,
+      default:"all-open"  // other option: ["only-one"]
+    },
     selectedAccordions:{
       type:Array,
       default:function (){return []}
@@ -43,10 +47,15 @@ export default {
     },
     openAccordion(){
       let matchValue = this.readMatchField || this.line
-
-      this.$emit('update:selected-accordions',
-        [...this.selectedAccordions, matchValue]
-      )
+      if(this.accordionMechanic === "only-one"){
+        this.$emit('update:selected-accordions',
+          [matchValue]
+        )
+      }else{
+        this.$emit('update:selected-accordions',
+          [...this.selectedAccordions, matchValue]
+        )
+      }
     }
   }
 }

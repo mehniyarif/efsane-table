@@ -183,6 +183,17 @@ export default {
       this.sendColumns(value)
       this.increaseTableKey()
     },
+    makeId(){
+      let length = Math.floor(Math.random() * 30)
+      let result           = ["id"];
+      let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let charactersLength = characters.length;
+      for ( let i = 0; i < length; i++ ) {
+        result.push(characters.charAt(Math.floor(Math.random() *
+          charactersLength)));
+      }
+      return result.join('');
+    },
     getStorage(){
       if(this.save){
         let columnsStorage = localStorage.getItem(`${this.tableName}-columns`)
@@ -342,6 +353,11 @@ export default {
       }
 
     },
+    handleScroll(event){
+      let firstRow = document.querySelector(`#${this.headerId}`)
+      if(firstRow){firstRow.scrollLeft = event.target.scrollLeft
+      }
+    },
     transitionKey(row, line){
       if(!this.transitionConstField) return line
       let propertyValue =  this.readProperty(row, {name:this.transitionConstField})
@@ -373,12 +389,12 @@ export default {
       observerList.forEach((element)=>{
         let number = element.target.dataset?.line
         if(element.isIntersecting){
-          this.observeObject[number+1] = this.currentData[number]
+          this.tableObserveObject[number+1] = this.currentData[number]
         }else{
-          this.observeObject[number+1] = ""
+          this.tableObserveObject[number+1] = ""
         }
       })
-      let list = [...new Set(Object.values(this.observeObject))]
+      let list = [...new Set(Object.values(this.tableObserveObject))]
       let tableApp = new TableApp
       let existsKeys = tableApp.generateSmartData(list, this.$scopedSlots, [],true)
       let conditions = this.currentColumns.filter(v => v.visibility === 'exists').map(v => [v.name, v.visibilityCondition || v.name])
@@ -402,12 +418,36 @@ export default {
       },500)
 
     },
+    observerHeader(observerList){
+      observerList.forEach((element)=>{
+        if(element.isIntersecting){
+          let computedParentStyle = window.getComputedStyle(element.target)
+          let computedChildrenStyle = window.getComputedStyle(element.target.children[0])
+          this.headerObserveObject[element?.target?.innerText] = {
+            width :parseFloat(computedChildrenStyle.width),
+            character: element?.target?.innerText?.length,
+            isLong:parseFloat(computedParentStyle.width) < parseFloat(computedChildrenStyle.width)
+          }
+        }else{
+          this.headerObserveObject[element?.target?.innerText] = null
+        }
+      })
+
+      this.observeChangingCount +=1
+      if(this.observeChangingCount > 1){
+        clearTimeout(this.observeChangingTimeout)
+      }
+      this.observeChangingTimeout = setTimeout(()=>{
+        this.longTextExistsHeader = Object.values(this.headerObserveObject).map(v => v?.isLong || false).some(v => v)
+        this.observeChangingCount = 0
+      },500)
+    },
     setObservers(){
-      this.observer?.disconnect()
-      this.observer  = new IntersectionObserver(this.observerTable, this.observeOptions)
+      this.tableObserver?.disconnect()
+      this.tableObserver  = new IntersectionObserver(this.observerTable, this.tableObserveOptions)
       this.$refs.tableBody?.childNodes.forEach((element)=>{
         if (element instanceof HTMLElement) {
-          this.observer.observe(element)
+          this.tableObserver.observe(element)
         }
       })
     }

@@ -1,6 +1,6 @@
 <template>
   <thead class="efsane-table-header" >
-    <tr  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
+    <tr :id="headerId" ref="headerColumns" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent="onDragOver" @dragleave.prevent="onDragLeave">
         <span v-for="(column, key) in visibleColumns"  class="efsane-table-th" @click="selectHeader(column)" :style="alignStyle(column.align)" :draggable="!settings.resizing" :key="key" :dragKey="key" :class="{'drag-el':resizeMode}"  @dragend="endDrag($event, column)" @dragstart="startDrag($event, column)">
           <span v-if="!resizeMode || dragStatus" >
             <span v-if="['data','slot','row_number','more'].includes(column.type)">{{column.header}}</span>
@@ -47,6 +47,7 @@ export default {
       }
     },
     currentTab:String,
+    headerId:String,
     settings:Object,
     tableOrder:{
       type:String,
@@ -233,12 +234,15 @@ export default {
     display: grid;
     width: 100%;
     grid-template-columns:var(--efsane-table-header-column-sizes);
+    overflow-x: var(--efsane-table-header-overflow-x);
   }
   .efsane-table-th{
     position: relative;
     cursor: pointer;
-    white-space: nowrap;
     word-break: keep-all;
+    white-space: var(--efsane-table-header-white-space);
+    text-overflow: ellipsis;
+    padding-inline: 3px;
     box-sizing: content-box;
     background-color:var(--efsane-header-background-color);
     & > span {

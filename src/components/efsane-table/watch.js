@@ -16,6 +16,9 @@ export default {
     currentColumns:{
       handler(newValue){
         this.sendColumns(newValue)
+        queueMicrotask(()=>{
+          this.setObservers()
+        })
       },
       deep:true
     },
@@ -41,12 +44,25 @@ export default {
     },
     lazyLoad(){
       this.lazyLoadFlag = true
-
     },
     data:{
-      handler(){
+      handler(newValue){
         this.clearSelected()
-        this.setObservers()
+        queueMicrotask(()=>{
+          this.setObservers()
+        })
+      },
+      deep:true
+    },
+    defaultColumns:{
+      handler(){
+        this.currentColumns = this.columns && this.columns.length ? this.columns : this.defaultColumns || []
+      },
+      deep:true
+    },
+    columns:{
+      handler(){
+        this.currentColumns = this.columns && this.columns.length ? this.columns : this.defaultColumns || []
       },
       deep:true
     }

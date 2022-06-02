@@ -14,7 +14,7 @@ export default {
         "--efsane-table-header-column-sizes": `${this.columnSizes} minmax(0, ${this.scrollWidth}px)`,
         "--efsane-table-background-color": this.settings.tableBackgroundColor,
         "--efsane-header-background-color":
-          this.settings.headerBackgroundColor,
+        this.settings.headerBackgroundColor,
         "--efsane-table-text-color": this.settings.tableTextColor,
         "--efsane-header-text-color": this.settings.headerTextColor,
         "--efsane-row-hover-color": this.settings.rowHoverStatus
@@ -26,6 +26,8 @@ export default {
         "--efsane-row-selected-accordion-color": this.accordion
           ? this.settings.rowSelectedAccordionColor
           : "none",
+        "--efsane-table-overflow-x": this.widthOverflow === "auto" ? "auto" : "hidden",
+        "--efsane-table-header-overflow-x": this.widthOverflow === "auto" ? "hidden" : "inherit",
         "--efsane-row-scroll-animation": this.settings.rowScrollStatus
           ? `translateY(${this.settings.rowScrollSize}px)`
           : "none",
@@ -53,6 +55,7 @@ export default {
         "--efsane-table-topbar-height": this.settings.topbarHeight,
         "--efsane-table-header-height": `${this.settings.headerHeight}px`,
         "--efsane-pagination-height": this.settings.paginationHeight,
+        "--efsane-pagination-order": this.paginationPosition === "top" ? -1 : "inherit",
         "--efsane-tooltip-background-color": this.settings.tooltipBackgroundColor,
         "--efsane-tooltip-text-color": this.settings.tooltipTextColor,
         "--efsane-table-border-top-left-radius": this.hideHeader ?  "5px" : "0",
@@ -60,6 +63,7 @@ export default {
         "--efsane-table-column-border-right": this.dragStatus ?   "none" : "3px solid transparent",
         "--efsane-table-header-border-top-right-radius": this.showMenu ?   "0" : "5px",
         "--efsane-table-scrollbar-width": `${this.scrollWidth}px`,
+        "--efsane-table-header-white-space": this.longTextExistsHeader ? "none" : "nowrap"
       };
     }
   }
