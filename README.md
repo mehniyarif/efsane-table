@@ -4,16 +4,20 @@
 
 For ***Vue 2*** Framework. 
 
-Version ***1.1.4***  is Released 🎉✨
+Version ***1.1.5***  is Released 🎉✨
 
 **[Show Demo and Detail Documentation](https://efsanetable.herokuapp.com/)**
 
 **New Features**
 
-*Conditional Columns*
-- If a column will only be displayed if there is data, you can solve this problem by selecting the column's visibility setting \"exists if\". 
-- Also, make sure that the \"column auto visibility\" setting is enabled in the table settings.
-- If the column will appear according to another column, the name of the that column should be entered  visibility Condition.
+*Accordion Mechanic*
+- You can add the value "only-one" so that only one of the opened accordion lines remains open.
+
+*Width Overflow*
+- You can give "auto" if you want your table to expand across the content horizontally.
+
+*Pagination Position*
+- now you can add the "top" value to the pagination-position and put it at the top. The default value of this field is "bottom"
 
 Draggable Columns
 <img  class="image-container" fetchpriorty="high" alt="Draggable Columns" src="https://efsane.s3.eu-central-1.amazonaws.com/efsane-draggable.gif">
@@ -320,6 +324,39 @@ Example Definition
 <td></td>
 <td></td>
 <td>1.1.0</td>
+<td></td>
+</tr>
+<tr>
+<tr>
+<td>accordion-mechanic</td>
+<td>String</td>
+<td>false</td>
+<td>false</td>
+<td>all-open, only-one</td>
+<td>all-open</td>
+<td>1.1.5</td>
+<td></td>
+</tr>
+<tr>
+<tr>
+<td>pagination-position</td>
+<td>String</td>
+<td>false</td>
+<td>false</td>
+<td>bottom, top</td>
+<td>bottom</td>
+<td>1.1.5</td>
+<td></td>
+</tr>
+<tr>
+<tr>
+<td>width-overflow</td>
+<td>String</td>
+<td>false</td>
+<td>false</td>
+<td>hidden, auto/td>
+<td>hidden</td>
+<td>1.1.5</td>
 <td></td>
 </tr>
 <tr>
