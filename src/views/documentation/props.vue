@@ -301,6 +301,36 @@ export default {
           available:"1.1.0"
         },
         {
+          propsName:"accordion-mechanic",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          options:"all-open, only-one",
+          default:"all-open",
+          description:"",
+          available:"1.1.5"
+        },
+        {
+          propsName:"pagination-position",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          options:"bottom, top",
+          default:"bottom",
+          description:"",
+          available:"1.1.5"
+        },
+        {
+          propsName:"width-overflow",
+          type:"String",
+          required:false,
+          syncModifier:false,
+          options:"hidden, auto",
+          default:"hidden",
+          description:"",
+          available:"1.1.5"
+        },
+        {
           propsName:"actions",
           type:"Array",
           required:false,
