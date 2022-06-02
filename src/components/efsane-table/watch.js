@@ -46,7 +46,7 @@ export default {
       this.lazyLoadFlag = true
     },
     data:{
-      handler(newValue){
+      handler(){
         this.clearSelected()
         queueMicrotask(()=>{
           this.setObservers()
