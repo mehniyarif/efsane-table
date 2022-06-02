@@ -55,7 +55,8 @@ export default {
       deep:true
     },
     defaultColumns:{
-      handler(){
+      handler(newValue){
+        if(!newValue || !newValue.length || typeof newValue[0] != "object") return
         this.currentColumns = this.columns && this.columns.length ? this.columns : this.defaultColumns || []
       },
       deep:true

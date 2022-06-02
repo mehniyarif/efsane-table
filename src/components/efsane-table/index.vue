@@ -335,6 +335,7 @@ export default {
   font-size: var(--efsane-table-row-font-size);
   height: var(--efsane-table-row-height);
   cursor: pointer;
+  white-space: nowrap;
   word-break: keep-all;
   padding-inline: 3px;
   box-sizing: content-box;

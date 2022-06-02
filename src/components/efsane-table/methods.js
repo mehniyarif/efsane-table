@@ -432,7 +432,6 @@ export default {
           this.headerObserveObject[element?.target?.innerText] = null
         }
       })
-
       this.observeChangingCount +=1
       if(this.observeChangingCount > 1){
         clearTimeout(this.observeChangingTimeout)
@@ -443,6 +442,13 @@ export default {
       },500)
     },
     setObservers(){
+      this.headerObserver?.disconnect()
+      this.headerObserver  = new IntersectionObserver(this.observerHeader, this.headerObserveOptions)
+      this.$refs.tableHeader?.$refs?.headerColumns?.childNodes.forEach((element)=>{
+        if (element instanceof HTMLElement) {
+          this.headerObserver.observe(element)
+        }
+      })
       this.tableObserver?.disconnect()
       this.tableObserver  = new IntersectionObserver(this.observerTable, this.tableObserveOptions)
       this.$refs.tableBody?.childNodes.forEach((element)=>{
