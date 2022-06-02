@@ -7,11 +7,15 @@ export default {
     this.setShowMenu()
   },
   mounted(){
+    window.addEventListener('scroll', this.handleScroll , true);
     this.scrollbarVisible()
-    this.setObservers()
+    queueMicrotask(()=>{
+      this.setObservers()
+    })
   },
   destroyed(){
     window.removeEventListener('keyup', this.shortcutApply);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   updated(){
     this.setUpTooltip()

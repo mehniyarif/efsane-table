@@ -9,150 +9,151 @@ export default {
       }
     },
     efsaneTableContainerAttrs(){
-        return {
-          class:"efsane-table-container"
-        }
-      },
+      return {
+        class:"efsane-table-container"
+      }
+    },
     tableTopBarAttrs(){
-        return {
-          dataKeys:this.dataKeys,
-          tableTabs:this.tableTabs,
-          selectTab:this.selectTab,
-          currentTab:this.currentTab,
-          showMenu:this.showMenu
-        }
+      return {
+        dataKeys:this.dataKeys,
+        tableTabs:this.tableTabs,
+        selectTab:this.selectTab,
+        currentTab:this.currentTab,
+        showMenu:this.showMenu
+      }
     },
     tableAllSelectAlertAttrs(){
-        return {
-          tableAllSelectAlertShow:this.tableAllSelectAlertShow,
-          dataAllSelected:this.dataAllSelected,
-          tableAllSelectAlertText:this.tableAllSelectAlertText,
-          tableItemDefinition:this.tableItemDefinition,
-          dataCount:this.dataCount,
-          dataAllSelect:this.dataAllSelect
-        }
+      return {
+        tableAllSelectAlertShow:this.tableAllSelectAlertShow,
+        dataAllSelected:this.dataAllSelected,
+        tableAllSelectAlertText:this.tableAllSelectAlertText,
+        tableItemDefinition:this.tableItemDefinition,
+        dataCount:this.dataCount,
+        dataAllSelect:this.dataAllSelect
+      }
     },
     reloadButtonAttrs(){
-        return {
-          reload:this.reloadFunction
-        }
+      return {
+        reload:this.reloadFunction
+      }
     },
     resizeModeButtonAttrs(){
-        return{
-          openCloseResizeMode:this.openCloseResizeMode,
-          settings:this.settings,
-          resizeMode:this.resizeMode
-        }
+      return{
+        openCloseResizeMode:this.openCloseResizeMode,
+        settings:this.settings,
+        resizeMode:this.resizeMode
+      }
     },
     tableSettingsAttrs(){
-        return{
-              accordion:this.accordion,
-              actions:this.currentActions,
-              shortcuts:this.shortcuts,
-              increaseTableKey:this.increaseTableKey,
-              removeSettings:this.removeSettings,
-              settings:this.settings,
-              menuStatuses:this.menuStatuses,
-              changeColumnsLocal:this.changeColumnsLocal,
-              columns:this.currentColumns
-        }
+      return{
+        accordion:this.accordion,
+        actions:this.currentActions,
+        shortcuts:this.shortcuts,
+        increaseTableKey:this.increaseTableKey,
+        removeSettings:this.removeSettings,
+        settings:this.settings,
+        menuStatuses:this.menuStatuses,
+        changeColumnsLocal:this.changeColumnsLocal,
+        columns:this.currentColumns
+      }
     },
     dynamicColumnSettingAttrs(){
-        return{
-            usageTypes:this.usageTypes,
-            listManipulation:this.listManipulation,
-            dataKeys:this.dataKeys,
-            increaseTableKey:this.increaseTableKey,
-            visibilityOptions:this.visibilityOptions,
-            changeColumnsLocal:this.changeColumnsLocal,
-            columns:this.currentColumns
-        }
+      return{
+        usageTypes:this.usageTypes,
+        listManipulation:this.listManipulation,
+        dataKeys:this.dataKeys,
+        increaseTableKey:this.increaseTableKey,
+        visibilityOptions:this.visibilityOptions,
+        changeColumnsLocal:this.changeColumnsLocal,
+        columns:this.currentColumns
+      }
     },
     tableHeaderAttrs(){
-        return{
-          columns:this.currentColumns,
-          usageTypes:this.usageTypes,
-          currentTab:this.currentTab,
-          settings:this.settings,
-          dataKeys:this.dataKeys,
-          visibilityOptions:this.visibilityOptions,
-          alignStyle:this.alignStyle,
-          visibleColumns:this.visibleColumns,
-          textManipulation:this.textManipulation,
-          alignOptions:this.alignOptions,
-          listManipulation:this.listManipulation,
-          listAllSelected:this.listAllSelected,
-          editColumn:this.editColumn,
-          changeColumns:this.changeColumnsLocal,
-          mouseDown:this.mouseDown,
-          resizeMode:this.resizeMode,
-          triggerListAllSelected:this.triggerListAllSelected
-        }
+      return{
+        columns:this.currentColumns,
+        usageTypes:this.usageTypes,
+        currentTab:this.currentTab,
+        headerId:this.headerId,
+        settings:this.settings,
+        dataKeys:this.dataKeys,
+        visibilityOptions:this.visibilityOptions,
+        alignStyle:this.alignStyle,
+        visibleColumns:this.visibleColumns,
+        textManipulation:this.textManipulation,
+        alignOptions:this.alignOptions,
+        listManipulation:this.listManipulation,
+        listAllSelected:this.listAllSelected,
+        editColumn:this.editColumn,
+        changeColumns:this.changeColumnsLocal,
+        mouseDown:this.mouseDown,
+        resizeMode:this.resizeMode,
+        triggerListAllSelected:this.triggerListAllSelected
+      }
     },
     efsaneTableBodyAttrs(){
-        return{
-          class:"efsane-table-body"
-        }
+      return{
+        class:"efsane-table-body"
+      }
     },
     efsaneTableTdAttrs(){
-        return{
-          class:`efsane-table-td ${!this.settings.rowHoverStatus && 'hover-inactive'}"`
-        }
+      return{
+        class:`efsane-table-td ${!this.settings.rowHoverStatus && 'hover-inactive'}"`
+      }
     },
     moreColumnAttrs(){
-        return{
-          accordionMatchField:this.accordionMatchField
-        }
+      return{
+        accordionMatchField:this.accordionMatchField
+      }
     },
     checkboxAttrs(){
-        return{
-          type:"checkbox"
-        }
+      return{
+        type:"checkbox"
+      }
     },
     checkboxInputAttrs(){
-        return{
-          type:"checkbox"
-        }
+      return{
+        type:"checkbox"
+      }
     },
     inlineWorksAttrs(){
-        return{
-          class:"inline-works"
-        }
+      return{
+        class:"inline-works"
+      }
     },
     efsaneTableTdBorderAttrs(){
-        return{
-          class:"efsane-table-td-border"
-        }
+      return{
+        class:"efsane-table-td-border"
+      }
     },
     accordionAreaAttrs(){
-        return{
-          class:"accordion-area"
-        }
+      return{
+        class:"accordion-area"
+      }
     },
     noDataRowAttrs(){
-        return{
-          class:"no-data-row"
-        }
+      return{
+        class:"no-data-row"
+      }
     },
     efsaneTableFooterAttrs(){
-        return{
-          class:"efsane-table-footer"
-        }
+      return{
+        class:"efsane-table-footer"
+      }
     },
     paginationAttrs(){
-        return{
-          dataCount:this.dataCount,
-          limit:this.limit
-        }
+      return{
+        dataCount:this.dataCount,
+        limit:this.limit
+      }
     },
     tableCountDrawAttrs(){
-        return{
-            dataCount:this.dataCount,
-            name:this.tableItemDefinition,
-            offset:this.currentOffset,
-            limit:this.limit,
-            selectedLen:this.tableSelectedCount
-        }
+      return{
+        dataCount:this.dataCount,
+        name:this.tableItemDefinition,
+        offset:this.currentOffset,
+        limit:this.limit,
+        selectedLen:this.tableSelectedCount
+      }
     }
   }
 }

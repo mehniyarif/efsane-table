@@ -25,15 +25,15 @@ export default class TableApp{
     if(!obj) return []
 
     return Object.entries(obj).reduce((collector, [key, val]) => {
-        if(existIf && ["",null,undefined].includes(typeof val === 'string' ? val.trim() : val)) return  collector
+      if(existIf && ["",null,undefined].includes(typeof val === 'string' ? val.trim() : val)) return  collector
 
-        const newKeys = [ ...collector, prefix ? `${prefix}.${key}` : key ]
-        if (Object.prototype.toString.call(val) === '[object Object]') {
-          const newPrefix = prefix ? `${prefix}.${key}` : key
-          const otherKeys = this.getObjectKeys(val, newPrefix, existIf)
-          return [ ...newKeys, ...otherKeys ]
-        }
-        return newKeys
+      const newKeys = [ ...collector, prefix ? `${prefix}.${key}` : key ]
+      if (Object.prototype.toString.call(val) === '[object Object]') {
+        const newPrefix = prefix ? `${prefix}.${key}` : key
+        const otherKeys = this.getObjectKeys(val, newPrefix, existIf)
+        return [ ...newKeys, ...otherKeys ]
+      }
+      return newKeys
     }, [])
   }
 
@@ -60,7 +60,7 @@ export default class TableApp{
     if(!arr || !arr.length) return []
     let keys = []
     arr.forEach(line => {
-        keys = [... new Set(keys.concat(this.getDataLine(line, existIf)))]
+      keys = [... new Set(keys.concat(this.getDataLine(line, existIf)))]
     })
     return keys
   }

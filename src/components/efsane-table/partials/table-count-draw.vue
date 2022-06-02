@@ -55,7 +55,7 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap");
 .efsane-table-count-draw-container{
-  margin-top: 15px;
+  margin-block: 15px;
   font-family: 'Poppins','Sans Serif';
   -webkit-touch-callout: none;
   -webkit-user-select: none;

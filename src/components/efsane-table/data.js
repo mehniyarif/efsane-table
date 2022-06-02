@@ -1,13 +1,22 @@
 export default {
   data(){
     return{
-      observeOptions: {
+      headerId:this.makeId(),
+      tableObserveOptions: {
         root: document.querySelector('#efsane-table-content-wrapper'),
         rootMargin: '0px',
         threshold: 0
       },
-      observeObject:{},
-      observer:null,
+      headerObserveOptions: {
+        root: document.querySelector(`#${this.headerId}`),
+        rootMargin: '0px',
+        threshold: 0
+      },
+      tableObserveObject:{},
+      headerObserveObject:{},
+      tableObserver:null,
+      headerObserver:null,
+      longTextExistsHeader:false,
       visibleDataKeys:[],
       observeChangingTimeout:null,
       observeChangingCount:0,

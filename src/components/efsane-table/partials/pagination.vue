@@ -161,7 +161,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-block: 10px;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
 
